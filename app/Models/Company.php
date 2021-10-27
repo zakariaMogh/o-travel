@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
@@ -30,6 +31,7 @@ class Company extends Model
         'latitude', 'longitude', 'address',
         'city_id',
         'domain_id',
+        'description',
 
     ];
 
@@ -101,6 +103,11 @@ class Company extends Model
     public function domain(): belongsTo
     {
         return $this->belongsTo(Domain::class);
+    }
+
+    public function offers(): hasMany
+    {
+        return $this->hasMany(Offer::class);
     }
 
 

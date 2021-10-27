@@ -22,7 +22,7 @@ class OfferFactory extends Factory
             'published_at' => $this->faker->dateTime(3),
             'price' => rand(100, 500),
             'description' => $this->faker->words(30),
-            'category_id' => Category::inRandomOrder()->first()?->id : 1,
+            'category_id' => Category::inRandomOrder()->first()->id ?? 1,
             'company_id' => Company::inRandomOrder()->first()->id ?? 1,
 
         ];

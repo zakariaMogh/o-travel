@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Offer extends Model
 {
@@ -19,4 +22,25 @@ class Offer extends Model
         'company_id',
         'category_id'
     ];
+
+
+    public function images(): hasMany
+    {
+        return $this->hasMany(Image::class);
+    }
+
+    public function category(): belongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function company(): belongsTo
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    public function countries(): belongsToMany
+    {
+        return $this->belongsToMany(Country::class);
+    }
 }
