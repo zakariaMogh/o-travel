@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CountrySeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(CitySeeder::class);
+        $this->call(DomainSeeder::class);
 //        $this->call(OfferSeeder::class);
     }
 }

@@ -14,7 +14,8 @@ class DomainFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->unique()->word(),
+            'description' => $this->faker->text(),
         ];
     }
 }
