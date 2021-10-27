@@ -26,7 +26,7 @@ class ImageRepository extends BaseRepositories implements ImageContract
     {
         if (array_key_exists('link',$data) && $data['link'] instanceof UploadedFile)
         {
-            $data['link'] = $this->uploadOne($data['link'],'images');
+            $data['link'] = $this->uploadOne($data['link'],'offer/images');
         }
         return $this->model::create($data);
     }
@@ -42,7 +42,7 @@ class ImageRepository extends BaseRepositories implements ImageContract
                 $this->deleteOne($image->link);
             }
 
-            $data['link'] = $this->uploadOne($data['link'],'images');
+            $data['link'] = $this->uploadOne($data['link'],'offer/images');
         }else{
             unset($data['link']);
         }
