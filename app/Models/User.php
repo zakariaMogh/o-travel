@@ -66,11 +66,11 @@ class User extends Authenticatable
 
     public function getImageUrlAttribute()
     {
-        if (Str::contains($this->pic,'http'))
+        if (Str::contains($this->image,'http'))
         {
-            return $this->pic;
+            return $this->image;
         }
 
-        return $this->pic ? asset('storage/'.$this->pic) : asset('assets/admin/app-assets/images/user.png');
+        return $this->image ? asset('storage/'.$this->image) : asset('assets/admin/app-assets/images/user.png');
     }
 }
