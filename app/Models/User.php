@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
@@ -72,5 +73,10 @@ class User extends Authenticatable
         }
 
         return $this->image ? asset('storage/'.$this->image) : asset('assets/admin/app-assets/images/user.png');
+    }
+
+    public function comments():hasMany
+    {
+        return $this->hasMany(Comment::class);
     }
 }
