@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
@@ -13,6 +14,8 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        //
+        $this->command->info('Start inserting categories');
+        Category::factory(20)->create();
+        $this->command->info('categories was inserted Successfully');
     }
 }
