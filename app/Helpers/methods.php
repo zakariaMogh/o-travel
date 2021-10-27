@@ -27,7 +27,7 @@ if (! function_exists('user'))
 
 if (! function_exists('company'))
 {
-    function user(): ?\Illuminate\Contracts\Auth\Authenticatable
+    function company(): ?\Illuminate\Contracts\Auth\Authenticatable
     {
         if (auth('company')->check())
         {
