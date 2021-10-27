@@ -6,10 +6,11 @@ namespace App\Repositories;
 
 use App\Contracts\CompanyContract;
 use App\Models\Company;
+use App\Traits\UploadAble;
 
 class CompanyRepository extends BaseRepositories implements CompanyContract
 {
-
+    use UploadAble;
     /**
      * @param Company $model
      * @param array $filters
@@ -21,6 +22,11 @@ class CompanyRepository extends BaseRepositories implements CompanyContract
 
     public function new(array $data)
     {
+        if (array_key_exists('image', $data))
+        {
+            $data['image'] = $this->uploadOne($data['image'],'user/img');
+        }
+
         $data['password'] = bcrypt($data['password']);
         return $this->model::create($data);
     }
@@ -28,6 +34,15 @@ class CompanyRepository extends BaseRepositories implements CompanyContract
     public function update($id, array $data)
     {
         $company = $this->findOneById($id);
+
+        if (array_key_exists('image', $data))
+        {
+            if ($company->image)
+            {
+                $this->deleteOne($company->image);
+            }
+            $data['image'] = $this->uploadOne($data['image'],'user/img');
+        }
 
         if (array_key_exists('password',$data))
         {
@@ -42,6 +57,11 @@ class CompanyRepository extends BaseRepositories implements CompanyContract
     public function destroy($id)
     {
         $company = $this->findOneById($id);
+
+        if ($company->image)
+        {
+            $this->deleteOne($company->image);
+        }
 
         return $company->delete();
     }

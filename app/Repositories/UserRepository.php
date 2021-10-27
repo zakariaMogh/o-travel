@@ -6,10 +6,11 @@ namespace App\Repositories;
 
 use App\Contracts\UserContract;
 use App\Models\User;
+use App\Traits\UploadAble;
 
 class UserRepository extends BaseRepositories implements UserContract
 {
-
+    use UploadAble;
     /**
      * @param User $model
      * @param array $filters
@@ -21,6 +22,11 @@ class UserRepository extends BaseRepositories implements UserContract
 
     public function new(array $data)
     {
+        if (array_key_exists('image', $data))
+        {
+            $data['image'] = $this->uploadOne($data['image'],'user/img');
+        }
+
         $data['password'] = bcrypt($data['password']);
         return $this->model::create($data);
     }
@@ -28,6 +34,15 @@ class UserRepository extends BaseRepositories implements UserContract
     public function update($id, array $data)
     {
         $user = $this->findOneById($id);
+
+        if (array_key_exists('image', $data))
+        {
+            if ($user->image)
+            {
+                $this->deleteOne($user->image);
+            }
+            $data['image'] = $this->uploadOne($data['image'],'user/img');
+        }
 
         if (array_key_exists('password',$data))
         {
@@ -42,6 +57,11 @@ class UserRepository extends BaseRepositories implements UserContract
     public function destroy($id)
     {
         $user = $this->findOneById($id);
+
+        if ($user->image)
+        {
+            $this->deleteOne($user->image);
+        }
 
         return $user->delete();
     }
