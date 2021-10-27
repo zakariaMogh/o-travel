@@ -4,6 +4,7 @@ namespace App\QueryFilter;
 
 
 
+use App\Models\Admin;
 use Spatie\Permission\Models\Role;
 
 class Search extends Filter
@@ -18,6 +19,10 @@ class Search extends Filter
         }
 
         if ($builder->getModel() instanceof Role) {
+            $builder->where('name', 'like', '%' . $q . '%');
+        }
+
+        if ($builder->getModel() instanceof Admin) {
             $builder->where('name', 'like', '%' . $q . '%');
         }
 

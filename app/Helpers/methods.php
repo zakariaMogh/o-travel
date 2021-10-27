@@ -25,6 +25,18 @@ if (! function_exists('user'))
     }
 }
 
+if (! function_exists('company'))
+{
+    function user(): ?\Illuminate\Contracts\Auth\Authenticatable
+    {
+        if (auth('company')->check())
+        {
+            return auth('company')->user();
+        }
+        return null;
+    }
+}
+
 
 if (! function_exists('settings'))
 {

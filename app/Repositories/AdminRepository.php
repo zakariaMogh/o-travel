@@ -14,10 +14,11 @@ class AdminRepository extends BaseRepositories implements AdminContract
 
     /**
      * @param Admin $model
-     * @param int $per_page
      * @param array $filters
      */
-    public function __construct(Admin $model, $per_page = 10, array $filters = [])
+    public function __construct(Admin $model, array $filters = [
+        \App\QueryFilter\Search::class
+    ])
     {
         parent::__construct($model, $filters);
     }

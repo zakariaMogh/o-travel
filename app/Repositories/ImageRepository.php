@@ -6,10 +6,13 @@ namespace App\Repositories;
 
 use App\Contracts\ImageContract;
 use App\Models\Image;
+use App\Traits\UploadAble;
+use Illuminate\Http\UploadedFile;
 
 class ImageRepository extends BaseRepositories implements ImageContract
 {
 
+    use UploadAble;
     /**
      * @param Image $model
      * @param array $filters
@@ -21,12 +24,28 @@ class ImageRepository extends BaseRepositories implements ImageContract
 
     public function new(array $data)
     {
+        if (array_key_exists('link',$data) && $data['link'] instanceof UploadedFile)
+        {
+            $data['link'] = $this->uploadOne($data['link'],'images');
+        }
         return $this->model::create($data);
     }
 
     public function update($id, array $data)
     {
         $image = $this->findOneById($id);
+
+        if (array_key_exists('link',$data) && $data['link'] instanceof UploadedFile)
+        {
+            if ($image->link)
+            {
+                $this->deleteOne($image->link);
+            }
+
+            $data['link'] = $this->uploadOne($data['link'],'images');
+        }else{
+            unset($data['link']);
+        }
 
         $image->update($data);
 
@@ -36,6 +55,11 @@ class ImageRepository extends BaseRepositories implements ImageContract
     public function destroy($id)
     {
         $image = $this->findOneById($id);
+
+        if ($image->link)
+        {
+            $this->deleteOne($image->link);
+        }
 
         return $image->delete();
     }

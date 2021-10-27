@@ -21,12 +21,18 @@ class UserRepository extends BaseRepositories implements UserContract
 
     public function new(array $data)
     {
+        $data['password'] = bcrypt($data['password']);
         return $this->model::create($data);
     }
 
     public function update($id, array $data)
     {
         $user = $this->findOneById($id);
+
+        if (array_key_exists('password',$data))
+        {
+            $data['password'] = bcrypt($data['password']);
+        }
 
         $user->update($data);
 
