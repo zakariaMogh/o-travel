@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -21,6 +22,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'country_code',
+        'image',
+        'wallet',
+        'device_token',
+        'state'
     ];
 
     /**
@@ -41,4 +48,29 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    /**
+     * @var string[]
+     */
+    protected $appends = [
+        'image_url'
+    ];
+
+    public function adminPath()
+    {
+        if ($this->id)
+        {
+            return route('admin.users.show',$this->id);
+        }
+        return '#';
+    }
+
+    public function getImageUrlAttribute()
+    {
+        if (Str::contains($this->pic,'http'))
+        {
+            return $this->pic;
+        }
+
+        return $this->pic ? asset('storage/'.$this->pic) : asset('assets/admin/app-assets/images/user.png');
+    }
 }

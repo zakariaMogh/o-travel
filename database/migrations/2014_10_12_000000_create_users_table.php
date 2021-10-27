@@ -19,6 +19,12 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('image')->nullable();
+            $table->string('phone')->unique()->nullable();
+            $table->string('country_code')->nullable();;
+            $table->string('device_token')->nullable();
+            $table->double('wallet',14,2)->default(0);
+            $table->integer('state')->default(1); // 1: active - 2: banned
             $table->rememberToken();
             $table->timestamps();
         });
