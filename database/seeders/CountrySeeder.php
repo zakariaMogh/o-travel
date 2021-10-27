@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class CitySeeder extends Seeder
+class CountrySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +13,7 @@ class CitySeeder extends Seeder
      */
     public function run()
     {
-//        \App\Models\City::factory(10)->create();
+        \App\Models\Country::factory(10)->create();
+
     }
 }
