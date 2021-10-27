@@ -43,4 +43,10 @@ class Offer extends Model
     {
         return $this->belongsToMany(Country::class);
     }
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
+    }
+
 }
