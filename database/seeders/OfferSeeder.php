@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Offer;
 use Illuminate\Database\Seeder;
 
 class OfferSeeder extends Seeder
@@ -13,6 +14,9 @@ class OfferSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Offer::factory(10)->create();
+        $this->command->info('Start inserting offers');
+            Offer::factory(10)->create();
+        $this->command->info('Offers was inserted Successfully');
+
     }
 }

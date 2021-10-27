@@ -43,7 +43,7 @@ class CreateCompaniesTable extends Migration
 
             $table->foreignId('domain_id')->nullable()->constrained()
                 ->onDelete('set null')->onUpdate('cascade');
-
+            $table->rememberToken();
             $table->timestamps();
         });
     }
