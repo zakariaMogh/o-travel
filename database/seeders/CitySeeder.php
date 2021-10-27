@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\City;
 use Illuminate\Database\Seeder;
 
 class CitySeeder extends Seeder
@@ -13,6 +14,8 @@ class CitySeeder extends Seeder
      */
     public function run()
     {
-//        \App\Models\City::factory(10)->create();
+        $this->command->info('Start inserting cities');
+        City::factory(20)->create();
+        $this->command->info('cities was inserted Successfully');
     }
 }
