@@ -55,6 +55,7 @@ return [
     'section' => '{1}Section|[2,*]Sections',
     'report' => '{1}Report|[2,*]Reports',
     'country' => '{1}Country|[2,*]Countries',
+    'domain' => '{1}Domain|[2,*]Domains',
     'dashboard' => 'Dashboard',
     'rating' => 'Rating',
     'accounts' => 'Accounts',

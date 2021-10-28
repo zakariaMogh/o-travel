@@ -18,7 +18,7 @@ class CountryController extends Controller
         $this->country = $country;
 
         $this->middleware(['permission:view-country'])->only(['index', 'show']);
-        $this->middleware(['permission:edit-country'])->only(['edit','update','editPassword','updatePassword']);
+        $this->middleware(['permission:edit-country'])->only(['edit','update']);
         $this->middleware(['permission:create-country'])->only(['create', 'store']);
         $this->middleware(['permission:delete-country'])->only(['destroy']);
     }

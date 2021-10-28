@@ -14,7 +14,10 @@ class DomainRepository extends BaseRepositories implements DomainContract
      * @param Domain $model
      * @param array $filters
      */
-    public function __construct(Domain $model, array $filters = [])
+    public function __construct(Domain $model, array $filters = [
+        \App\QueryFilter\Search::class,
+
+    ])
     {
         parent::__construct($model, $filters);
     }

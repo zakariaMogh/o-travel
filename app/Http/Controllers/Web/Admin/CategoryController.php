@@ -18,7 +18,7 @@ class CategoryController extends Controller
         $this->category = $category;
 
         $this->middleware(['permission:view-category'])->only(['index', 'show']);
-        $this->middleware(['permission:edit-category'])->only(['edit','update','editPassword','updatePassword']);
+        $this->middleware(['permission:edit-category'])->only(['edit','update']);
         $this->middleware(['permission:create-category'])->only(['create', 'store']);
         $this->middleware(['permission:delete-category'])->only(['destroy']);
     }

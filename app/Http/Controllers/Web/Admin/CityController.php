@@ -18,7 +18,7 @@ class CityController extends Controller
         $this->city = $city;
 
         $this->middleware(['permission:view-city'])->only(['index', 'show']);
-        $this->middleware(['permission:edit-city'])->only(['edit','update','editPassword','updatePassword']);
+        $this->middleware(['permission:edit-city'])->only(['edit','update']);
         $this->middleware(['permission:create-city'])->only(['create', 'store']);
         $this->middleware(['permission:delete-city'])->only(['destroy']);
     }

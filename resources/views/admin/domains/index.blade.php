@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title',trans_choice('labels.country',2))
+@section('title',trans_choice('labels.domain',2))
 
 @section('content')
 
@@ -12,7 +12,7 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">{{__('labels.list',['name'=> trans_choice('labels.country',2)])}}</h2>
+                            <h2 class="content-header-title float-left mb-0">{{__('labels.list',['name'=> trans_choice('labels.domain',2)])}}</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
@@ -20,7 +20,7 @@
                                     </li>
 
                                     <li class="breadcrumb-item active">
-                                        {{__('labels.list',['name'=> trans_choice('labels.country',2)])}}
+                                        {{__('labels.list',['name'=> trans_choice('labels.domain',2)])}}
                                     </li>
                                 </ol>
                             </div>
@@ -31,7 +31,7 @@
             </div>
             <div class="content-body">
                 <div class="row" id="table-head">
-                    <div class="col-4">
+                    <div class="col-12 col-lg-4">
                         <div class="card">
                             <div class="card-header">
                                 <button title="{{__('actions.back')}}"
@@ -40,22 +40,28 @@
                                     <i data-feather='arrow-right'></i>
                                 </button>
                             </div>
-                            @can('create-country')
-                                <div class="col-12 col-lg-4">
+                            @can('create-domain')
+                                <div class="col-12">
                                     <div class="card">
                                         <div class="card-header">
                                             <h4 class="card-title">{{__('actions.create')}}</h4>
                                         </div>
                                         <div class="card-body">
                                             <form class="form form-horizontal" method="post"
-                                                  action="{{route('admin.countries.store')}}">
+                                                  action="{{route('admin.domains.store')}}">
                                                 @csrf
                                                 <div class="row">
                                                     <div class="col-12 mb-2">
                                                         <x-form.input
                                                             name="name" {{-- required --}}
                                                         :value="old('name')"
-                                                            type="text" {{-- optional default=text --}}
+                                                        type="text" {{-- optional default=text --}}
+                                                            :is_required="true" {{-- optional default=false --}}
+                                                        />
+
+                                                        <x-form.textarea
+                                                            name="description" {{-- required --}}
+                                                        :value="old('description')"
                                                             :is_required="true" {{-- optional default=false --}}
                                                         />
 
@@ -79,15 +85,15 @@
                         <div class="card">
 
                             <div class="card-header ">
-                                {{--                                                                <div>--}}
-                                {{--                                                                    @can('create-county')--}}
-                                {{--                                                                        <button title="{{__('actions.create')}}" data-toggle="modal" id="create-btn"--}}
-                                {{--                                                                                data-target="#modals-slide-in" type="button"--}}
-                                {{--                                                                                class="btn btn-icon btn-outline-primary">--}}
-                                {{--                                                                            <i data-feather="plus"></i>--}}
-                                {{--                                                                        </button>--}}
-                                {{--                                                                    @endcan--}}
-                                {{--                                                                </div>--}}
+{{--                                                                <div>--}}
+{{--                                                                    @can('create-domain')--}}
+{{--                                                                        <button title="{{__('actions.create')}}" data-toggle="modal" id="create-btn"--}}
+{{--                                                                                data-target="#modals-slide-in" type="button"--}}
+{{--                                                                                class="btn btn-icon btn-outline-primary">--}}
+{{--                                                                            <i data-feather="plus"></i>--}}
+{{--                                                                        </button>--}}
+{{--                                                                    @endcan--}}
+{{--                                                                </div>--}}
 
 
                             </div>
@@ -111,11 +117,12 @@
                                         <tr>
                                             <th>#</th>
                                             <th>{{__('labels.name')}}</th>
+                                            <th>{{__('labels.description')}}</th>
                                             <th>{{__('labels.actions')}}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($countries as $t)
+                                        @foreach($domains as $t)
                                             <tr>
                                                 <td>
                                                     {{$t->id}}
@@ -123,23 +130,28 @@
                                                 <td>
                                                     {{$t->name}}
                                                 </td>
+                                                <td data-toggle="tooltip" data-placement="bottom" title="{{$t->description}}">
+                                                    <p style="width: 20rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                                                        {{$t->description}}
+                                                    </p>
+                                                </td>
 
                                                 <td>
 
-                                                    {{--                                                    @can('view-county')--}}
-                                                    {{--                                                        <a title="{{__('actions.details')}}"--}}
-                                                    {{--                                                           href="{{route('admin.countrie.show',$t->id)}}">--}}
-                                                    {{--                                                            <i data-feather="eye" class="mr-50"></i>--}}
-                                                    {{--                                                        </a>--}}
-                                                    {{--                                                    @endcan--}}
+{{--                                                    @can('view-domain')--}}
+{{--                                                        <a title="{{__('actions.details')}}"--}}
+{{--                                                           href="{{route('admin.domains.show',$t->id)}}">--}}
+{{--                                                            <i data-feather="eye" class="mr-50"></i>--}}
+{{--                                                        </a>--}}
+{{--                                                    @endcan--}}
 
-                                                    @can('edit-country')
+                                                    @can('edit-domain')
                                                         <a title="{{__('actions.edit')}}"
-                                                           href="{{route('admin.countries.edit',$t->id)}}">
+                                                           href="{{route('admin.domains.edit',$t->id)}}">
                                                             <i data-feather="edit-2" class="mr-50"></i>
                                                         </a>
                                                     @endcan
-                                                    @can('delete-country')
+                                                    @can('delete-domain')
                                                         <a title="{{__('actions.delete')}}"
                                                            onclick="deleteForm({{$t->id}})" href="javascript:void(0);">
                                                             <i data-feather="trash" class="mr-50"></i>
@@ -153,7 +165,7 @@
                                         </tbody>
                                     </table>
                                     <div class="d-flex justify-content-center my-1">
-                                        {{$countries->links()}}
+                                        {{$domains->links()}}
                                     </div>
                                 </div>
                             </div>
@@ -193,7 +205,7 @@
         const createForm = id => {
             let f = document.createElement("form");
             f.setAttribute('method', "post");
-            f.setAttribute('action', `/admin/countries/${id}`);
+            f.setAttribute('action', `/admin/domains/${id}`);
 
             let i1 = document.createElement("input"); //input element, text
             i1.setAttribute('type', "hidden");

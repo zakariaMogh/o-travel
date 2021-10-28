@@ -31,7 +31,7 @@
             </div>
             <div class="content-body">
                 <div class="row" id="table-head">
-                    <div class="col-4">
+                    <div class="col-12 col-lg-4">
                         <div class="card">
                             <div class="card-header">
                                 <button title="{{__('actions.back')}}"
@@ -74,7 +74,7 @@
                             @endcan
                         </div>
                     </div>
-                    <div class="col-8">
+                    <div class="col-12 col-lg-8">
 
                         <div class="card">
 
