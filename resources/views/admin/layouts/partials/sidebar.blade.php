@@ -54,17 +54,6 @@
                 </li>
             @endcan
 
-            @can('view-benefit')
-                <li class=" nav-item {{request()->routeIs('admin.benefit*') ? 'active' : ''}}">
-                    <a class="d-flex align-items-center" href="{{route('admin.benefit')}}">
-                        <i class="fas fa-dollar-sign"></i>
-                        <span class="menu-title text-truncate" data-i18n="benefit">
-                    {{__('labels.benefit')}}
-                </span>
-                    </a>
-                </li>
-            @endcan
-
             @canany(['view-role','view-admin','view-user'])
                 <li class="nav-item has-sub @if(request()->is(['admin/roles*','admin/users*','admin/admins*','admin/sellers*'])) sidebar-group-active open @endif" >
                     <a href="#" class="d-flex align-items-center">
@@ -107,16 +96,6 @@
                             </li>
                         @endcan
 
-                        @can('view-seller')
-                            <li class="nav-item">
-                                <a href="{{route('admin.sellers.index')}}" data-link="/admin/users"
-                                   class="nav-link {{request()->routeIs('admin.sellers*') ? 'active' : ''}}">
-                                    <i class="fas fa-users"></i>
-                                    <span class="menu-title text-truncate">{{trans_choice('labels.seller',2)}}</span>
-                                </a>
-                            </li>
-                        @endcan
-
                     </ul>
                 </li>
             @endcanany
@@ -133,17 +112,6 @@
                 </li>
             @endcan
 
-            @can('view-admin-notification')
-                <li class=" nav-item {{request()->routeIs('admin.notifications*') ? 'active' : ''}}">
-                    <a class="d-flex align-items-center" href="{{route('admin.notifications.index')}}">
-
-                        <i class="fas fa-bell"></i>
-                        <span class="menu-title text-truncate">
-                    {{trans_choice('labels.notification',2)}}
-                </span>
-                    </a>
-                </li>
-            @endcan
 
             @can('view-city')
                 <li class=" nav-item {{request()->routeIs('admin.cities*') ? 'active' : ''}}">
@@ -157,16 +125,6 @@
                 </li>
             @endcan
 
-            @can('view-product')
-                <li class=" nav-item {{request()->routeIs('admin.products*') ? 'active' : ''}}">
-                    <a class="d-flex align-items-center" href="{{route('admin.products.index')}}">
-                        <i class="fab fa-product-hunt"></i>
-                        <span class="menu-title text-truncate">
-                            {{trans_choice('labels.product',2)}}
-                        </span>
-                    </a>
-                </li>
-            @endcan
 
             @can('view-country')
                 <li class=" nav-item {{request()->routeIs('admin.countries*') ? 'active' : ''}}">
@@ -177,120 +135,16 @@
                 </li>
             @endcan
 
-            @canany(['view-report-category','view-report'])
-                <li class="nav-item has-sub @if(request()->is(['admin/report-categories*','admin/reports*'])) sidebar-group-active open @endif" >
-                    <a href="#" class="d-flex align-items-center">
-                        <i class="fas fa-clipboard-list"></i>
-                        <span class="menu-title text-truncate">
-                            {{trans_choice('labels.report',2)}}
-                        </span>
-                    </a>
-
-                    <ul class="menu-content">
-
-                        @can('view-report-category')
-                            <li class=" nav-item {{request()->routeIs('admin.report-categories*') ? 'active' : ''}}">
-                                <a class="d-flex align-items-center" href="{{route('admin.report-categories.index')}}">
-                                    <i class="fas fa-clipboard-check"></i>
-                                    <span class="menu-title text-truncate">{{trans_choice('labels.report-category',2)}}</span>
-                                </a>
-                            </li>
-                        @endcan
-
-                        @can('view-report')
-                            <li class="nav-item">
-                                <a href="{{route('admin.reports.index')}}" data-link="/admin/roles"
-                                   class="nav-link {{request()->routeIs('admin.reports*')? 'active' : ''}} ">
-                                    <i class="fas fa-clipboard"></i>
-                                    <span class="menu-title text-truncate">{{trans_choice('labels.report',2)}}</span>
-                                </a>
-                            </li>
-                        @endcan
-
-                    </ul>
-                </li>
-            @endcanany
-
-            @canany(['view-user_withdrawal','view-seller_withdrawal'])
-                <li class="nav-item has-sub @if(request()->is(['admin/user-withdrawals* ,view-seller-withdrawal*'])) sidebar-group-active open @endif" >
-                <a href="#" class="d-flex align-items-center">
-                    <i class="fas fa-money-check-alt"></i>
-                    <span class="menu-title text-truncate">
-                        {{trans_choice('labels.withdrawal',1)}}
-                    </span>
-                </a>
-
-                <ul class="menu-content">
-
-                    @can('view-seller_withdrawal')
-                        <li class=" nav-item {{request()->routeIs('admin.seller-withdrawals*') ? 'active' : ''}}">
-                            <a class="d-flex align-items-center" href="{{route('admin.seller-withdrawals.index')}}">
-                                <i class="fas fa-money-check"></i>
-                                <span class="menu-title text-truncate">{{trans_choice('labels.seller_withdrawal',2)}}</span>
-                            </a>
-                        </li>
-                    @endcan
-
-                    @can('view-user_withdrawal')
-                        <li class="nav-item">
-                            <a href="{{route('admin.user-withdrawals.index')}}" data-link="/admin/roles"
-                               class="nav-link {{request()->routeIs('admin.user-withdrawals*')? 'active' : ''}} ">
-                                <i class="fas fa-money-check"></i>
-                                <span class="menu-title text-truncate">{{trans_choice('labels.user_withdrawal',1)}}</span>
-                            </a>
-                        </li>
-                    @endcan
+                @can('view-domain')
+                    <li class=" nav-item {{request()->routeIs('admin.domains*') ? 'active' : ''}}">
+                        <a class="d-flex align-items-center" href="{{route('admin.domains.index')}}">
+                            <i class="fas fa-flag"></i>
+                            <span class="menu-title text-truncate">{{trans_choice('labels.domain',2)}}</span>
+                        </a>
+                    </li>
+                @endcan
 
 
-
-                </ul>
-            </li>
-            @endcanany
-
-            @can('view-code')
-                <li class="nav-item">
-                    <a href="{{route('admin.codes.index')}}" data-link="/admin/codes"
-                       class="nav-link {{request()->routeIs('admin.code*')? 'active' : ''}} ">
-                        <i class="fas fa-money-check"></i>
-                        <span class="menu-title text-truncate">{{__('labels.code')}}</span>
-                    </a>
-                </li>
-            @endcan
-
-            @canany(['view-order','view-recipe-order'])
-                <li class="nav-item has-sub @if(request()->is(['admin/orders* ,admin/recipe-orders*'])) sidebar-group-active open @endif" >
-                    <a href="#" class="d-flex align-items-center">
-                        <i class="fas fa-file-invoice-dollar"></i>
-                        <span class="menu-title text-truncate">
-                            {{trans_choice('labels.order',2)}}
-                        </span>
-                    </a>
-
-                    <ul class="menu-content">
-
-                        @can('view-order')
-                            <li class="nav-item ">
-                                <a href="{{route('admin.orders.index')}}" data-link="/admin/orders"
-                                   class="nav-link {{request()->routeIs('admin.orders*') ? 'active' : ''}}">
-                                    <i class="fas fa-file-invoice-dollar"></i>
-                                    <span class="menu-title text-truncate">{{trans_choice('labels.food_order',1)}}</span>
-                                </a>
-                            </li>
-                        @endcan
-
-                        @can('view-recipe-order')
-                            <li class="nav-item">
-                                <a href="{{route('admin.recipe-orders.index')}}"
-                                   class="nav-link {{request()->routeIs('admin.recipe-orders*')? 'active' : ''}} ">
-                                    <i class="fas fa-file-invoice"></i>
-                                    <span class="menu-title text-truncate">{{__('labels.recipe_orders')}}</span>
-                                </a>
-                            </li>
-                        @endcan
-
-                    </ul>
-                </li>
-            @endcanany
 
         </ul>
     </div>
