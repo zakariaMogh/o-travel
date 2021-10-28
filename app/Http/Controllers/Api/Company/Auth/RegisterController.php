@@ -51,7 +51,7 @@ class RegisterController extends Controller
             'email'         => 'required|string|email|unique:companies,email',
             'password'      => 'required|string|min:8|max:24|confirmed',
             'country_code'  => 'required|regex:/^(\+)([1-9](\d{0,5}))/',
-            'phone'         => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'phone'         => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|unique:companies,phone',
             'device_token'  => 'required|string',
             'image'         => 'sometimes|nullable|file|image|max:3000',
             'city_id'       => 'required|integer|exists:cities,id',

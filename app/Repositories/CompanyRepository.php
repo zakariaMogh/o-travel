@@ -24,7 +24,7 @@ class CompanyRepository extends BaseRepositories implements CompanyContract
     {
         if (array_key_exists('image', $data))
         {
-            $data['image'] = $this->uploadOne($data['image'],'user/img');
+            $data['image'] = $this->uploadOne($data['image'],'company/img');
         }
 
         $data['password'] = bcrypt($data['password']);
@@ -41,7 +41,16 @@ class CompanyRepository extends BaseRepositories implements CompanyContract
             {
                 $this->deleteOne($company->image);
             }
-            $data['image'] = $this->uploadOne($data['image'],'user/img');
+            $data['image'] = $this->uploadOne($data['image'],'company/img');
+        }
+
+        if (array_key_exists('trade_register', $data))
+        {
+            if ($company->trade_register)
+            {
+                $this->deleteOne($company->trade_register);
+            }
+            $data['trade_register'] = $this->uploadOne($data['trade_register'],'company/trade_register');
         }
 
         if (array_key_exists('password',$data))

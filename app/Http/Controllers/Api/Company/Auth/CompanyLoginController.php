@@ -140,7 +140,7 @@ class CompanyLoginController extends ApiController
             'name' => 'required|string|max:100',
             'email' => 'required|string|email|unique:companies,email,'.auth('company')->id(),
             'country_code'  => 'required|regex:/^(\+)([1-9](\d{0,5}))/',
-            'phone'         => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'phone'         => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|unique:companies,phone,'.auth('company')->id(),
             'city_id'       => 'required|integer|exists:cities,id',
             'domain_id'     => 'required|integer|exists:domains,id',
             'latitude'      => 'sometimes|nullable|numeric',
@@ -149,9 +149,8 @@ class CompanyLoginController extends ApiController
             'facebook'  => 'sometimes|nullable|url',
             'twitter'   => 'sometimes|nullable|url',
             'instagram' => 'sometimes|nullable|url',
-            'whatsapp'  =>'sometimes|nullable|url',
             'snapchat'  => 'sometimes|nullable|url',
-
+            'trade_register'  => 'sometimes|nullable|file|image|max:3000',
         ]);
 
         $company = $this->company->update(auth('company')->id(),$data);
