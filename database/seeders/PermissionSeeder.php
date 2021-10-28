@@ -15,6 +15,7 @@ class PermissionSeeder extends Seeder
         'create-category', 'delete-category', 'edit-category', 'view-category',
         'create-city', 'delete-city', 'edit-city', 'view-city',
         'create-country', 'delete-country', 'edit-country', 'view-country',
+        'create-user', 'delete-user', 'edit-user', 'view-user',
 
 
     ];

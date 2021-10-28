@@ -31,6 +31,8 @@ Route::middleware('auth:admin')->group(function (){
     Route::resource('categories', \App\Http\Controllers\Web\Admin\CategoryController::class);
     Route::resource('cities', \App\Http\Controllers\Web\Admin\CityController::class);
     Route::resource('countries', \App\Http\Controllers\Web\Admin\CountryController::class);
+    Route::resource('users', \App\Http\Controllers\Web\Admin\UserController::class);
+
 
 });
 

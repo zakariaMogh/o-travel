@@ -76,6 +76,11 @@ class User extends Authenticatable
         return $this->image ? asset('storage/'.$this->image) : asset('assets/admin/app-assets/images/user.png');
     }
 
+    public function getFullPhoneAttribute()
+    {
+        return $this->phone .' '. $this->country_code;
+    }
+
     public function comments():hasMany
     {
         return $this->hasMany(Comment::class);

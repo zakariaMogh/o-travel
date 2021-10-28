@@ -15,7 +15,12 @@ class UserRepository extends BaseRepositories implements UserContract
      * @param User $model
      * @param array $filters
      */
-    public function __construct(User $model, array $filters = [])
+    public function __construct(User $model, array $filters = [
+        \App\QueryFilter\Search::class,
+        \App\QueryFilter\State::class
+
+
+    ])
     {
         parent::__construct($model, $filters);
     }

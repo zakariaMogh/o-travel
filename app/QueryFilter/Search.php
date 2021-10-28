@@ -8,6 +8,7 @@ use App\Models\Admin;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\Country;
+use App\Models\User;
 use Spatie\Permission\Models\Role;
 
 class Search extends Filter
@@ -27,6 +28,11 @@ class Search extends Filter
 
         if ($builder->getModel() instanceof Admin) {
             $builder->where('name', 'like', '%' . $q . '%');
+        }
+
+        if ($builder->getModel() instanceof User) {
+            $builder->where('name', 'like', '%' . $q . '%')
+            ->orWhere('phone', 'like', '%' . $q . '%');
         }
 
         if ($builder->getModel() instanceof Category) {
