@@ -14,7 +14,10 @@ class CountryRepository extends BaseRepositories implements CountryContract
      * @param Country $model
      * @param array $filters
      */
-    public function __construct(Country $model, array $filters = [])
+    public function __construct(Country $model, array $filters = [
+        \App\QueryFilter\Search::class,
+
+    ])
     {
         parent::__construct($model, $filters);
     }

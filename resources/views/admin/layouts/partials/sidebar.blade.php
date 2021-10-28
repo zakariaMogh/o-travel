@@ -121,13 +121,13 @@
                 </li>
             @endcanany
 
-            @can('view-tag')
-                <li class=" nav-item {{request()->routeIs('admin.tags*') ? 'active' : ''}}">
-                    <a class="d-flex align-items-center" href="{{route('admin.tags.index')}}">
+            @can('view-category')
+                <li class=" nav-item {{request()->routeIs('admin.categories*') ? 'active' : ''}}">
+                    <a class="d-flex align-items-center" href="{{route('admin.categories.index')}}">
 
-                        <i class="fas fa-hashtag"></i>
+                        <i class="fas fa-sitemap"></i>
                         <span class="menu-title text-truncate">
-                        {{trans_choice('labels.tag',2)}}
+                        {{trans_choice('labels.category',2)}}
                     </span>
                     </a>
                 </li>
@@ -145,13 +145,13 @@
                 </li>
             @endcan
 
-            @can('view-rate-tag')
-                <li class=" nav-item {{request()->routeIs('admin.rate-tags*') ? 'active' : ''}}">
-                    <a class="d-flex align-items-center" href="{{route('admin.rate-tags.index')}}">
+            @can('view-city')
+                <li class=" nav-item {{request()->routeIs('admin.cities*') ? 'active' : ''}}">
+                    <a class="d-flex align-items-center" href="{{route('admin.cities.index')}}">
 
-                        <i class="fas fa-hashtag"></i>
+                        <i class="fas fa-city"></i>
                         <span class="menu-title text-truncate">
-                    {{trans_choice('labels.rate-tag',2)}}
+                    {{trans_choice('labels.city',2)}}
                 </span>
                     </a>
                 </li>
@@ -168,11 +168,11 @@
                 </li>
             @endcan
 
-            @can('view-recipe')
-                <li class=" nav-item {{request()->routeIs('admin.recipes*') ? 'active' : ''}}">
-                    <a class="d-flex align-items-center" href="{{route('admin.recipes.index')}}">
-                        <i class="fas fa-file-invoice"></i>
-                        <span class="menu-title text-truncate">{{trans_choice('labels.recipe',2)}}</span>
+            @can('view-country')
+                <li class=" nav-item {{request()->routeIs('admin.countries*') ? 'active' : ''}}">
+                    <a class="d-flex align-items-center" href="{{route('admin.countries.index')}}">
+                        <i class="fas fa-flag"></i>
+                        <span class="menu-title text-truncate">{{trans_choice('labels.country',2)}}</span>
                     </a>
                 </li>
             @endcan

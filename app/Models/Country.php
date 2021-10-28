@@ -11,7 +11,9 @@ class Country extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'longitude',
+        'latitude'
     ];
 
 

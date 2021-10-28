@@ -5,6 +5,9 @@ namespace App\QueryFilter;
 
 
 use App\Models\Admin;
+use App\Models\Category;
+use App\Models\City;
+use App\Models\Country;
 use Spatie\Permission\Models\Role;
 
 class Search extends Filter
@@ -23,6 +26,18 @@ class Search extends Filter
         }
 
         if ($builder->getModel() instanceof Admin) {
+            $builder->where('name', 'like', '%' . $q . '%');
+        }
+
+        if ($builder->getModel() instanceof Category) {
+            $builder->where('name', 'like', '%' . $q . '%');
+        }
+
+        if ($builder->getModel() instanceof City) {
+            $builder->where('name', 'like', '%' . $q . '%');
+        }
+
+        if ($builder->getModel() instanceof Country) {
             $builder->where('name', 'like', '%' . $q . '%');
         }
 

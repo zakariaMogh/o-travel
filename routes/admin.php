@@ -28,6 +28,10 @@ Route::middleware('auth:admin')->group(function (){
     Route::get('roles/permissions',[\App\Http\Controllers\Web\Admin\RoleController::class,'getPermissionsList'])->name('roles.permissions.index');
     Route::resource('roles', \App\Http\Controllers\Web\Admin\RoleController::class)->except('show');
 
+    Route::resource('categories', \App\Http\Controllers\Web\Admin\CategoryController::class);
+    Route::resource('cities', \App\Http\Controllers\Web\Admin\CityController::class);
+    Route::resource('countries', \App\Http\Controllers\Web\Admin\CountryController::class);
+
 });
 
 

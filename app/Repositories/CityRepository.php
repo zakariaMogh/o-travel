@@ -14,7 +14,9 @@ class CityRepository extends BaseRepositories implements CityContract
      * @param City $model
      * @param array $filters
      */
-    public function __construct(City $model, array $filters = [])
+    public function __construct(City $model, array $filters = [
+        \App\QueryFilter\Search::class,
+    ])
     {
         parent::__construct($model, $filters);
     }

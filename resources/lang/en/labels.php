@@ -54,6 +54,7 @@ return [
     'coupon' => '{1}Coupon|[2,*]Coupons',
     'section' => '{1}Section|[2,*]Sections',
     'report' => '{1}Report|[2,*]Reports',
+    'country' => '{1}Country|[2,*]Countries',
     'dashboard' => 'Dashboard',
     'rating' => 'Rating',
     'accounts' => 'Accounts',
