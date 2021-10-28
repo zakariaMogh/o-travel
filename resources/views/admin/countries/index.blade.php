@@ -31,7 +31,7 @@
             </div>
             <div class="content-body">
                 <div class="row" id="table-head">
-                    <div class="col-4">
+                    <div class="col-12 col-lg-4">
                         <div class="card">
                             <div class="card-header">
                                 <button title="{{__('actions.back')}}"
@@ -41,7 +41,7 @@
                                 </button>
                             </div>
                             @can('create-country')
-                                <div class="col-12 col-lg-4">
+                                <div class="col-12">
                                     <div class="card">
                                         <div class="card-header">
                                             <h4 class="card-title">{{__('actions.create')}}</h4>
