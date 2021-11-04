@@ -15,7 +15,11 @@ class CompanyRepository extends BaseRepositories implements CompanyContract
      * @param Company $model
      * @param array $filters
      */
-    public function __construct(Company $model, array $filters = [])
+    public function __construct(Company $model, array $filters = [
+        \App\QueryFilter\Search::class,
+        \App\QueryFilter\Checked::class,
+        \App\QueryFilter\State::class,
+    ])
     {
         parent::__construct($model, $filters);
     }
@@ -73,5 +77,40 @@ class CompanyRepository extends BaseRepositories implements CompanyContract
         }
 
         return $company->delete();
+    }
+
+    public function checkToggle($id)
+    {
+        $company = $this->findOneById($id);
+        if ($company->checked)
+        {
+            $company->update([
+                'checked' => false,
+            ]);
+
+            return $company;
+        }
+
+        if (!$company->trade_register)
+        {
+            throw new \Exception(__('messages.no_trade_register'));
+        }
+
+        $company->update([
+            'checked' => true,
+        ]);
+
+        return $company;
+    }
+
+    public function activeToggle($id)
+    {
+        $company = $this->findOneById($id);
+
+        $company->update([
+            'state' => $company->state === 1 ? 2 : 1,
+        ]);
+
+        return $company;
     }
 }

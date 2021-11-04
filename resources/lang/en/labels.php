@@ -27,6 +27,7 @@ return [
     'choose-image' => 'Choose Image',
     'last_name' => 'Last Name',
     'user' => '{1}User|[2,*]Users',
+    'company' => '{1}Company|[2,*]Companies',
     'permission' => '{1}Permission|[2,*]Permissions',
     'location' => '{1}Location|[2,*]Locations',
     'role' => '{1}Role|[2,*]Roles',
@@ -78,6 +79,7 @@ return [
     'old_password' => 'Old Password',
     'current-password' => 'Current Password',
     'state' => 'State',
+    'certified' => 'Certified',
     'message' => 'Message',
     'title' => 'Title',
     'status' => 'Status',
@@ -426,5 +428,6 @@ return [
     'first_order_date' => 'First order',
     'last_order_date' => 'Last order',
     'total_orders_count' => 'Total orders count',
+    'uncheck' => 'uncheck',
 
 ];

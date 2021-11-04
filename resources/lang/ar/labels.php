@@ -48,6 +48,7 @@ return [
     'delivery_order_request' => '{1}طلب توصيل|[2,*]طلبات توصيل',
     'notification'             => '{1}اشعار|[2,*]اشعارات',
     'ticket' => '{1}تذكرة|[2,*]تذاكر',
+    'company' => '{1}شركة|[2,*]الشركات',
     'payment' => '{1}قسط|[2,*]اقساط',
     'city' => '{1}مدينة|[2,*]مدن',
     'account' => '{1}حساب|[2,*]حسابات',
@@ -75,6 +76,7 @@ return [
     'phone' => 'الهاتف',
     'fax' => 'فاكس',
     'address' => 'العنوان',
+    'certified' => 'مصادق عليه',
     'default_shipping_price' => 'سعر التسوق الافتراضي',
     'type' => 'النوع',
     'nationality' => 'الجنسية',
@@ -437,5 +439,6 @@ return [
     'first_order_date' => 'الطلب الأول',
     'last_order_date' => 'آخر طلب',
     'total_orders_count' => 'عدد الطلبات الإجمالية',
+    'uncheck' => 'إزالة الشيك',
 
 ];
