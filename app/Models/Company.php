@@ -52,7 +52,8 @@ class Company extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'checked' => 'integer',
+        'checked' => 'boolean',
+        'state' => 'integer',
     ];
 
     /**

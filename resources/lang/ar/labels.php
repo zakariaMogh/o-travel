@@ -440,5 +440,6 @@ return [
     'last_order_date' => 'آخر طلب',
     'total_orders_count' => 'عدد الطلبات الإجمالية',
     'uncheck' => 'إزالة الشيك',
+    'empty' => 'فارغ',
 
 ];

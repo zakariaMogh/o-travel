@@ -429,5 +429,6 @@ return [
     'last_order_date' => 'Last order',
     'total_orders_count' => 'Total orders count',
     'uncheck' => 'uncheck',
+    'empty' => 'Empty',
 
 ];

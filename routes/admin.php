@@ -34,6 +34,7 @@ Route::middleware('auth:admin')->group(function (){
     Route::resource('users', \App\Http\Controllers\Web\Admin\UserController::class);
 
     Route::get('companies/{id}/check-uncheck',[\App\Http\Controllers\Web\Admin\CompanyController::class,'checkUncheckCompany'])->name('companies.check-uncheck');
+    Route::get('companies/{id}/active-inactive',[\App\Http\Controllers\Web\Admin\CompanyController::class,'activeInactiveCompany'])->name('companies.active-inactive');
     Route::resource('companies', \App\Http\Controllers\Web\Admin\CompanyController::class);
     Route::resource('domains', \App\Http\Controllers\Web\Admin\DomainController::class);
 

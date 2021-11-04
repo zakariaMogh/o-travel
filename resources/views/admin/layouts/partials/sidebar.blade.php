@@ -53,7 +53,7 @@
                 </li>
 
             @canany(['view-role','view-admin','view-user','view-company'])
-                <li class="nav-item has-sub @if(request()->is(['admin/roles*','admin/users*','admin/admins*','admin/sellers*'])) sidebar-group-active open @endif" >
+                <li class="nav-item has-sub @if(request()->is(['admin/roles*','admin/users*','admin/companies*','admin/admins*'])) sidebar-group-active open @endif" >
                     <a href="#" class="d-flex align-items-center">
                         <i class="fas fa-user-circle"></i>
                         <span class="menu-title text-truncate">
@@ -93,6 +93,16 @@
                                 </a>
                             </li>
                         @endcan
+
+                            @can('view-company')
+                                <li class="nav-item">
+                                    <a href="{{route('admin.companies.index')}}" data-link="/admin/companies"
+                                       class="nav-link {{request()->routeIs('admin.companies*') ? 'active' : ''}}">
+                                        <i class="fas fa-building"></i>
+                                        <span class="menu-title text-truncate">{{trans_choice('labels.company',2)}}</span>
+                                    </a>
+                                </li>
+                            @endcan
 
                     </ul>
                 </li>

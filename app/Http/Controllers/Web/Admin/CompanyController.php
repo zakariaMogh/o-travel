@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Web\Admin;
 
 use App\Contracts\CompanyContract;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UserRequest;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 
@@ -73,7 +72,7 @@ class CompanyController extends Controller
             return redirect()->back();
         }catch (\Exception $exception)
         {
-            session()->flash('success',$exception->getMessage());
+            session()->flash('error',$exception->getMessage());
             return redirect()->back();
         }
     }

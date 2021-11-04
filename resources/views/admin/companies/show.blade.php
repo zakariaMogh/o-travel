@@ -2,8 +2,11 @@
 
 @push('css')
 
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/app-assets/vendors/css/maps/leaflet.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin//app-assets/css-rtl/plugins/maps/map-leaflet.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/app-assets/css-rtl/pages/app-user.css')}}">
-
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/app-assets/css-rtl/plugins/extensions/ext-component-ratings.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/app-assets/vendors/css/extensions/jquery.rateyo.min.css')}}">
 @endpush
 
 @section('content')
@@ -78,18 +81,18 @@
                                                                 @endif
                                                             </button>
 
-                                                            <button class="btn btn-outline-warning ml-1"
-                                                                    @if($company->state)
+                                                            <button class="btn btn-outline-info ml-1"
+                                                                    @if($company->state === 1)
                                                                     title="{{__('labels.inactive')}}"
                                                                     @else
                                                                     title="{{__('labels.active')}}"
                                                                     @endif
 
-                                                                    onclick="activeIncative({{$company->id}})">
-                                                                @if($company->state)
-                                                                    <i data-feather='x'></i>
+                                                                    onclick="activeInactive({{$company->id}})">
+                                                                @if($company->state === 1)
+                                                                    <i data-feather='user-x'></i>
                                                                 @else
-                                                                    <i data-feather='check'></i>
+                                                                    <i data-feather='user-check'></i>
                                                                 @endif
                                                             </button>
                                                         @endcan
@@ -130,7 +133,7 @@
                                                     <span
                                                         class="card-text user-info-title font-weight-bold mb-0">{{__('labels.phone')}}</span>
                                                 </div>
-                                                <p class="card-text mb-0">{{$company->full_phone}}</p>
+                                                <p class="card-text mb-0" style="direction: ltr">{{$company->full_phone}}</p>
                                             </div>
 
 {{--                                            <div class="d-flex flex-wrap my-50">--}}
@@ -193,6 +196,95 @@
 
                                             <div class="d-flex flex-wrap my-50">
                                                 <div class="user-info-title">
+                                                    <i data-feather="file-text" class="mr-1"></i>
+                                                    <span
+                                                        class="card-text user-info-title font-weight-bold mb-0">{{__('labels.description')}}</span>
+                                                </div>
+                                                <p class="card-text mb-0">{{$company->description ?? __('labels.empty') }}</p>
+                                            </div>
+
+                                            <div class="d-flex flex-wrap my-50">
+                                                <div class="user-info-title">
+                                                    <i data-feather="external-link" class="mr-1"></i>
+                                                    <span
+                                                        class="card-text user-info-title font-weight-bold mb-0">{{__('labels.social_links')}}</span>
+                                                </div>
+                                                @if($company->facebook)
+                                                <p class="card-text mb-0">
+                                                    <a href="{{$company->facebook}}" target="_blank">
+                                                        <i data-feather="facebook" class="mr-1"></i>
+                                                    </a>
+                                                </p>
+                                                @endif
+                                                @if($company->twitter)
+                                                <p class="card-text mb-0">
+                                                    <a href="{{$company->twitter}}" target="_blank">
+                                                        <i data-feather="twitter" class="mr-1"></i>
+                                                    </a>
+                                                </p>
+                                                @endif
+
+                                                @if($company->instagram)
+                                                    <p class="card-text mb-0">
+                                                        <a href="{{$company->instagram}}" target="_blank">
+                                                            <i data-feather="instagram" class="mr-1"></i>
+                                                        </a>
+                                                    </p>
+                                                @endif
+
+                                                @if($company->snapchat)
+                                                    <p class="card-text mb-0">
+                                                        <a href="{{$company->snapchat}}" target="_blank">
+                                                            <i class="fab fa-snapchat-square mr-1"></i>
+                                                        </a>
+                                                    </p>
+                                                @endif
+
+                                                @if($company->twitter)
+                                                    <p class="card-text mb-0">
+                                                        <a href="{{$company->twitter}}" target="_blank">
+                                                            <i data-feather="twitter" class="mr-1"></i>
+                                                        </a>
+                                                    </p>
+                                                @endif
+
+                                            </div>
+
+                                            <div class="d-flex flex-wrap my-50">
+                                                <div class="user-info-title">
+                                                    <i data-feather="map-pin" class="mr-1"></i>
+                                                    <span
+                                                        class="card-text user-info-title font-weight-bold mb-0">{{__('labels.address')}}
+                                                    </span>
+                                                </div>
+                                                <p class="card-text mb-0">
+                                                    {{$company->address}}
+                                                    @if($company->latitude && $company->longitude)
+                                                        <!--a href="#mapModal"
+                                                           data-latitude="{{$company->latitude}}"
+                                                           data-longitude="{{$company->longitude}}"
+                                                           data-address="{{$company->address}}"
+                                                           data-city="{{$company->city}}"
+                                                           data-toggle="modal"
+                                                        >
+                                                            <i data-feather='map'></i>
+                                                        </a-->
+                                                    @endif
+                                                </p>
+
+                                            </div>
+
+                                            <div class="d-flex flex-wrap my-50">
+                                                <div class="user-info-title">
+                                                    <i class="fas fa-city mr-1"></i>
+                                                    <span
+                                                        class="card-text user-info-title font-weight-bold mb-0">{{trans_choice('labels.city',1)}}</span>
+                                                </div>
+                                                <p class="card-text mb-0">{{$company->city->name ?? __('labels.empty')}}</p>
+                                            </div>
+
+                                            <div class="d-flex flex-wrap my-50">
+                                                <div class="user-info-title">
                                                     <i data-feather="calendar" class="mr-1"></i>
                                                     <span
                                                         class="card-text user-info-title font-weight-bold mb-0">{{__('labels.created_at')}}</span>
@@ -210,14 +302,76 @@
             </div>
         </div>
     </div>
+    <div id="mapModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="text-center mb-0">{{__('labels.Map')}}</h3>
+                    <button type="button" class="close float-right" aria-label="Close" data-dismiss="modal">
+                        <span aria-hidden="true">&#xD7;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body p-0 text-center bg-alt">
+
+                    <div id="map-container">
+                        <div id="map">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-outline-primary " data-dismiss="modal" aria-hidden="true">{{__('actions.cancel')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
 @push('js')
 
     <script src="{{asset('assets/admin/app-assets/js/scripts/pages/app-user-view.js')}}"></script>
-
+    <script src="{{asset('assets/admin/app-assets/vendors/js/maps/leaflet.min.js')}}"></script>
+    <script src="{{asset('assets/admin/app-assets/vendors/js/extensions/jquery.rateyo.min.js')}}"></script>
+    <script src="{{asset('assets/admin/app-assets/js/scripts/extensions/ext-component-ratings.js')}}"></script>
     <script>
+
+        $('#mapModal').on('show.bs.modal', function (e)
+        {
+            setTimeout(function() {
+                map.invalidateSize();
+            }, 500);
+
+            const latitude = $(e.relatedTarget).data('latitude');
+            const longitude = $(e.relatedTarget).data('longitude');
+
+            const labels_address = {!! json_encode(__('labels.address')) !!};
+            const labels_city = {!! json_encode(trans_choice('labels.city',1)) !!};
+
+            const map = L.map('map').setView([latitude, longitude], 6);
+            L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+                maxZoom: 18
+            }).addTo(map);
+
+            const marker = L.marker([latitude, longitude]).addTo(map);
+            marker.bindPopup(
+                "<b>"+ labels_address + " : </b>" + $(e.relatedTarget).data('address') +
+                "<br>" +
+                "<b>"+ labels_city + " : </b>" + $(e.relatedTarget).data('city') +
+                "<br>"
+            );
+        });
+
+        $('#mapModal').on('hide.bs.modal', function (event)
+        {
+
+            $( '#map-container' ).html( ' ' ).append( '<div id="map"></div>' );
+
+        })
+
         const checkUncheck = id => {
             Swal.fire({
                 title: '{{__('actions.delete_confirm_title')}}',
