@@ -376,7 +376,7 @@ return [
 
 
     'ingredients' => 'Ingredients',
-    'order_by_state' => 'order by state',
+    'offer_by_type' => 'offer by type',
     'preparation' => 'Preparation',
 
     'preparation_video' => 'Preparation video',

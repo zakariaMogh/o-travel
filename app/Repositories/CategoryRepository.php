@@ -16,7 +16,6 @@ class CategoryRepository extends BaseRepositories implements CategoryContract
      */
     public function __construct(Category $model, array $filters = [
         \App\QueryFilter\Search::class,
-
     ])
     {
         parent::__construct($model, $filters);

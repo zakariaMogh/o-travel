@@ -144,33 +144,26 @@
                         <div class="col-md-6 col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">{{__('labels.order_by_state')}}</h4>
+                                    <h4 class="card-title">{{__('labels.offer_by_type')}}</h4>
                                 </div>
                                 <div class="card-body">
                                     <canvas id="donutChartEx" class="doughnut-chart-ex chartjs" data-height="275"></canvas>
-
-
                                 </div>
 
                                 <div class="card-footer">
                                     <div class="d-flex justify-content-between">
+
                                         <div class="d-flex justify-content-between ">
                                             <div class="d-flex align-items-center">
-                                                <i class="fas fa-hourglass-half font-medium-2" style='color: #FDAC34'></i>
-                                                <span class="font-weight-bold ml-75 mr-25">{{__('labels.pending_orders')}}</span>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-between ">
-                                            <div class="d-flex align-items-center">
-                                                <i class="fas fa-check font-medium-2" style='color: #28dac6'></i>
-                                                <span class="font-weight-bold ml-75 mr-25">{{__('labels.successful_orders')}}</span>
+                                                <i class="fas fa-check-double font-medium-2" style='color: #28dac6'></i>
+                                                <span class="font-weight-bold ml-75 mr-25">{{__('labels.featured_offers')}}</span>
                                             </div>
 
                                         </div>
                                         <div class="d-flex justify-content-between ">
                                             <div class="d-flex align-items-center">
-                                                <i class="fas fa-times-circle font-medium-2" style='color: #EA5455'></i>
-                                                <span class="font-weight-bold ml-75 mr-25">{{__('labels.canceled_orders')}}</span>
+                                                <i class="fas fa-check font-medium-2" style='color: #EA5455'></i>
+                                                <span class="font-weight-bold ml-75 mr-25">{{__('labels.normal_offers')}}</span>
                                             </div>
                                         </div>
                                     </div>
