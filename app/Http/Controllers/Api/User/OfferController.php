@@ -1,0 +1,81 @@
+<?php
+
+namespace App\Http\Controllers\Api\User;
+
+use App\Contracts\OfferContract;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class OfferController extends Controller
+{
+
+    /**
+     * @var OfferContract
+     */
+    protected $offer;
+
+
+    /**
+     * OfferController constructor.
+     * @param OfferContract $offer
+     */
+    public function __construct(OfferContract $offer)
+    {
+        $this->offer = $offer;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}
