@@ -13,6 +13,12 @@ class OfferController extends Controller
     public function __construct(OfferContract $offer)
     {
         $this->offer = $offer;
+
+
+        $this->middleware(['permission:view-offer'])->only(['index', 'show']);
+        $this->middleware(['permission:edit-offer'])->only(['edit','update']);
+        $this->middleware(['permission:create-offer'])->only(['create', 'store']);
+        $this->middleware(['permission:delete-offer'])->only(['destroy']);
     }
 
 

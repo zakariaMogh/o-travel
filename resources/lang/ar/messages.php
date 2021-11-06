@@ -32,5 +32,6 @@ return [
     'booking_must_be_pending_or_accepted' => 'يجب أن يكون الحجز في حالة المراجعة او مقبول',
 
     'no_trade_register' => 'لا يمكنك اعتماد شركة بدون سجل تجاري',
+    'no_result' => 'لم يتم العثور على نتائج',
 
 ];

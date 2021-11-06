@@ -441,5 +441,6 @@ return [
     'total_orders_count' => 'عدد الطلبات الإجمالية',
     'uncheck' => 'إزالة الشيك',
     'empty' => 'فارغ',
+    'featured' => 'متميز',
 
 ];

@@ -13,7 +13,7 @@ class OfferRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -32,6 +32,12 @@ class OfferRequest extends FormRequest
             'category_id'   => 'required|integer|exists:categories,id',
 
         ];
+
+        if ($this->method() === 'POST')
+        {
+            $rules['images'] = 'required|array';
+            $rules['images.*'] = 'required|file|image|max:5000';
+        }
 
         if ($this->is('admin/Offer*'))
         {

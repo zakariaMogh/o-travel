@@ -30,5 +30,7 @@ return [
     'booking_must_be_pending_or_accepted' => 'The booking must be in pending or accepted state',
     'recipe_already_owned' => 'The recipe is already owned by this user',
     'no_trade_register' => 'you can\'t certified company without trade register',
+    'no_result' => 'no results found',
+
 
 ];

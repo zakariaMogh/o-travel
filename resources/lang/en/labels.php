@@ -430,5 +430,6 @@ return [
     'total_orders_count' => 'Total orders count',
     'uncheck' => 'uncheck',
     'empty' => 'Empty',
+    'featured' => 'Featured',
 
 ];

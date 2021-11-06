@@ -5,11 +5,13 @@ namespace App\Repositories;
 
 
 use App\Contracts\OfferContract;
+use App\Models\Image;
 use App\Models\Offer;
+use App\Traits\UploadAble;
 
 class OfferRepository extends BaseRepositories implements OfferContract
 {
-
+    use UploadAble;
     /**
      * @param Offer $model
      * @param array $filters
@@ -21,7 +23,18 @@ class OfferRepository extends BaseRepositories implements OfferContract
 
     public function new(array $data)
     {
-        return $this->model::create($data);
+        $offer = $this->model::create($data);
+
+        if (array_key_exists('images',$data))
+        {
+            foreach ($data['images'] as $image)
+            {
+                $offer->images()->create([
+                    'link' => $this->uploadOne($image,'offers/'.$offer->id.'/images')
+                ]);
+            }
+        }
+        return $offer;
     }
 
     public function update($id, array $data)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\Admin;
 
 use App\Contracts\CompanyContract;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 
@@ -25,11 +26,16 @@ class CompanyController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Renderable
      */
-    public function index(): Renderable
+    public function index(Request $request)
     {
         $companies = $this->company->findByFilter();
+
+        if ($request->wantsJson())
+        {
+            return response()->json(compact('companies'));
+        }
+
         return view('admin.companies.index', compact('companies'));
     }
 

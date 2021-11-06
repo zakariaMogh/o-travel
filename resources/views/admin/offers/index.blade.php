@@ -89,7 +89,7 @@
                                                     {{$offer->name}}
                                                 </td>
                                                 <td>
-                                                    <span class="badge badge-info">{{$offer->date->format('m/d/2021')}}</span>
+                                                    <span class="badge badge-info">{{$offer->date->format('m/d/Y')}}</span>
                                                 </td>
                                                 <td>
                                                     <span>{{money($offer->price)}}</span>
@@ -112,14 +112,14 @@
 
                                                     @can('view-offer')
                                                         <a title="{{__('actions.details')}}"
-                                                           href="{{route('admin.offers.show',$u->id)}}">
+                                                           href="{{route('admin.offers.show',$offer->id)}}">
                                                             <i data-feather="eye" class="mr-50"></i>
                                                         </a>
                                                     @endcan
 
                                                     @can('edit-offer')
                                                         <a title="{{__('actions.edit')}}"
-                                                           href="{{route('admin.offers.edit',$u->id)}}">
+                                                           href="{{route('admin.offers.edit',$offer->id)}}">
                                                             <i data-feather="edit-2" class="mr-50"></i>
                                                         </a>
                                                     @endcan
@@ -127,7 +127,7 @@
 
                                                     @can('delete-offer')
                                                         <a title="{{__('actions.delete')}}"
-                                                           onclick="deleteForm({{$u->id}})" href="javascript:void(0);">
+                                                           onclick="deleteForm({{$offer->id}})" href="javascript:void(0);">
                                                             <i data-feather="trash" class="mr-50"></i>
                                                         </a>
                                                     @endcan

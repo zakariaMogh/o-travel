@@ -26,7 +26,12 @@ class Offer extends Model
         'end_date',
     ];
 
-
+    protected $casts = [
+        'date' => 'date',
+        'start_date' => 'date',
+        'end_date' => 'date',
+    ];
+    
     public function images(): hasMany
     {
         return $this->hasMany(Image::class);
