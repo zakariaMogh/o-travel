@@ -11,12 +11,13 @@ class Checked extends Filter
     {
         $q = request($this->filterName());
 
-        if (empty($q)) {
+        if (!in_array($q, [1, 0], false)) {
+
             return $builder;
         }
 
         if ($builder->getModel() instanceof \App\Models\Company) {
-            $builder->where('checked',  $q);
+            $builder->where('checked',  (boolean)$q);
         }
 
 

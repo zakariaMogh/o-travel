@@ -57,16 +57,16 @@
                                             <div class="form-group col-md-1">
                                                 <label for="checked">{{__('labels.certified')}}</label>
                                                 <select name="checked" id="checked" class="form-control">
-                                                    <option value=""> {{__('labels.all')}}</option>
+                                                    <option value="-1"> {{__('labels.all')}}</option>
                                                     <option value="1" {{request('checked') == 1 ? 'selected' : ''}}> {{__('labels.yes')}}</option>
-                                                    <option value="2" {{request('checked') == 2 ? 'selected' : ''}}> {{__('labels.no')}}</option>
+                                                    <option value="0" {{request('checked') == 0 ? 'selected' : ''}}> {{__('labels.no')}}</option>
                                                 </select>
                                             </div>
 
                                             <div class="form-group col-md-1">
                                                 <label for="state">{{__('labels.state')}}</label>
                                                 <select name="state" id="state" class="form-control">
-                                                    <option value=""> {{__('labels.all')}}</option>
+                                                    <option value="all"> {{__('labels.all')}}</option>
                                                     <option value="1" {{request('state') == 1 ? 'selected' : ''}}> {{__('labels.active')}}</option>
                                                     <option value="2" {{request('state') == 2 ? 'selected' : ''}}> {{__('labels.inactive')}}</option>
                                                 </select>
@@ -134,11 +134,11 @@
 
                                                 <td>
                                                     @switch($company->checked)
-                                                        @case(1)
+                                                        @case(true)
                                                         <span
                                                             class="badge badge-pill badge-light-success mr-1">{{__('labels.yes')}}</span>
                                                         @break
-                                                        @case(0)
+                                                        @case(false)
                                                         <span
                                                             class="badge badge-pill badge-light-danger mr-1">{{__('labels.no')}}</span>
                                                         @break
