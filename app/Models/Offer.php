@@ -20,7 +20,10 @@ class Offer extends Model
         'date',
         'published_at',
         'company_id',
-        'category_id'
+        'category_id',
+        'featured',
+        'start_date',
+        'end_date',
     ];
 
 
