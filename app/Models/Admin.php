@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-//use App\Notifications\AdminResetPasswordNotification;
+use App\Notifications\AdminResetPasswordNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -60,11 +60,11 @@ class Admin extends Authenticatable
             : asset('assets/admin/app-assets/images/user.png');
     }
 
-//    /**
-//     * @param $token
-//     */
-//    public function sendPasswordResetNotification($token): void
-//    {
-//        $this->notify(new AdminResetPasswordNotification($token));
-//    }
+    /**
+    * @param $token
+    */
+   public function sendPasswordResetNotification($token): void
+   {
+       $this->notify(new AdminResetPasswordNotification($token));
+   }
 }

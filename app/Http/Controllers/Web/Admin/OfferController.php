@@ -55,7 +55,7 @@ class OfferController extends Controller
 
     public function destroy($id)
     {
-        $offer = $this->offer->destroy($id);
+        $this->offer->destroy($id);
         session()->flash('success',__('messages.delete'));
         return redirect()->route('admin.offers.index');
     }

@@ -23,8 +23,23 @@ class OfferRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+        $rules = [
+            'name'          => 'required|string|max:200',
+            'price'         => 'required|numeric',
+            'description'   => 'sometimes|nullable|string',
+            'date'          => 'required|date',
+            'company_id'    => 'required|integer|exists:companies,id',
+            'category_id'   => 'required|integer|exists:categories,id',
+
         ];
+
+        if ($this->is('admin/Offer*'))
+        {
+            $rules['featured']      = 'required|boolean';
+            $rules['start_date']    = 'required_if,featured,true|date';
+            $rules['end_date']      = 'required_if,featured,true|date|after:start_date';
+        }
+
+        return  $rules;
     }
 }
