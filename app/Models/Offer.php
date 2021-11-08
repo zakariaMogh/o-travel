@@ -23,6 +23,10 @@ class Offer extends Model
         'category_id'
     ];
 
+    public function scopePublished($query)
+    {
+        return $query->whereNotNull('published_at');
+    }
 
     public function images(): hasMany
     {

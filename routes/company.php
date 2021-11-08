@@ -14,9 +14,9 @@ Route::middleware('auth:company')->group(function (){
     Route::post('upload/image',[\App\Http\Controllers\Api\Company\Auth\CompanyLoginController::class,'uploadImage'])->name('upload.image');
     Route::put('update',[\App\Http\Controllers\Api\Company\Auth\CompanyLoginController::class,'update'])->name('update');
 
+    Route::get('domains',\App\Http\Controllers\Api\Company\DomainController::class)->name('domains.index');
     Route::get('cities',\App\Http\Controllers\Api\Company\CityController::class)->name('cities.index');
     Route::get('countries',\App\Http\Controllers\Api\Company\CountryController::class)->name('countries.index');
-    Route::get('domains',\App\Http\Controllers\Api\Company\DomainController::class)->name('domains.index');
-    Route::get('categories',\App\Http\Controllers\Api\Company\CountryController::class)->name('categories.index');
+    Route::get('categories',\App\Http\Controllers\Api\Company\CategoryController::class)->name('categories.index');
 
 });
