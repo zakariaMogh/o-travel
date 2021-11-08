@@ -21,78 +21,13 @@
             <div class="form-group">
 
                 <x-form.input
-                    name="value_payed" {{-- required --}}
-                    label=" ( % )"
+                    name="offer_limits" {{-- required --}}
                     type="number" {{-- optional default=text --}}
                     :is_required="true" {{-- optional default=false --}}
-                    value="{{ config('settings.value_payed') }}"></x-form.input>
+                    value="{{ config('settings.offer_limits') }}"></x-form.input>
 
             </div>
 
-            <div class="form-group">
-
-                <x-form.input
-                    name="site_tax" {{-- required --}}
-                    label=" ( % )"
-                    type="number" {{-- optional default=text --}}
-                    :is_required="true" {{-- optional default=false --}}
-                    value="{{ config('settings.value_added_tax') }}"></x-form.input>
-
-            </div>
-
-            <div class="form-group">
-
-                <x-form.input
-                    name="value_added_tax" {{-- required --}}
-                    label=" ( % )"
-                    type="number" {{-- optional default=text --}}
-                    :is_required="true" {{-- optional default=false --}}
-                    value="{{ config('settings.site_tax') }}"></x-form.input>
-
-            </div>
-
-            <div class="form-group">
-
-                <x-form.input
-                    name="min_withdrawal_amount" {{-- required --}}
-                    label=" ( {{ config('settings.currency_code') }} )"
-                    type="number" {{-- optional default=text --}}
-                    :is_required="true" {{-- optional default=false --}}
-                    value="{{ config('settings.min_withdrawal_amount') }}"></x-form.input>
-
-            </div>
-
-            <div class="form-group">
-
-                <x-form.input
-                    name="delivery_price" {{-- required --}}
-                    label=" ( {{ config('settings.currency_code') }} )"
-                    type="number" {{-- optional default=text --}}
-                    :is_required="true" {{-- optional default=false --}}
-                    value="{{ config('settings.delivery_price') }}"></x-form.input>
-
-            </div>
-
-            <div class="form-group">
-
-                <x-form.input
-                    name="number_of_invitation" {{-- required --}}
-                    type="number" {{-- optional default=text --}}
-                    :is_required="true" {{-- optional default=false --}}
-                    value="{{ config('settings.number_of_invitation') }}"></x-form.input>
-
-            </div>
-
-            <div class="form-group">
-
-                <x-form.input
-                    name="pro_offer_price" {{-- required --}}
-                    label=" ( {{ config('settings.currency_code') }} )"
-                    type="number" {{-- optional default=text --}}
-                    :is_required="true" {{-- optional default=false --}}
-                    value="{{ config('settings.pro_offer_price') }}"></x-form.input>
-
-            </div>
 
 
         </div>

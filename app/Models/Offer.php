@@ -18,6 +18,7 @@ class Offer extends Model
         'description',
         'rate',
         'date',
+        'state',
         'published_at',
         'company_id',
         'category_id',
@@ -35,6 +36,11 @@ class Offer extends Model
     public function scopePublished($query)
     {
         return $query->whereNotNull('published_at');
+    }
+
+    public function scopeAuthCompany($query)
+    {
+        return $query->where('company_id', company()->id);
     }
 
 

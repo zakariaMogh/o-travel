@@ -105,6 +105,7 @@ class SettingsController extends Controller
             'value_payed' => 'nullable|sometimes|integer',
             'number_of_invitation' => 'nullable|sometimes|integer',
             'pro_offer_price' => 'nullable|sometimes|integer',
+            'offer_limits' => 'nullable|sometimes|integer',
         ]);
     }
 

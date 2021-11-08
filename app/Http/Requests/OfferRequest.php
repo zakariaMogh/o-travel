@@ -39,6 +39,18 @@ class OfferRequest extends FormRequest
             $rules['images.*'] = 'required|file|image|max:5000';
         }
 
+        if ($this->is('*company/offers*') && $this->method() === 'POST')
+        {
+            unset($rules['company_id']);
+            $rules['images'] = 'required|array';
+            $rules['images.*'] = 'required|file|image|max:5000';
+        }
+
+        if ($this->is('*company/offers*') && $this->method() === 'PUT')
+        {
+            unset($rules['company_id']);
+        }
+
         if ($this->is('admin/Offer*'))
         {
             $rules['featured']      = 'required|boolean';

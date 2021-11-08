@@ -9,6 +9,7 @@ Route::post('login',[\App\Http\Controllers\Api\Company\Auth\CompanyLoginControll
 
 
 Route::middleware('auth:company')->group(function (){
+
     Route::get('me',[\App\Http\Controllers\Api\Company\Auth\CompanyLoginController::class,'me'])->name('name');
     Route::post('logout',[\App\Http\Controllers\Api\Company\Auth\CompanyLoginController::class,'logout'])->name('logout');
     Route::post('upload/image',[\App\Http\Controllers\Api\Company\Auth\CompanyLoginController::class,'uploadImage'])->name('upload.image');
@@ -18,5 +19,6 @@ Route::middleware('auth:company')->group(function (){
     Route::get('cities',\App\Http\Controllers\Api\Company\CityController::class)->name('cities.index');
     Route::get('countries',\App\Http\Controllers\Api\Company\CountryController::class)->name('countries.index');
     Route::get('categories',\App\Http\Controllers\Api\Company\CategoryController::class)->name('categories.index');
+    Route::resource('offers',\App\Http\Controllers\Api\Company\OfferController::class)->only(['store','index','show','update','destroy']);
 
 });

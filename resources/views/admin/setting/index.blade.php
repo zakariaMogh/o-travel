@@ -41,13 +41,13 @@
 
                                     <ul class="nav nav-pills nav-pills-primary flex-column">
 
-                                 {{--       <li class="nav-item"><a class="nav-link active " id="vert-tabs-general-tab"  href="#vert-tabs-general" data-toggle="tab"
+                                        <li class="nav-item"><a class="nav-link active " id="vert-tabs-general-tab"  href="#vert-tabs-general" data-toggle="tab"
                                                                 aria-controls="vert-tabs-general" aria-selected="true" >{{__('labels.general')}}</a></li>
---}}
+
                               {{--          <li class="nav-item"><a class="nav-link" href="#vert-tabs-video_settings" data-toggle="tab"
                                                                 aria-controls="vert-tabs-video_settings" aria-selected="true">{{__('labels.video_settings')}}</a></li>
 --}}
-                                        <li class="nav-item"><a class="nav-link active" href="#vert-tabs-privacy_policy" data-toggle="tab"
+                                        <li class="nav-item"><a class="nav-link" href="#vert-tabs-privacy_policy" data-toggle="tab"
                                                                 aria-controls="vert-tabs-privacy_policy" aria-selected="true">{{__('labels.privacy_policy')}}</a></li>
 
 {{--                                        <li class="nav-item"><a class="nav-link" href="#vert-tabs-seller_terms_of_use" data-toggle="tab"--}}
@@ -68,17 +68,17 @@
                             <div class="col-7 col-sm-9">
                                 <div class="tab-content" id="vert-tabs-tabContent">
 
-                           {{--         <div class="tab-pane fade show active" id="vert-tabs-general" role="tabpanel"
+                                    <div class="tab-pane fade show active" id="vert-tabs-general" role="tabpanel"
                                          aria-labelledby="vert-tabs-general-tab">
                                         @include("admin.setting.general")
                                     </div>
 
-                                    <div class="tab-pane fade show" id="vert-tabs-video_settings" role="tabpanel"
-                                         aria-labelledby="vert-tabs-video_settings-tab">
-                                        @include("admin.setting.video_settings")
-                                    </div>
---}}
-                                    <div class="tab-pane fade show active"  id="vert-tabs-privacy_policy" role="tabpanel"
+{{--                                    <div class="tab-pane fade show" id="vert-tabs-video_settings" role="tabpanel"--}}
+{{--                                         aria-labelledby="vert-tabs-video_settings-tab">--}}
+{{--                                        @include("admin.setting.video_settings")--}}
+{{--                                    </div>--}}
+
+                                    <div class="tab-pane fade show"  id="vert-tabs-privacy_policy" role="tabpanel"
                                          aria-labelledby="vert-tabs-privacy_policy-tab">
                                         @include("admin.setting.privacy_policy")
                                     </div>
@@ -88,10 +88,10 @@
 {{--                                        @include("admin.setting.seller_terms_of_use")--}}
 {{--                                    </div>--}}
 
-                                    <div class="tab-pane fade show" id="vert-tabs-user_terms_of_use" role="tabpanel"
-                                         aria-labelledby="vert-tabs-user_terms_of_use-tab">
-                                        @include("admin.setting.user_terms_of_use")
-                                    </div>
+{{--                                    <div class="tab-pane fade show" id="vert-tabs-user_terms_of_use" role="tabpanel"--}}
+{{--                                         aria-labelledby="vert-tabs-user_terms_of_use-tab">--}}
+{{--                                        @include("admin.setting.user_terms_of_use")--}}
+{{--                                    </div>--}}
 
                                     <div class="tab-pane fade show" id="vert-tabs-about_us" role="tabpanel"
                                          aria-labelledby="vert-tabs-about_us-tab">

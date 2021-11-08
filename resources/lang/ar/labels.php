@@ -442,5 +442,6 @@ return [
     'uncheck' => 'إزالة الشيك',
     'empty' => 'فارغ',
     'featured' => 'متميز',
+    'offer_limits' => 'العدد الأقصى للعروض',
 
 ];
