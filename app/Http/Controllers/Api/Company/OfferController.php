@@ -6,15 +6,20 @@ use App\Contracts\OfferContract;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\OfferRequest;
 use App\Http\Resources\OfferResource;
-use App\Http\Resources\ProductResource;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class OfferController extends ApiController
 {
 
+    /**
+     * @var OfferContract
+     */
     protected $offer;
+
+    /**
+     * @param OfferContract $offer
+     */
     public function __construct(OfferContract $offer)
     {
        $this->offer = $offer;
@@ -30,16 +35,6 @@ class OfferController extends ApiController
     {
         $offers = $this->offer->setRelations(['images','category'])->setScopes(['authCompany'])->findByFilter();
         return OfferResource::collection($offers);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**

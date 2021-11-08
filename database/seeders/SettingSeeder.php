@@ -220,6 +220,11 @@ class SettingSeeder extends Seeder
             'value' => 200,
         ],
 
+        [
+            'key' => 'offer_limits',
+            'value' => 20,
+        ],
+
     ];
 
     /**

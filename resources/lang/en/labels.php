@@ -431,5 +431,6 @@ return [
     'uncheck' => 'uncheck',
     'empty' => 'Empty',
     'featured' => 'Featured',
+    'offer_limits' => 'Offer limits',
 
 ];
