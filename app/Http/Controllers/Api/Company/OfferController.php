@@ -51,7 +51,7 @@ class OfferController extends ApiController
 
         if( company()->offers_count >= settings('offer_limits'))
         {
-            abort(403,'Offer limits');
+            abort(426,'You have reached your offers limit');
         }
 
         $offer = $this->offer->new($data);
