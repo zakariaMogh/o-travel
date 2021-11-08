@@ -20,7 +20,16 @@ class Offer extends Model
         'date',
         'published_at',
         'company_id',
-        'category_id'
+        'category_id',
+        'featured',
+        'start_date',
+        'end_date',
+    ];
+
+    protected $casts = [
+        'date' => 'date',
+        'start_date' => 'date',
+        'end_date' => 'date',
     ];
 
     public function scopePublished($query)

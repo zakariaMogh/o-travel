@@ -1,4 +1,4 @@
-<div class="form-check">
+<div class="form-check" id="form-container-{{$name}}">
     <input
         class="form-check-input @error($name) is_invalid @enderror"
         type="checkbox"

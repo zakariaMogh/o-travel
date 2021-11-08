@@ -43,7 +43,6 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content overflow-hidden">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            @can('view-dashboard')
                 <li class=" nav-item {{request()->routeIs('admin.dashboard*') ? 'active' : ''}}">
                     <a class="d-flex align-items-center" href="{{route('admin.dashboard')}}">
                         <i class="fas fa-tachometer-alt"></i>
@@ -52,10 +51,9 @@
                     </span>
                     </a>
                 </li>
-            @endcan
 
-            @canany(['view-role','view-admin','view-user'])
-                <li class="nav-item has-sub @if(request()->is(['admin/roles*','admin/users*','admin/admins*','admin/sellers*'])) sidebar-group-active open @endif" >
+            @canany(['view-role','view-admin','view-user','view-company'])
+                <li class="nav-item has-sub @if(request()->is(['admin/roles*','admin/users*','admin/companies*','admin/admins*'])) sidebar-group-active open @endif" >
                     <a href="#" class="d-flex align-items-center">
                         <i class="fas fa-user-circle"></i>
                         <span class="menu-title text-truncate">
@@ -96,6 +94,16 @@
                             </li>
                         @endcan
 
+                            @can('view-company')
+                                <li class="nav-item">
+                                    <a href="{{route('admin.companies.index')}}" data-link="/admin/companies"
+                                       class="nav-link {{request()->routeIs('admin.companies*') ? 'active' : ''}}">
+                                        <i class="fas fa-building"></i>
+                                        <span class="menu-title text-truncate">{{trans_choice('labels.company',2)}}</span>
+                                    </a>
+                                </li>
+                            @endcan
+
                     </ul>
                 </li>
             @endcanany
@@ -129,7 +137,7 @@
             @can('view-country')
                 <li class=" nav-item {{request()->routeIs('admin.countries*') ? 'active' : ''}}">
                     <a class="d-flex align-items-center" href="{{route('admin.countries.index')}}">
-                        <i class="fas fa-flag"></i>
+                        <i class="fas fa-globe-europe"></i>
                         <span class="menu-title text-truncate">{{trans_choice('labels.country',2)}}</span>
                     </a>
                 </li>

@@ -17,6 +17,8 @@ class PermissionSeeder extends Seeder
         'create-country', 'delete-country', 'edit-country', 'view-country',
         'create-user', 'delete-user', 'edit-user', 'view-user',
         'create-domain', 'delete-domain', 'edit-domain', 'view-domain',
+        'create-company', 'delete-company', 'edit-company', 'view-company',
+        'create-offer', 'delete-offer', 'edit-offer', 'view-offer',
 
     ];
 

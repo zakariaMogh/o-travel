@@ -53,13 +53,14 @@ class Company extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'checked' => 'integer',
+        'state' => 'integer',
     ];
 
     /**
      * @var string[]
      */
     protected $appends = [
-        'image_url','trade_register_url'
+        'image_url','trade_register_url','full_phone'
     ];
 
     public function adminPath()
@@ -81,6 +82,11 @@ class Company extends Authenticatable
         return $this->image
             ? asset('storage/'.$this->image)
             : asset('assets/admin/app-assets/images/user.png');
+    }
+
+    public function getFullPhoneAttribute()
+    {
+        return $this->country_code .' '.$this->phone;
     }
 
     public function getTradeRegisterUrlAttribute()

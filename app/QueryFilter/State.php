@@ -11,11 +11,15 @@ class State extends Filter
     {
         $q = request($this->filterName());
 
-        if (empty($q)) {
+        if (empty($q) || !in_array($q, [1,2])) {
             return $builder;
         }
 
         if ($builder->getModel() instanceof \App\Models\User) {
+            $builder->where('state',  $q);
+        }
+
+         if ($builder->getModel() instanceof \App\Models\Company) {
             $builder->where('state',  $q);
         }
 

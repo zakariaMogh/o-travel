@@ -43,7 +43,7 @@
                     <!-- Subscribers Chart Card starts -->
                         <div class="col-md-6 ">
                             <div class="row">
-                                <div class="col-lg-12 col-sm-12 col-12">
+                                <div class="col-lg-6 col-sm-6 col-12">
                                     <div class="card">
                                         <div class="card-header flex-column align-items-start pb-0">
                                             <div class="avatar bg-light-primary p-50 m-0">
@@ -51,8 +51,23 @@
                                                     <i class="fas fa-users-cog font-medium-5"></i>
                                                 </div>
                                             </div>
-                                            <h2 class="font-weight-bolder mt-1">{{0}}</h2>
+                                            <h2 class="font-weight-bolder mt-1">{{$users_count}}</h2>
                                             <p class="card-text">{{trans_choice('labels.user',2)}}</p>
+                                        </div>
+                                        <div id="gained-chart"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-sm-6 col-12">
+                                    <div class="card">
+                                        <div class="card-header flex-column align-items-start pb-0">
+                                            <div class="avatar bg-light-primary p-50 m-0">
+                                                <div class="avatar-content">
+                                                    <i class="fas fa-users-cog font-medium-5"></i>
+                                                </div>
+                                            </div>
+                                            <h2 class="font-weight-bolder mt-1">{{$companies_count}}</h2>
+                                            <p class="card-text">{{trans_choice('labels.company',2)}}</p>
                                         </div>
                                         <div id="gained-chart"></div>
                                     </div>
@@ -65,11 +80,11 @@
                                         <div class="card-header flex-column align-items-start pb-0">
                                             <div class="avatar bg-light-warning p-50 m-0">
                                                 <div class="avatar-content">
-                                                    <i class="fas fa-user-shield font-medium-5"></i>
+                                                    <i class="fas fa-sitemap font-medium-5"></i>
                                                 </div>
                                             </div>
-                                            <h2 class="font-weight-bolder mt-1">{{0}}</h2>
-                                            <p class="card-text">{{trans_choice('labels.pro_seller',2)}}</p>
+                                            <h2 class="font-weight-bolder mt-1">{{$categories_count}}</h2>
+                                            <p class="card-text">{{trans_choice('labels.category',2)}}</p>
                                         </div>
                                         <div id="gained-chart"></div>
                                     </div>
@@ -82,11 +97,11 @@
                                         <div class="card-header flex-column align-items-start pb-0">
                                             <div class="avatar bg-light-warning p-50 m-0">
                                                 <div class="avatar-content">
-                                                    <i class="fas fa-users font-medium-5"></i>
+                                                    <i class="fas fa-flag font-medium-5"></i>
                                                 </div>
                                             </div>
-                                            <h2 class="font-weight-bolder mt-1">{{0}}</h2>
-                                            <p class="card-text">{{trans_choice('labels.seller',2)}}</p>
+                                            <h2 class="font-weight-bolder mt-1">{{$domains_count}}</h2>
+                                            <p class="card-text">{{trans_choice('labels.domain',2)}}</p>
                                         </div>
                                         <div id="order-chart"></div>
                                     </div>
@@ -98,11 +113,11 @@
                                             <div class="avatar bg-light-warning p-50 m-0">
                                                 <div class="avatar-content">
 
-                                                    <i class="fas fa-file-invoice font-medium-5"></i>
+                                                    <i class="fas fa-city font-medium-5"></i>
                                                 </div>
                                             </div>
-                                            <h2 class="font-weight-bolder mt-1">{{0}}</h2>
-                                            <p class="card-text">{{trans_choice('labels.recipe',2)}}</p>
+                                            <h2 class="font-weight-bolder mt-1">{{$cities_count}}</h2>
+                                            <p class="card-text">{{trans_choice('labels.city',2)}}</p>
                                         </div>
                                         <div id="order-chart"></div>
                                     </div>
@@ -113,11 +128,11 @@
                                         <div class="card-header flex-column align-items-start pb-0">
                                             <div class="avatar bg-light-warning p-50 m-0">
                                                 <div class="avatar-content">
-                                                    <i class="fab fa-product-hunt font-medium-5"></i>
+                                                    <i class="fas fa-globe-europe font-medium-5"></i>
                                                 </div>
                                             </div>
-                                            <h2 class="font-weight-bolder mt-1">{{0}}</h2>
-                                            <p class="card-text">{{trans_choice('labels.product',2)}}</p>
+                                            <h2 class="font-weight-bolder mt-1">{{$countries_count}}</h2>
+                                            <p class="card-text">{{trans_choice('labels.country',2)}}</p>
                                         </div>
                                         <div id="order-chart"></div>
                                     </div>
@@ -129,33 +144,26 @@
                         <div class="col-md-6 col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">{{__('labels.order_by_state')}}</h4>
+                                    <h4 class="card-title">{{__('labels.offer_by_type')}}</h4>
                                 </div>
                                 <div class="card-body">
                                     <canvas id="donutChartEx" class="doughnut-chart-ex chartjs" data-height="275"></canvas>
-
-
                                 </div>
 
                                 <div class="card-footer">
                                     <div class="d-flex justify-content-between">
+
                                         <div class="d-flex justify-content-between ">
                                             <div class="d-flex align-items-center">
-                                                <i class="fas fa-hourglass-half font-medium-2" style='color: #FDAC34'></i>
-                                                <span class="font-weight-bold ml-75 mr-25">{{__('labels.pending_orders')}}</span>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-between ">
-                                            <div class="d-flex align-items-center">
-                                                <i class="fas fa-check font-medium-2" style='color: #28dac6'></i>
-                                                <span class="font-weight-bold ml-75 mr-25">{{__('labels.successful_orders')}}</span>
+                                                <i class="fas fa-check-double font-medium-2" style='color: #28dac6'></i>
+                                                <span class="font-weight-bold ml-75 mr-25">{{__('labels.featured_offers')}}</span>
                                             </div>
 
                                         </div>
                                         <div class="d-flex justify-content-between ">
                                             <div class="d-flex align-items-center">
-                                                <i class="fas fa-times-circle font-medium-2" style='color: #EA5455'></i>
-                                                <span class="font-weight-bold ml-75 mr-25">{{__('labels.canceled_orders')}}</span>
+                                                <i class="fas fa-check font-medium-2" style='color: #EA5455'></i>
+                                                <span class="font-weight-bold ml-75 mr-25">{{__('labels.normal_offers')}}</span>
                                             </div>
                                         </div>
                                     </div>

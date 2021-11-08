@@ -25,6 +25,9 @@ class CreateOffersTable extends Migration
                 ->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('category_id')->constrained()
                 ->onDelete('cascade')->onUpdate('cascade');
+            $table->boolean('featured')->default(false);
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->timestamps();
         });
     }

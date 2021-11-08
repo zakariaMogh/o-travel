@@ -24,11 +24,15 @@ class CategoryController extends Controller
     }
 
     /**
-     * @return Renderable
      */
-    public function index(): Renderable
+    public function index(Request $request)
     {
         $categories = $this->category->findByFilter();
+
+        if ($request->wantsJson())
+        {
+            return response()->json(compact('categories'));
+        }
         return view('admin.categories.index',compact('categories'));
     }
 
