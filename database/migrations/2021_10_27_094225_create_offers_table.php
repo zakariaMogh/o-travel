@@ -21,6 +21,7 @@ class CreateOffersTable extends Migration
             $table->date('published_at')->nullable();
             $table->text('description')->nullable();
             $table->double('rate')->nullable();
+            $table->integer('state')->default(1); // 1:inactive -- 2:active
             $table->foreignId('company_id')->constrained()
                 ->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('category_id')->constrained()

@@ -21,7 +21,11 @@ class OfferResource extends JsonResource
             'description'  => $this->description,
             'rate'  => $this->rate,
             'date'  => $this->date,
+            'state'  => $this->state,
             'published_at'  => $this->published_at,
+            'images'  => ImageResource::collection($this->whenLoaded('images')),
+            'category'  => new CategoryResource($this->whenLoaded('category')),
+
         ];
     }
 }
