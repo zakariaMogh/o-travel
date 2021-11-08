@@ -48,6 +48,12 @@ class OfferController extends ApiController
         $data = $request->validated();
 
         $data['company_id'] = company()->id;
+
+        if( company()->offers_count >= settings('offer_limits'))
+        {
+            abort(403,'Offer limits');
+        }
+
         $offer = $this->offer->new($data);
 
         return $this->respondCreated(__('messages.create'),new OfferResource($offer));

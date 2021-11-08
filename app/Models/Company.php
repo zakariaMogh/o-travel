@@ -60,7 +60,7 @@ class Company extends Authenticatable
      * @var string[]
      */
     protected $appends = [
-        'image_url','trade_register_url','full_phone'
+        'image_url','trade_register_url','full_phone','offers_count',
     ];
 
     public function adminPath()
@@ -87,6 +87,11 @@ class Company extends Authenticatable
     public function getFullPhoneAttribute()
     {
         return $this->country_code .' '.$this->phone;
+    }
+
+    public function getOffersCountAttribute()
+    {
+        return $this->offers()->count();
     }
 
     public function getTradeRegisterUrlAttribute()
