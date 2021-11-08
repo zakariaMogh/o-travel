@@ -31,7 +31,7 @@ class Offer extends Model
         'start_date' => 'date',
         'end_date' => 'date',
     ];
-    
+
     public function images(): hasMany
     {
         return $this->hasMany(Image::class);
