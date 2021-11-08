@@ -4,7 +4,7 @@ namespace App\QueryFilter;
 
 
 
-class State extends Filter
+class Featured extends Filter
 {
 
     protected function applyFilters($builder)
@@ -15,19 +15,9 @@ class State extends Filter
             return $builder;
         }
 
-        if ($builder->getModel() instanceof \App\Models\User) {
-            $builder->where('state',  $q);
-        }
-
-         if ($builder->getModel() instanceof \App\Models\Company) {
-            $builder->where('state',  $q);
-        }
-
         if ($builder->getModel() instanceof \App\Models\Offer) {
-            $builder->where('state',  $q);
+            $builder->where('featured',  $q);
         }
-
-
 
         return $builder;
     }

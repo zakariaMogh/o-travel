@@ -205,7 +205,7 @@
                                                     <p class="card-text  mb-0" >
                                                         <label for="">
                                                             <input class="form-control" type="text" readonly value="{{$offer->link}}">
-                                                            
+
                                                         </label>
                                                     </p>
                                                 </div>

@@ -16,7 +16,11 @@ class OfferRepository extends BaseRepositories implements OfferContract
      * @param Offer $model
      * @param array $filters
      */
-    public function __construct(Offer $model, array $filters = [])
+    public function __construct(Offer $model, array $filters = [
+        \App\QueryFilter\Search::class,
+        \App\QueryFilter\Featured::class,
+        \App\QueryFilter\State::class,
+    ])
     {
         parent::__construct($model, $filters);
     }
