@@ -98,7 +98,7 @@ class Company extends Authenticatable
 
         return $this->trade_register
             ? asset('storage/'.$this->trade_register)
-            : asset('assets/admin/app-assets/images/user.png');
+            : asset('');
     }
 
     public function city(): belongsTo

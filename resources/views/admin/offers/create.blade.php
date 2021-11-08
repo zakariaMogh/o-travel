@@ -57,7 +57,6 @@
                                             @csrf
                                             <div class="row">
                                                 <div class="col-12 mb-2">
-                                                    {{$errors}}
                                                     <div id='form-container-company'>
                                                         <label for="company" >{{trans_choice('labels.company',1)}}
                                                             <span class="text-danger">*</span>
@@ -80,12 +79,26 @@
                                                         :is-required="true" {{-- optional default=false --}}
                                                     ></x-form.input>
 
+
+
                                                     <div id='form-container-category'>
                                                         <label for="category" >{{trans_choice('labels.category',1)}}
                                                             <span class="text-danger">*</span>
                                                         </label>
                                                         <select name="category_id" required id="category" class="form-control select2-category"></select>
                                                         @error('category_id')
+                                                        <div class="invalid-feedback">{{$message}}</div>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div id='form-container-category'>
+                                                        <label for="state" >{{__('labels.state')}}
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <select name="state" required id="state" class="form-control">
+                                                            <option value="1"></option>
+                                                        </select>
+                                                        @error('state')
                                                         <div class="invalid-feedback">{{$message}}</div>
                                                         @enderror
                                                     </div>

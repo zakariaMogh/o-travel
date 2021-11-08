@@ -7,6 +7,19 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/app-assets/css-rtl/pages/app-user.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/app-assets/css-rtl/plugins/extensions/ext-component-ratings.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/app-assets/vendors/css/extensions/jquery.rateyo.min.css')}}">
+
+    <style>
+
+        #map{
+            height:500px;
+            /*width: 50px;*/
+        }
+        .svg{
+            width: 16px;
+            height: 16px;
+        !important;
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -191,6 +204,15 @@
                                                             class="badge badge-pill badge-light-success mr-1">{{__('labels.no')}}
                                                         </span>
                                                     @endswitch
+
+                                                    @if($company->trade_register)
+                                                            <a href="#galleryModal" data-large-src="{{$company->trade_register_url}}" data-toggle="modal">
+
+                                                                {{__('actions.play_image')}}
+                                                                <i data-feather='play-circle'></i>
+
+                                                            </a>
+                                                        @endif
                                                 </p>
                                             </div>
 
@@ -254,22 +276,21 @@
                                                 <div class="user-info-title">
                                                     <i data-feather="map-pin" class="mr-1"></i>
                                                     <span
-                                                        class="card-text user-info-title font-weight-bold mb-0">{{__('labels.address')}}
+                                                        class="card-text user-info-title font-weight-bold mb-0">{{trans_choice('labels.location',1)}}
                                                     </span>
                                                 </div>
                                                 <p class="card-text mb-0">
-                                                    {{$company->address}}
-                                                    @if($company->latitude && $company->longitude)
-                                                        <!--a href="#mapModal"
+
+                                                        <a href="#mapModal"
                                                            data-latitude="{{$company->latitude}}"
                                                            data-longitude="{{$company->longitude}}"
                                                            data-address="{{$company->address}}"
-                                                           data-city="{{$company->city}}"
+                                                           data-city="{{$company->city->name}}"
                                                            data-toggle="modal"
                                                         >
+                                                            {{trans_choice('labels.address',1)}}
                                                             <i data-feather='map'></i>
-                                                        </a-->
-                                                    @endif
+                                                        </a>
                                                 </p>
 
                                             </div>
@@ -327,7 +348,24 @@
             </div>
         </div>
     </div>
-
+    <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="text-center mb-0">{{trans_choice('labels.image',1)}}</h3>
+                    <button type="button" class="close float-right" aria-label="Close" data-dismiss="modal">
+                        <span aria-hidden="true">&#xD7;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-0 text-center bg-alt">
+                    <img src="#" id="galleryImage" class="loaded-image mx-auto img-fluid" style="max-height:50%; max-width: 50%;">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-primary " data-dismiss="modal" aria-hidden="true">{{__('actions.cancel')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('js')
@@ -371,6 +409,11 @@
             $( '#map-container' ).html( ' ' ).append( '<div id="map"></div>' );
 
         })
+
+        $('#galleryModal').on('show.bs.modal', function (e) {
+            $('#galleryImage').attr("src",$(e.relatedTarget).data("large-src"));
+        });
+
 
         const checkUncheck = id => {
             Swal.fire({

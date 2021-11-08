@@ -54,8 +54,8 @@
                                                     <div class="col-12 mb-2">
                                                         <x-form.input
                                                             name="name" {{-- required --}}
-                                                        :value="old('name')"
-                                                        type="text" {{-- optional default=text --}}
+                                                            :value="old('name')"
+                                                            type="text" {{-- optional default=text --}}
                                                             :is_required="true" {{-- optional default=false --}}
                                                         />
 

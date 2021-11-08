@@ -2,6 +2,12 @@
 
 @section('title',trans_choice('labels.offer',2))
 
+@push('css')
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
+
+@endpush
+
 @section('content')
 
     <div class="app-content content ">
@@ -52,41 +58,80 @@
                                             @method('put')
                                             <div class="row">
                                                 <div class="col-12 mb-2">
+
+                                                    <div id='form-container-company'>
+                                                        <label for="company" >{{trans_choice('labels.company',1)}}
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <select name="company_id" required id="company" class="form-control select2-company">
+                                                            <option value="{{$offer->company->id}}" selected>
+                                                                {{$offer->company->name}}
+                                                            </option>
+                                                        </select>
+                                                        @error('company_id')
+                                                        <div class="invalid-feedback">{{$message}}</div>
+                                                        @enderror
+                                                    </div>
+
                                                     <x-form.input
                                                         name="name" {{-- required --}}
                                                         type="text" {{-- optional default=text --}}
                                                         :is-required="true" {{-- optional default=false --}}
-                                                        :value="$offer->name" {{-- optional default=null --}}
+                                                        :value="$offer->name"
                                                     ></x-form.input>
 
                                                     <x-form.input
-                                                        name="email" {{-- required --}}
-                                                    type="email" {{-- optional default=text --}}
+                                                        name="price" {{-- required --}}
+                                                        type="text" {{-- optional default=text --}}
                                                         :is-required="true" {{-- optional default=false --}}
-                                                        :value="$offer->email" {{-- optional default=null --}}
+                                                        :value="$offer->price"
+                                                    ></x-form.input>
+
+                                                    <div id='form-container-category'>
+                                                        <label for="category" >{{trans_choice('labels.category',1)}}
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <select name="category_id" required id="category" class="form-control select2-category">
+                                                            <option value="{{$offer->category->id}}" selected>
+                                                                {{$offer->category->name}}
+                                                            </option>
+                                                        </select>
+                                                        @error('category_id')
+                                                        <div class="invalid-feedback">{{$message}}</div>
+                                                        @enderror
+                                                    </div>
+
+                                                    <x-form.input
+                                                        name="date" {{-- required --}}
+                                                        type="date" {{-- optional default=text --}}
+                                                        :value="$offer->date->format('Y-m-d') ?? ''"
+                                                    ></x-form.input>
+
+                                                    <x-form.textarea
+                                                        name="description" {{-- required --}}
+                                                        :isRequired="false" {{-- optional default=false --}}
+                                                        rows="3"
+                                                        :value="$offer->description"
+                                                    ></x-form.textarea>
+
+                                                    <x-form.checkbox
+                                                        name="featured" {{-- required --}}
+                                                        :checked="$offer->featured"
+                                                    ></x-form.checkbox>
+
+                                                    <x-form.input
+                                                        name="start_date" {{-- required --}}
+                                                        type="date" {{-- optional default=text --}}
+                                                        :isRequired="true"
+                                                        :value="$offer->start_date ? $offer->start_date->format('y-m-d') : ''"
                                                     ></x-form.input>
 
                                                     <x-form.input
-                                                        name="phone"
-                                                        type="text"
-                                                        :value="$offer->phone"
-                                                        :is_required="true" {{-- optional default=false --}}
+                                                        name="end_date" {{-- required --}}
+                                                        type="date" {{-- optional default=text --}}
+                                                        :is-required="true"
+                                                        :value="$offer->end_date ? $offer->end_date->format('y-m-d') : ''"
                                                     ></x-form.input>
-
-                                                    <x-form.input
-                                                    name="country_code"
-                                                        type="text"
-                                                        :value="$offer->country_code"
-                                                    :is_required="true" {{-- optional default=false --}}
-                                                    ></x-form.input>
-
-                                                    <x-form.select
-                                                        name="state" {{-- required --}}
-                                                        :value="$offer->state" {{-- optional default=null --}}
-                                                        :is_required="true" {{-- optional default=false --}}
-                                                        :options="[__('labels.active') => '1', __('labels.inactive') => '2']" {{-- optional default=[] --}}>
-
-                                                    </x-form.select>
 
                                                 </div>
                                                 <div class="col-12">
@@ -106,3 +151,105 @@
 
 @endsection
 
+
+@push('js')
+    <script src="{{asset('assets/admin/app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
+    <script>
+        $(window).on('load', function() {
+            $('.select2-company').select2({
+                language: {
+                    noResults: function (params) {
+                        return "{{__('messages.no_result')}}";
+                    }
+                },
+                ajax: {
+                    cache:true,
+                    delay: 500,
+                    url: '{{route('admin.companies.index')}}',
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            search: params.term,
+                            page: params.page || 1
+                        };
+
+                    },
+                    processResults: function ({companies}, params) {
+                        params.page = params.page || 1;
+
+                        let fData = $.map(companies.data, function (obj) {
+                            obj.text = obj.name; // replace name with the property used for the text
+                            return obj;
+                        });
+
+                        return {
+                            results: fData,
+                            pagination: {
+                                more: (params.page * 10) < companies.total
+                            }
+                        };
+                    }
+                }
+            })
+            $('.select2-category').select2({
+                language: {
+                    noResults: function (params) {
+                        return "{{__('messages.no_result')}}";
+                    }
+                },
+                ajax: {
+                    cache:true,
+                    delay: 500,
+                    url: '{{route('admin.categories.index')}}',
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            search: params.term,
+                            page: params.page || 1
+                        };
+
+                    },
+                    processResults: function ({categories}, params) {
+                        params.page = params.page || 1;
+
+                        let fData = $.map(categories.data, function (obj) {
+                            obj.text = obj.name; // replace name with the property used for the text
+                            return obj;
+                        });
+
+                        return {
+                            results: fData,
+                            pagination: {
+                                more: (params.page * 10) < categories.total
+                            }
+                        };
+                    }
+                }
+            })
+        })
+
+
+        let featured  = document.getElementById('featured');
+
+        const updateForm = () => {
+            let endDate = document.getElementById('form-container-end_date');
+            let startDate = document.getElementById('form-container-start_date');
+
+            if(featured.checked)
+            {
+                endDate.style.display = '';
+                startDate.style.display = '';
+            }else {
+                endDate.style.display = 'none';
+                startDate.style.display = 'none';
+            }
+        }
+
+        updateForm();
+        featured.addEventListener('change',function (){
+            console.log(featured.checked)
+            updateForm();
+        })
+    </script>
+
+@endpush

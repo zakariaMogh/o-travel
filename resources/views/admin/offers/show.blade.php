@@ -23,7 +23,7 @@
                                         <a href="{{route('admin.dashboard')}}">{{__('labels.dashboard')}}</a>
                                     </li>
                                     <li class="breadcrumb-item">
-                                        <a href="{{route('admin.users.index')}}">{{__('labels.list',['name'=> trans_choice('labels.user',3)])}}</a>
+                                        <a href="{{route('admin.users.index')}}">{{__('labels.list',['name'=> trans_choice('labels.offer',3)])}}</a>
                                     </li>
 
                                     <li class="breadcrumb-item active">
@@ -54,23 +54,23 @@
                                         class="col-xl-6 col-lg-12 d-flex flex-column justify-content-between border-container-lg">
                                         <div class="user-avatar-section">
                                             <div class="d-flex justify-content-start">
-                                                <img class="img-fluid rounded" src="{{$user->image_url}}"
+                                                <img class="img-fluid rounded" src="{{$offer->image_url}}"
                                                      height="104" width="104" alt="User avatar"/>
                                                 <div class="d-flex flex-column ml-1">
                                                     <div class="user-info mb-1">
-                                                        <h4 class="mb-0">{{$user->name}}</h4>
-                                                        <span class="card-text">{{$user->full_phone}}</span>
+                                                        <h4 class="mb-0">{{$offer->name}}</h4>
+                                                        <span class="card-text">{{$offer->full_phone}}</span>
                                                     </div>
                                                     <div class="d-flex flex-wrap">
-                                                        @can('edit-user')
-                                                            <a href="{{route('admin.users.edit', $user->id)}}"
+                                                        @can('edit-offer')
+                                                            <a href="{{route('admin.users.edit', $offer->id)}}"
                                                                class="btn btn-outline-primary ml-1">
                                                                 <i data-feather='edit-2'></i>
                                                             </a>
                                                         @endcan
-                                                        @can('delete-user')
+                                                        @can('delete-offer')
                                                             <button class="btn btn-outline-danger ml-1"
-                                                                    onclick="deleteForm({{$user->id}})">
+                                                                    onclick="deleteForm({{$offer->id}})">
                                                                 <i data-feather='trash-2'></i>
                                                             </button>
                                                         @endcan
@@ -87,25 +87,25 @@
                                                     <span
                                                         class="card-text user-info-title font-weight-bold mb-0">{{__('labels.name')}}</span>
                                                 </div>
-                                                <p class="card-text mb-0">{{$user->name}}</p>
+                                                <p class="card-text mb-0">{{$offer->name}}</p>
                                             </div>
 
                                             <div class="d-flex flex-wrap my-50">
                                                 <div class="user-info-title">
                                                     <i data-feather="mail" class="mr-1"></i>
                                                     <span
-                                                        class="card-text user-info-title font-weight-bold mb-0">{{__('labels.email')}}</span>
+                                                        class="card-text user-info-title font-weight-bold mb-0">{{__('labels.date')}}</span>
                                                 </div>
-                                                <p class="card-text mb-0">{{$user->email}}</p>
+                                                <p class="card-text mb-0">{{ $offer->date ? $offer->date->format('Y-m-d') : ''}}</p>
                                             </div>
 
                                             <div class="d-flex flex-wrap my-50">
                                                 <div class="user-info-title">
                                                     <i data-feather="phone" class="mr-1"></i>
                                                     <span
-                                                        class="card-text user-info-title font-weight-bold mb-0">{{__('labels.phone')}}</span>
+                                                        class="card-text user-info-title font-weight-bold mb-0">{{__('labels.price')}}</span>
                                                 </div>
-                                                <p class="card-text mb-0">{{$user->full_phone}}</p>
+                                                <p class="card-text mb-0">{{money($offer->price)}}</p>
                                             </div>
 
 {{--                                            <div class="d-flex flex-wrap my-50">--}}
@@ -114,29 +114,33 @@
 {{--                                                    <span--}}
 {{--                                                        class="card-text user-info-title font-weight-bold mb-0">{{__('labels.wallet')}}</span>--}}
 {{--                                                </div>--}}
-{{--                                                <p class="card-text mb-0">{{money($user->wallet)}}</p>--}}
+{{--                                                <p class="card-text mb-0">{{money($offer->wallet)}}</p>--}}
 {{--                                            </div>--}}
 
                                             <div class="d-flex flex-wrap my-50">
                                                 <div class="user-info-title">
-                                                    <i data-feather="info" class="mr-1"></i>
-                                                    <span
-                                                        class="card-text user-info-title font-weight-bold mb-0">{{__('labels.state')}}</span>
+                                                    <i class="fas fa-building mr-1"></i>
+                                                    <span class="card-text user-info-title font-weight-bold mb-0">
+                                                        {{trans_choice('labels.company',1)}}
+                                                    </span>
                                                 </div>
                                                 <p class="card-text mb-0">
-                                                    @switch($user->state)
-                                                        @case(1)
-                                                        <span
-                                                            class="badge badge-pill badge-light-success mr-1">{{__('labels.active')}}</span>
-                                                        @break
-                                                        @case(2)
-                                                        <span
-                                                            class="badge badge-pill badge-light-danger mr-1">{{__('labels.inactive')}}</span>
-                                                        @break
-                                                        @default
-                                                        <span
-                                                            class="badge badge-pill badge-light-success mr-1">{{__('labels.active')}}</span>
-                                                    @endswitch
+                                                    <span class="badge badge-pill badge-light-success mr-1">
+                                                        {{$offer->company->name}}
+                                                    </span>
+                                                </p>
+                                            </div>
+
+                                            <div class="d-flex flex-wrap my-50">
+                                                <div class="user-info-title">
+                                                    <i class="fas fa-sitemap mr-1"></i>
+                                                    <span
+                                                        class="card-text user-info-title font-weight-bold mb-0">{{trans_choice('labels.category',1)}}</span>
+                                                </div>
+                                                <p class="card-text mb-0">
+                                                    <span class="badge badge-pill badge-light-success mr-1">
+                                                        {{$offer->category->name}}
+                                                    </span>
                                                 </p>
                                             </div>
 
@@ -146,7 +150,7 @@
                                                     <span
                                                         class="card-text user-info-title font-weight-bold mb-0">{{__('labels.created_at')}}</span>
                                                 </div>
-                                                <p class="card-text mb-0">{{$user->created_at->format('m-d-Y')}}</p>
+                                                <p class="card-text mb-0">{{$offer->created_at->format('m-d-Y')}}</p>
                                             </div>
 
                                         </div>
