@@ -64,9 +64,7 @@
                                                             <span class="text-danger">*</span>
                                                         </label>
                                                         <select name="company_id" required id="company" class="form-control select2-company">
-                                                            <option value="{{$offer->company->id}}" selected>
-                                                                {{$offer->company->name}}
-                                                            </option>
+                                                            <option value="{{$offer->company_id}}" selected>{{$offer->company->name}}</option>
                                                         </select>
                                                         @error('company_id')
                                                         <div class="invalid-feedback">{{$message}}</div>
@@ -75,28 +73,44 @@
 
                                                     <x-form.input
                                                         name="name" {{-- required --}}
-                                                        type="text" {{-- optional default=text --}}
+                                                    type="text" {{-- optional default=text --}}
+                                                        value="{{$offer->name}}"
                                                         :is-required="true" {{-- optional default=false --}}
-                                                        :value="$offer->name"
                                                     ></x-form.input>
+
 
                                                     <x-form.input
                                                         name="price" {{-- required --}}
-                                                        type="text" {{-- optional default=text --}}
+                                                    type="text" {{-- optional default=text --}}
+                                                    value="{{$offer->price}}"
                                                         :is-required="true" {{-- optional default=false --}}
-                                                        :value="$offer->price"
                                                     ></x-form.input>
+
+
 
                                                     <div id='form-container-category'>
                                                         <label for="category" >{{trans_choice('labels.category',1)}}
                                                             <span class="text-danger">*</span>
                                                         </label>
                                                         <select name="category_id" required id="category" class="form-control select2-category">
-                                                            <option value="{{$offer->category->id}}" selected>
-                                                                {{$offer->category->name}}
-                                                            </option>
+                                                            <option value="{{$offer->category_id}}" selected>{{$offer->category->name}}</option>
+
                                                         </select>
+
                                                         @error('category_id')
+                                                        <div class="invalid-feedback">{{$message}}</div>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div id='form-container-category'>
+                                                        <label for="state" >{{__('labels.state')}}
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <select name="state" required id="state" class="form-control">
+                                                            <option value="1" @if((int)old('state',$offer->state) === 1) selected @endif>{{__('labels.states.1')}}</option>
+                                                            <option value="2" @if((int)old('state',$offer->state) === 2) selected @endif>{{__('labels.states.2')}}</option>
+                                                        </select>
+                                                        @error('state')
                                                         <div class="invalid-feedback">{{$message}}</div>
                                                         @enderror
                                                     </div>
@@ -104,34 +118,45 @@
                                                     <x-form.input
                                                         name="date" {{-- required --}}
                                                         type="date" {{-- optional default=text --}}
-                                                        :value="$offer->date->format('Y-m-d') ?? ''"
+                                                        value="{{ $offer->date ? $offer->date->format('Y-m-d') : ''}}"
                                                     ></x-form.input>
 
                                                     <x-form.textarea
                                                         name="description" {{-- required --}}
-                                                        :isRequired="false" {{-- optional default=false --}}
                                                         rows="3"
-                                                        :value="$offer->description"
+                                                        value="{{$offer->description}}"
                                                     ></x-form.textarea>
 
-                                                    <x-form.checkbox
-                                                        name="featured" {{-- required --}}
-                                                        :checked="$offer->featured"
-                                                    ></x-form.checkbox>
+                                                    <div id='form-container-featured'>
+                                                        <label for="state" >{{__('labels.featured')}}
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <select name="featured" required id="featured" class="form-control">
+                                                            <option value="1" @if((int)old('featured',$offer->featured) === 1) selected @endif>{{__('labels.no')}}</option>
+                                                            <option value="2" @if((int)old('featured',$offer->featured) === 2) selected @endif>{{__('labels.yes')}}</option>
+                                                        </select>
+                                                        @error('featured')
+                                                        <div class="invalid-feedback">{{$message}}</div>
+                                                        @enderror
+                                                    </div>
 
-                                                    <x-form.input
-                                                        name="start_date" {{-- required --}}
-                                                        type="date" {{-- optional default=text --}}
-                                                        :isRequired="true"
-                                                        :value="$offer->start_date ? $offer->start_date->format('y-m-d') : ''"
-                                                    ></x-form.input>
+                                                        <x-form.input
+                                                            name="start_date" {{-- required --}}
+                                                            type="date" {{-- optional default=text --}}
+                                                            value="{{$offer->start_date ? $offer->start_date->format('Y-m-d') : ''}}" {{-- optional default=text --}}
+                                                        ></x-form.input>
 
-                                                    <x-form.input
-                                                        name="end_date" {{-- required --}}
-                                                        type="date" {{-- optional default=text --}}
-                                                        :is-required="true"
-                                                        :value="$offer->end_date ? $offer->end_date->format('y-m-d') : ''"
-                                                    ></x-form.input>
+                                                        <x-form.input
+                                                            name="end_date" {{-- required --}}
+                                                            type="date" {{-- optional default=text --}}
+                                                            value="{{$offer->end_date ? $offer->end_date->format('Y-m-d') : ''}}"
+                                                        ></x-form.input>
+
+                                                        <x-form.input
+                                                            name="link" {{-- required --}}
+                                                        type="text" {{-- optional default=text --}}
+                                                        value="{{$offer->link}}"
+                                                        ></x-form.input>
 
                                                 </div>
                                                 <div class="col-12">
@@ -234,14 +259,17 @@
         const updateForm = () => {
             let endDate = document.getElementById('form-container-end_date');
             let startDate = document.getElementById('form-container-start_date');
+            let link = document.getElementById('form-container-link');
 
-            if(featured.checked)
+            if(parseInt(featured.value) === 2)
             {
                 endDate.style.display = '';
                 startDate.style.display = '';
+                link.style.display = '';
             }else {
                 endDate.style.display = 'none';
                 startDate.style.display = 'none';
+                link.style.display = 'none';
             }
         }
 

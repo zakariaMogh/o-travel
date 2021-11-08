@@ -115,11 +115,8 @@ return [
     'archived' => 'Archived',
     'actions' => 'Actions',
     'states' => [
-        1 => 'Pending',
-        2 => 'In the way',
-        3 => 'Delivered',
-        4 => 'Canceled',
-        6 => 'Completed',
+        1 => 'inactive',
+        2 => 'active',
     ],
 
     'offer_states' => [
@@ -183,6 +180,7 @@ return [
 
     'shipping_fees' => 'Delivery Fees',
     'final_balance' => 'Final balance',
+    'link' => 'link',
     'old_wallet_amount' => 'Old Wallet Amount',
     'new_wallet_amount' => 'New Wallet Amount',
     'dept' => 'Dept',

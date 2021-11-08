@@ -54,16 +54,37 @@
                                         class="col-xl-6 col-lg-12 d-flex flex-column justify-content-between border-container-lg">
                                         <div class="user-avatar-section">
                                             <div class="d-flex justify-content-start">
-                                                <img class="img-fluid rounded" src="{{$offer->image_url}}"
+                                                @if($offer->images->count() > 0)
+                                                <img class="img-fluid rounded" src="{{$offer->images->first()->url}}"
                                                      height="104" width="104" alt="User avatar"/>
+                                                @endif
                                                 <div class="d-flex flex-column ml-1">
                                                     <div class="user-info mb-1">
-                                                        <h4 class="mb-0">{{$offer->name}}</h4>
-                                                        <span class="card-text">{{$offer->full_phone}}</span>
+                                                        <h4 class="mb-0">{{$offer->name}}</h4><br>
+                                                        <span class="card-text">
+                                                            @if($offer->state === 1)
+                                                                <span class="badge badge-success">
+                                                                    {{__('labels.states.1')}}
+                                                                </span>
+                                                            @else
+                                                                <span class="badge badge-danger">
+                                                                    {{__('labels.states.1')}}
+                                                                </span>
+                                                            @endif
+
+                                                            @if($offer->featured === 2)
+
+                                                                <span class="badge badge-success">
+                                                                    {{__('labels.featured')}}
+
+                                                                </span>
+                                                            @endif
+
+                                                        </span>
                                                     </div>
                                                     <div class="d-flex flex-wrap">
                                                         @can('edit-offer')
-                                                            <a href="{{route('admin.users.edit', $offer->id)}}"
+                                                            <a href="{{route('admin.offers.edit', $offer->id)}}"
                                                                class="btn btn-outline-primary ml-1">
                                                                 <i data-feather='edit-2'></i>
                                                             </a>
@@ -146,6 +167,51 @@
 
                                             <div class="d-flex flex-wrap my-50">
                                                 <div class="user-info-title">
+                                                    <i class="fas fa-sitemap mr-1"></i>
+                                                    <span
+                                                        class="card-text user-info-title font-weight-bold mb-0">{{__('labels.description')}}</span>
+                                                </div>
+                                                <p class="card-text mb-0">
+                                                    <span class="badge badge-pill badge-light-success mr-1">
+                                                        {{$offer->description}}
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            @if($offer->featured === 2)
+                                            <div class="d-flex flex-wrap my-50">
+                                                <div class="user-info-title">
+                                                    <i data-feather="calendar" class="mr-1"></i>
+                                                    <span
+                                                        class="card-text user-info-title font-weight-bold mb-0">{{__('labels.start_date')}}</span>
+                                                </div>
+                                                <p class="card-text mb-0">{{ $offer->start_date ? $offer->start_date->format('Y-m-d') : ''}}</p>
+                                            </div>
+
+                                            <div class="d-flex flex-wrap my-50">
+                                                <div class="user-info-title">
+                                                    <i data-feather="calendar" class="mr-1"></i>
+                                                    <span
+                                                        class="card-text user-info-title font-weight-bold mb-0">{{__('labels.end_date')}}</span>
+                                                </div>
+                                                <p class="card-text mb-0">{{ $offer->end_date ? $offer->end_date->format('Y-m-d') : ''}}</p>
+                                            </div>
+
+                                                <div class="d-flex flex-wrap my-50">
+                                                    <div class="user-info-title">
+                                                        <i data-feather="link" class="mr-1"></i>
+                                                        <span
+                                                            class="card-text user-info-title font-weight-bold mb-0">{{__('labels.link')}}</span>
+                                                    </div>
+                                                    <p class="card-text  mb-0" >
+                                                        <label for="">
+                                                            <input class="form-control" type="text" readonly value="{{$offer->link}}">
+                                                            
+                                                        </label>
+                                                    </p>
+                                                </div>
+                                            @endif
+                                            <div class="d-flex flex-wrap my-50">
+                                                <div class="user-info-title">
                                                     <i data-feather="calendar" class="mr-1"></i>
                                                     <span
                                                         class="card-text user-info-title font-weight-bold mb-0">{{__('labels.created_at')}}</span>
@@ -191,7 +257,7 @@
         const createForm = id => {
             let f = document.createElement("form");
             f.setAttribute('method', "post");
-            f.setAttribute('action', `/admin/users/${id}`);
+            f.setAttribute('action', `/admin/offers/${id}`);
 
             let i1 = document.createElement("input"); //input element, text
             i1.setAttribute('type', "hidden");

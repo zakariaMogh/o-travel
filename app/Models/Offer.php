@@ -19,6 +19,7 @@ class Offer extends Model
         'rate',
         'date',
         'state',
+        'link',
         'published_at',
         'company_id',
         'category_id',
@@ -31,6 +32,7 @@ class Offer extends Model
         'date' => 'date',
         'start_date' => 'date',
         'end_date' => 'date',
+        'featured' => 'integer',
     ];
 
     public function scopePublished($query)

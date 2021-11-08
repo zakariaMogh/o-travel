@@ -53,7 +53,7 @@
                                         <h4 class="card-title">{{__('actions.edit')}}</h4>
                                     </div>
                                     <div class="card-body">
-                                        <form class="form form-horizontal" method="post" action="{{route('admin.offers.store')}}" enctype="multipart/form-data">
+                                        <form novalidate  class="form form-horizontal" method="post" action="{{route('admin.offers.store')}}" enctype="multipart/form-data">
                                             @csrf
                                             <div class="row">
                                                 <div class="col-12 mb-2">
@@ -72,6 +72,7 @@
                                                         type="text" {{-- optional default=text --}}
                                                         :is-required="true" {{-- optional default=false --}}
                                                     ></x-form.input>
+
 
                                                     <x-form.input
                                                         name="price" {{-- required --}}
@@ -96,7 +97,8 @@
                                                             <span class="text-danger">*</span>
                                                         </label>
                                                         <select name="state" required id="state" class="form-control">
-                                                            <option value="1"></option>
+                                                            <option value="1" @if((int)old('state') === 1) selected @endif>{{__('labels.states.1')}}</option>
+                                                            <option value="2" @if((int)old('state') === 2) selected @endif>{{__('labels.states.2')}}</option>
                                                         </select>
                                                         @error('state')
                                                         <div class="invalid-feedback">{{$message}}</div>
@@ -114,21 +116,34 @@
                                                         rows="3"
                                                     ></x-form.textarea>
 
-                                                    <x-form.checkbox
-                                                        name="featured" {{-- required --}}
-                                                    ></x-form.checkbox>
+                                                    <div id='form-container-featured'>
+                                                        <label for="state" >{{__('labels.featured')}}
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <select name="featured" required id="featured" class="form-control">
+                                                            <option value="1" @if((int)old('featured') === 1) selected @endif>{{__('labels.no')}}</option>
+                                                            <option value="2" @if((int)old('featured') === 2) selected @endif>{{__('labels.yes')}}</option>
+                                                        </select>
+                                                        @error('featured')
+                                                        <div class="invalid-feedback">{{$message}}</div>
+                                                        @enderror
+                                                    </div>
 
                                                     <x-form.input
                                                         name="start_date" {{-- required --}}
                                                         type="date" {{-- optional default=text --}}
-                                                        :is-required="true"
                                                     ></x-form.input>
 
                                                     <x-form.input
                                                         name="end_date" {{-- required --}}
                                                         type="date" {{-- optional default=text --}}
-                                                        :is-required="true"
                                                     ></x-form.input>
+
+                                                    <x-form.input
+                                                        name="link" {{-- required --}}
+                                                        type="text" {{-- optional default=text --}}
+                                                    ></x-form.input>
+
 
                                                     <div id='form-container-images'>
                                                         <label for="images" >{{trans_choice('labels.image',1)}}
@@ -247,20 +262,22 @@
         const updateForm = () => {
             let endDate = document.getElementById('form-container-end_date');
             let startDate = document.getElementById('form-container-start_date');
+            let link = document.getElementById('form-container-link');
 
-            if(featured.checked)
+            if(parseInt(featured.value) === 2)
             {
                 endDate.style.display = '';
                 startDate.style.display = '';
+                link.style.display = '';
             }else {
                 endDate.style.display = 'none';
                 startDate.style.display = 'none';
+                link.style.display = 'none';
             }
         }
 
         updateForm();
         featured.addEventListener('change',function (){
-            console.log(featured.checked)
             updateForm();
         })
     </script>

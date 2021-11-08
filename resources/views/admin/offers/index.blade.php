@@ -60,6 +60,15 @@
                                                 </select>
                                             </div>
 
+                                            <div class="form-group col-md-1">
+                                                <label for="state">{{__('labels.featured')}}</label>
+                                                <select name="featured" id="featured" class="form-control">
+                                                    <option value=""> {{__('labels.all')}}</option>
+                                                    <option value="1" {{request('featured') == 1 ? 'selected' : ''}}> {{__('labels.no')}}</option>
+                                                    <option value="2" {{request('featured') == 2 ? 'selected' : ''}}> {{__('labels.yes')}}</option>
+                                                </select>
+                                            </div>
+
                                             @include('admin.layouts.partials.search')
 
                                             <div class="form-group mr-1 mt-2">
@@ -79,6 +88,8 @@
                                             <th>{{__('labels.price')}}</th>
                                             <th>{{trans_choice('labels.company',1)}}</th>
                                             <th>{{trans_choice('labels.category',1)}}</th>
+                                            <th>{{__('labels.featured')}}</th>
+                                            <th>{{__('labels.state')}}</th>
                                             <th>{{__('labels.actions')}}</th>
                                         </tr>
                                         </thead>
@@ -89,7 +100,7 @@
                                                     {{$offer->name}}
                                                 </td>
                                                 <td>
-                                                    <span class="badge badge-info">{{$offer->date->format('m/d/Y')}}</span>
+                                                    <span class="badge badge-info">{{$offer->date ? $offer->date->format('m/d/Y') : __('labels.empty')}}</span>
                                                 </td>
                                                 <td>
                                                     <span>{{money($offer->price)}}</span>
@@ -104,9 +115,33 @@
                                                 </td>
 
                                                 <td>
-                                                    <span class="badge badge-success">
+                                                    <span class="badge badge-info">
                                                         {{$offer->category->name}}
                                                     </span>
+                                                </td>
+
+                                                <td>
+                                                    @if($offer->featured === 2)
+                                                        <span class="badge badge-success">
+                                                        {{__('labels.yes')}}
+                                                    </span>
+                                                    @else
+                                                        <span class="badge badge-danger">
+                                                        {{__('labels.no')}}
+                                                    </span>
+                                                    @endif
+                                                </td>
+
+                                                <td>
+                                                    @if($offer->state === 2)
+                                                        <span class="badge badge-success">
+                                                        {{__('labels.states.2')}}
+                                                    </span>
+                                                    @else
+                                                        <span class="badge badge-danger">
+                                                        {{__('labels.states.1')}}
+                                                    </span>
+                                                    @endif
                                                 </td>
                                                 <td>
 

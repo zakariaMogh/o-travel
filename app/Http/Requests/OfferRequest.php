@@ -27,7 +27,7 @@ class OfferRequest extends FormRequest
             'name'          => 'required|string|max:200',
             'price'         => 'required|numeric',
             'description'   => 'sometimes|nullable|string',
-            'date'          => 'required|date',
+            'date'          => 'sometimes|nullable|date',
             'company_id'    => 'required|integer|exists:companies,id',
             'category_id'   => 'required|integer|exists:categories,id',
 
@@ -51,11 +51,13 @@ class OfferRequest extends FormRequest
             unset($rules['company_id']);
         }
 
-        if ($this->is('admin/Offer*'))
+        if ($this->is('admin/offers*'))
         {
-            $rules['featured']      = 'required|boolean';
-            $rules['start_date']    = 'required_if,featured,true|date';
-            $rules['end_date']      = 'required_if,featured,true|date|after:start_date';
+            $rules['featured']      = 'required|integer|in:1,2';
+            $rules['state']         = 'required|integer|in:1,2';
+            $rules['start_date']    = 'required_if:featured,2|sometimes|nullable|date';
+            $rules['end_date']      = 'required_if:featured,2|sometimes|nullable|date|after:start_date';
+            $rules['link']          = 'required_if:featured,2|sometimes|nullable|string|url';
         }
 
         return  $rules;
