@@ -19,15 +19,12 @@ class CountryController extends Controller
      * Handle the incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function __invoke(Request $request): \Illuminate\Http\JsonResponse
+    public function __invoke(Request $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $countries = $this->country->findByFilter();
+        return CountryResource::collection($countries);
 
-        return response()->json([
-            'success' => true,
-            'data' => CountryResource::collection($countries),
-        ]);
     }
 }

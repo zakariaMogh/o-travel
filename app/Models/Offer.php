@@ -32,6 +32,12 @@ class Offer extends Model
         'end_date' => 'date',
     ];
 
+    public function scopePublished($query)
+    {
+        return $query->whereNotNull('published_at');
+    }
+
+
     public function images(): hasMany
     {
         return $this->hasMany(Image::class);

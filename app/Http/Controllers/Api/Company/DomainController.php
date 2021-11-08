@@ -19,15 +19,12 @@ class DomainController extends Controller
      * Handle the incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function __invoke(Request $request): \Illuminate\Http\JsonResponse
+    public function __invoke(Request $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $domains = $this->domain->findByFilter();
+        return DomainResource::collection($domains);
 
-        return response()->json([
-            'success' => true,
-            'data' => DomainResource::collection($domains),
-        ]);
     }
 }

@@ -19,15 +19,13 @@ class CityController extends ApiController
      * Handle the incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function __invoke(Request $request): \Illuminate\Http\JsonResponse
+    public function __invoke(Request $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $cities = $this->city->findByFilter();
 
-        return response()->json([
-            'success' => true,
-            'data' => CityResource::collection($cities),
-        ]);
+        return CityResource::collection($cities);
+
     }
 }

@@ -19,15 +19,11 @@ class CategoryController extends Controller
      * Handle the incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function __invoke(Request $request): \Illuminate\Http\JsonResponse
+    public function __invoke(Request $request)
     {
         $categories = $this->category->findByFilter();
-
-        return response()->json([
-            'success' => true,
-            'data' => CategoryResource::collection($categories),
-        ]);
+        return CategoryResource::collection($categories);
     }
 }

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api\User;
 
 use App\Contracts\OfferContract;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\OfferResource;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class OfferController extends Controller
 {
@@ -27,55 +29,27 @@ class OfferController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return AnonymousResourceCollection
      */
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
-        //
+        $offers = $this->offer->setScopes(['published'])->findByFilter();
+
+        return OfferResource::collection($offers);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return OfferResource
      */
     public function show($id)
     {
-        //
+        $offer = $this->offer->setScopes(['published'])->findOneById($id);
+        return new OfferResource($offer);
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
