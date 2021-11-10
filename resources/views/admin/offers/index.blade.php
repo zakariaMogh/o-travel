@@ -55,8 +55,8 @@
                                                 <label for="state">{{__('labels.state')}}</label>
                                                 <select name="state" id="state" class="form-control">
                                                     <option value=""> {{__('labels.all')}}</option>
-                                                    <option value="1" {{request('state') == 1 ? 'selected' : ''}}> {{__('labels.active')}}</option>
-                                                    <option value="2" {{request('state') == 2 ? 'selected' : ''}}> {{__('labels.inactive')}}</option>
+                                                    <option value="1" {{request('state') == 1 ? 'selected' : ''}}> {{__('labels.inactive')}}</option>
+                                                    <option value="2" {{request('state') == 2 ? 'selected' : ''}}> {{__('labels.active')}}</option>
                                                 </select>
                                             </div>
 

@@ -23,9 +23,6 @@ class UserResource extends JsonResource
             'image' => $this->image_url,
             'state'  => $this->state,
 
-            $this->mergeWhen(auth('user')->check(), [
-                'wallet' => $this->wallet,
-            ]),
 
         ];
     }

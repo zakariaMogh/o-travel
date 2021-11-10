@@ -18,9 +18,11 @@ class UserSeeder extends Seeder
         $this->command->info('Start inserting users');
         $user = User::factory(1)->create([
             'phone' => 774857141,
+            'email' => 'user@app.com',
+            'password' => bcrypt('password'),
             'country_code' => 213,
-            'wallet' => 10000
-        ]);
+                ]
+        );
         PersonalAccessToken::create([
             'tokenable_id' => $user[0]->id,
             'tokenable_type' => 'App\Models\User',

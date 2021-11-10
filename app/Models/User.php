@@ -91,7 +91,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Offer::class);
     }
 
-    public function reportable(): \Illuminate\Database\Eloquent\Relations\MorphMany
+    public function reports(): \Illuminate\Database\Eloquent\Relations\MorphMany
     {
         return $this->morphMany(Report::class,'reportable');
     }

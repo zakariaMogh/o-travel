@@ -63,18 +63,18 @@
                                                         <h4 class="mb-0">{{$offer->name}}</h4><br>
                                                         <span class="card-text">
                                                             @if($offer->state === 1)
-                                                                <span class="badge badge-success">
+                                                                <span class="badge badge-danger">
                                                                     {{__('labels.states.1')}}
                                                                 </span>
                                                             @else
-                                                                <span class="badge badge-danger">
-                                                                    {{__('labels.states.1')}}
+                                                                <span class="badge badge-success">
+                                                                    {{__('labels.states.2')}}
                                                                 </span>
                                                             @endif
 
                                                             @if($offer->featured === 2)
 
-                                                                <span class="badge badge-success">
+                                                                <span class="badge badge-info">
                                                                     {{__('labels.featured')}}
 
                                                                 </span>
@@ -172,9 +172,7 @@
                                                         class="card-text user-info-title font-weight-bold mb-0">{{__('labels.description')}}</span>
                                                 </div>
                                                 <p class="card-text mb-0">
-                                                    <span class="badge badge-pill badge-light-success mr-1">
-                                                        {{$offer->description}}
-                                                    </span>
+                                                    {{$offer->description}}
                                                 </p>
                                             </div>
                                             @if($offer->featured === 2)

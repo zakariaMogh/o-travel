@@ -38,6 +38,7 @@ Route::middleware('auth:admin')->group(function (){
     Route::resource('companies', \App\Http\Controllers\Web\Admin\CompanyController::class);
     Route::resource('domains', \App\Http\Controllers\Web\Admin\DomainController::class);
     Route::resource('offers', \App\Http\Controllers\Web\Admin\OfferController::class);
+    Route::resource('reports', \App\Http\Controllers\Web\Admin\ReportController::class)->only(['show','index','destroy']);
 
 });
 

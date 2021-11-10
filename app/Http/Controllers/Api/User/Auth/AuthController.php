@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1\User\Auth;
+namespace App\Http\Controllers\Api\User\Auth;
 
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Resources\UserResource;
@@ -34,11 +34,10 @@ class AuthController extends ApiController
         return $this->respondWithToken($token,$user);
     }
 
-    private function loginAttemptWithPhone(array $credentials,Request $request)
+    private function loginAttemptWithEmail(array $credentials,Request $request)
     {
         try {
-            $phone = $credentials['country_code'].$credentials['phone'];
-            $this->checkFireBaseUser($request->input('uid'),$phone);
+            //$this->checkFireBaseUser($request->input('uid'),$request->input('email'));
             return $this->createToken($credentials);
         }
         catch (UserNotFound  | ModelNotFoundException $e) {
@@ -68,11 +67,11 @@ class AuthController extends ApiController
      * @throws AuthException
      * @throws Exception
      */
-    private function checkFireBaseUser($uid,$phone): void
+    private function checkFireBaseUser($uid,$email): void
     {
         $auth = Firebase::auth();
         $user = $auth->getUser($uid);
-        if($user->phoneNumber !== $phone){
+        if($user->email !== $email){
             throw new Exception(__('auth.failed'));
         }
     }
@@ -87,7 +86,7 @@ class AuthController extends ApiController
     {
         $credentials = $this->getCredentials($request);
 
-        return $this->loginAttemptWithPhone($credentials,$request);
+        return $this->loginAttemptWithEmail($credentials,$request);
     }
 
 
@@ -112,7 +111,13 @@ class AuthController extends ApiController
 
     public function update(Request $request): JsonResponse
     {
-        $data = $request->validate(['username' => 'required|string|min:2|max:200']);
+        $data = $request->validate(
+            [
+                'name' => 'required|string|max:200',
+                'email' => 'required|string|email|unique:users,email,'.auth('user')->id(),
+                'country_code' => 'required|regex:/^(\+)([1-9](\d{0,5}))/',
+                'phone'         => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|unique:users,phone,'.auth('user')->id(),
+            ]);
 
         try
         {
@@ -141,12 +146,12 @@ class AuthController extends ApiController
     {
 
         $data = $request->validate([
-            'pic' => 'required|file|image|max:2000',
+            'image' => 'required|file|image|max:2000',
         ]);
 
         try
         {
-            $data['pic'] = $this->uploadOne($data['pic'],'user/img');
+            $data['image'] = $this->uploadOne($data['image'],'user/img');
 
             if ($pic = $this->guard()->user()->pic_url)
             {
@@ -189,8 +194,8 @@ class AuthController extends ApiController
     private function getCredentials (Request $request): array
     {
         $request->validate([
-            'country_code' => 'required|regex:/^(\+)([1-9](\d{0,5}))/',
-            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'email' => 'required|email',
+            'password' => 'required|string|min:8|max:24',
             'device_token' => 'required|string',
             'uid' => 'required|string'
         ]);

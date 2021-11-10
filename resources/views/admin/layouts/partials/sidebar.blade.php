@@ -152,6 +152,15 @@
                     </li>
                 @endcan
 
+            @can('view-offer')
+                <li class=" nav-item {{request()->routeIs('admin.offers*') ? 'active' : ''}}">
+                    <a class="d-flex align-items-center" href="{{route('admin.offers.index')}}">
+                        <i class="fas fa-suitcase"></i>
+                        <span class="menu-title text-truncate">{{trans_choice('labels.offer',2)}}</span>
+                    </a>
+                </li>
+            @endcan
+
 
 
         </ul>

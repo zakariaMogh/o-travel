@@ -20,5 +20,5 @@ Route::middleware('auth:company')->group(function (){
     Route::get('countries',\App\Http\Controllers\Api\Company\CountryController::class)->name('countries.index');
     Route::get('categories',\App\Http\Controllers\Api\Company\CategoryController::class)->name('categories.index');
     Route::resource('offers',\App\Http\Controllers\Api\Company\OfferController::class)->only(['store','index','show','update','destroy']);
-
+    Route::post('reports', \App\Http\Controllers\Api\User\ReportController::class);
 });
