@@ -154,6 +154,22 @@
 
                                             <div class="d-flex flex-wrap my-50">
                                                 <div class="user-info-title">
+                                                    <i class="fas fa-globe-europe mr-1"></i>
+                                                    <span class="card-text user-info-title font-weight-bold mb-0">
+                                                        {{trans_choice('labels.country',3)}}
+                                                    </span>
+                                                </div>
+                                                <p class="card-text mb-0">
+                                                    @foreach($offer->countries as $country)
+                                                        <span class="badge badge-pill badge-light-success mr-1">
+                                                        {{$country->name}}
+                                                    </span>
+                                                    @endforeach
+                                                </p>
+                                            </div>
+
+                                            <div class="d-flex flex-wrap my-50">
+                                                <div class="user-info-title">
                                                     <i class="fas fa-sitemap mr-1"></i>
                                                     <span
                                                         class="card-text user-info-title font-weight-bold mb-0">{{trans_choice('labels.category',1)}}</span>

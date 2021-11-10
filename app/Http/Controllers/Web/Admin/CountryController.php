@@ -24,11 +24,17 @@ class CountryController extends Controller
     }
 
     /**
-     * @return Renderable
+     * @param Request $request
      */
-    public function index(): Renderable
+    public function index(Request $request)
     {
         $countries = $this->country->findByFilter();
+
+        if ($request->wantsJson())
+        {
+            return response()->json(compact('countries'));
+        }
+
         return view('admin.countries.index',compact('countries'));
     }
 

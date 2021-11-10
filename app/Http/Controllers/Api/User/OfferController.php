@@ -45,9 +45,9 @@ class OfferController extends Controller
      * @param int $id
      * @return OfferResource
      */
-    public function show($id)
+    public function show($id): OfferResource
     {
-        $offer = $this->offer->setScopes(['published'])->findOneById($id);
+        $offer = $this->offer->setScopes(['published'])->setRelations(['company','category','countries'])->findOneById($id);
         return new OfferResource($offer);
 
     }

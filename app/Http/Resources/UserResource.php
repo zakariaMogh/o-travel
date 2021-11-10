@@ -23,7 +23,6 @@ class UserResource extends JsonResource
             'image' => $this->image_url,
             'state'  => $this->state,
 
-
         ];
     }
 }

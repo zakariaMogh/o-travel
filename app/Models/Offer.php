@@ -37,7 +37,7 @@ class Offer extends Model
 
     public function scopePublished($query)
     {
-        return $query->whereNotNull('published_at');
+        return $query->whereState(2);
     }
 
     public function scopeAuthCompany($query)

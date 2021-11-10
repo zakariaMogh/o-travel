@@ -25,6 +25,8 @@ class OfferResource extends JsonResource
             'published_at'  => $this->published_at,
             'images'  => ImageResource::collection($this->whenLoaded('images')),
             'category'  => new CategoryResource($this->whenLoaded('category')),
+            'company'  => new CompanyResource($this->whenLoaded('company')),
+            'countries'  =>  CountryResource::collection($this->whenLoaded('countries')),
 
         ];
     }

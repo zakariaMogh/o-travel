@@ -38,7 +38,9 @@ class OfferRepository extends BaseRepositories implements OfferContract
                 ]);
             }
         }
-        return $offer;
+
+        $offer->countries()->attach($data['countries']);
+        return $offer->load(['countries','category']);
     }
 
     public function update($id, array $data)
@@ -47,6 +49,10 @@ class OfferRepository extends BaseRepositories implements OfferContract
 
         $offer->update($data);
 
+        if (array_key_exists('countries',$data))
+        {
+            $offer->countries()->sync($data['countries']);
+        }
         return $offer;
     }
 

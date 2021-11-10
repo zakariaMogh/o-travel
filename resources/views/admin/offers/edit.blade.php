@@ -4,7 +4,7 @@
 
 @push('css')
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
+    <link rel="stylesheet" href="{{asset('assets/admin/app-assets/vendors/css/forms/select/select2.min.css')}}">
 
 @endpush
 
@@ -98,6 +98,20 @@
                                                         </select>
 
                                                         @error('category_id')
+                                                        <div class="invalid-feedback">{{$message}}</div>
+                                                        @enderror
+                                                    </div>
+
+                                                    <div id='form-container-country'>
+                                                        <label for="country" >{{trans_choice('labels.country',3)}}
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <select name="countries[]" multiple required id="country" class="form-control select2-country">
+                                                            @foreach($offer->countries as $country)
+                                                                <option value="{{$country->id}}" selected>{{$country->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('countries')
                                                         <div class="invalid-feedback">{{$message}}</div>
                                                         @enderror
                                                     </div>
@@ -246,6 +260,41 @@
                             results: fData,
                             pagination: {
                                 more: (params.page * 10) < categories.total
+                            }
+                        };
+                    }
+                }
+            })
+            $('.select2-country').select2({
+                language: {
+                    noResults: function (params) {
+                        return "{{__('messages.no_result')}}";
+                    }
+                },
+                ajax: {
+                    cache:true,
+                    delay: 500,
+                    url: '{{route('admin.countries.index')}}',
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            search: params.term,
+                            page: params.page || 1
+                        };
+
+                    },
+                    processResults: function ({countries}, params) {
+                        params.page = params.page || 1;
+
+                        let fData = $.map(countries.data, function (obj) {
+                            obj.text = obj.name; // replace name with the property used for the text
+                            return obj;
+                        });
+
+                        return {
+                            results: fData,
+                            pagination: {
+                                more: (params.page * 10) < countries.total
                             }
                         };
                     }
