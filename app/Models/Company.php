@@ -126,4 +126,8 @@ class Company extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    public function reportable(): \Illuminate\Database\Eloquent\Relations\MorphMany
+    {
+        return $this->morphMany(Report::class,'reportable');
+    }
 }

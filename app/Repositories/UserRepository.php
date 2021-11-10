@@ -70,4 +70,10 @@ class UserRepository extends BaseRepositories implements UserContract
 
         return $user->delete();
     }
+
+    public function makeReport($id, array $data)
+    {
+        $user = $this->findOneById($id);
+        return $user->reports()->create($data);
+    }
 }

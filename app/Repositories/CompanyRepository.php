@@ -113,4 +113,10 @@ class CompanyRepository extends BaseRepositories implements CompanyContract
 
         return $company;
     }
+
+    public function makeReport($id, array $data)
+    {
+        $company = $this->findOneById($id);
+        return $company->reports()->create($data);
+    }
 }

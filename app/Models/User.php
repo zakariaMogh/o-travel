@@ -76,7 +76,7 @@ class User extends Authenticatable
         return $this->image ? asset('storage/'.$this->image) : asset('assets/admin/app-assets/images/user.png');
     }
 
-    public function getFullPhoneAttribute()
+    public function getFullPhoneAttribute(): string
     {
         return $this->phone .' '. $this->country_code;
     }
@@ -89,5 +89,10 @@ class User extends Authenticatable
     public function favorites():BelongsToMany
     {
         return $this->belongsToMany(Offer::class);
+    }
+
+    public function reportable(): \Illuminate\Database\Eloquent\Relations\MorphMany
+    {
+        return $this->morphMany(Report::class,'reportable');
     }
 }
