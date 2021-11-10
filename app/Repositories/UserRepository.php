@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 
 use App\Contracts\UserContract;
+use App\Models\Offer;
 use App\Models\User;
 use App\Traits\UploadAble;
 
@@ -18,8 +19,6 @@ class UserRepository extends BaseRepositories implements UserContract
     public function __construct(User $model, array $filters = [
         \App\QueryFilter\Search::class,
         \App\QueryFilter\State::class
-
-
     ])
     {
         parent::__construct($model, $filters);
@@ -75,5 +74,14 @@ class UserRepository extends BaseRepositories implements UserContract
     {
         $user = $this->findOneById($id);
         return $user->reports()->create($data);
+    }
+
+    public function favoriteToggle($user, $offer)
+    {
+        $user = $this->findOneById($user);
+        $offer = Offer::findOrFail($offer);
+        $user->favorites()->toggle($offer->id);
+
+        return $offer->loadCount(['authUser']);
     }
 }

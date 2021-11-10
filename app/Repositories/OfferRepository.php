@@ -20,6 +20,9 @@ class OfferRepository extends BaseRepositories implements OfferContract
         \App\QueryFilter\Search::class,
         \App\QueryFilter\Featured::class,
         \App\QueryFilter\State::class,
+        \App\QueryFilter\Category::class,
+        \App\QueryFilter\Country::class,
+        \App\QueryFilter\Favorite::class,
     ])
     {
         parent::__construct($model, $filters);
@@ -55,6 +58,7 @@ class OfferRepository extends BaseRepositories implements OfferContract
         }
         return $offer;
     }
+
 
     public function destroy($id)
     {

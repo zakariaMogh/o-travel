@@ -10,6 +10,7 @@ use App\Models\City;
 use App\Models\Company;
 use App\Models\Country;
 use App\Models\Domain;
+use App\Models\Offer;
 use App\Models\Report;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
@@ -26,6 +27,10 @@ class Search extends Filter
         }
 
         if ($builder->getModel() instanceof Role) {
+            $builder->where('name', 'like', '%' . $q . '%');
+        }
+
+        if ($builder->getModel() instanceof Offer) {
             $builder->where('name', 'like', '%' . $q . '%');
         }
 

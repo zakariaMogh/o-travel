@@ -35,6 +35,12 @@ class Offer extends Model
         'featured' => 'integer',
     ];
 
+
+    public function getFavoriteByMeAttribute()
+    {
+        return $this->auth_user_count > 0;
+    }
+
     public function scopePublished($query)
     {
         return $query->whereState(2);
@@ -69,6 +75,11 @@ class Offer extends Model
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function authUser(): BelongsToMany
+    {
+        return $this->users()->where('users.id',auth('user')->id());
     }
 
 }

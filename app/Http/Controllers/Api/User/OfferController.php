@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Api\User;
 
 use App\Contracts\OfferContract;
+use App\Contracts\UserContract;
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\OfferResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class OfferController extends Controller
+class OfferController extends ApiController
 {
 
     /**
@@ -33,7 +35,7 @@ class OfferController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        $offers = $this->offer->setScopes(['published'])->findByFilter();
+        $offers = $this->offer->setScopes(['published'])->setRelations(['images'])->setCounts(['authUser'])->findByFilter();
 
         return OfferResource::collection($offers);
     }
@@ -47,9 +49,15 @@ class OfferController extends Controller
      */
     public function show($id): OfferResource
     {
-        $offer = $this->offer->setScopes(['published'])->setRelations(['company','category','countries'])->findOneById($id);
+        $offer = $this->offer->setScopes(['published'])->setRelations(['company','category','countries','images'])->setCounts(['authUser'])->findOneById($id);
         return new OfferResource($offer);
 
+    }
+
+    public function markAsFavorite($id, UserContract $user)
+    {
+        $offer =  $user->favoriteToggle(auth('user')->id(),$id);
+        return new OfferResource($offer);
     }
 
 }

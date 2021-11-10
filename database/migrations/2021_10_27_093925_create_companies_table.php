@@ -25,7 +25,7 @@ class CreateCompaniesTable extends Migration
             $table->string('device_token')->nullable();
             $table->double('wallet',14,2)->default(0);
             $table->integer('state')->default(1); // 1: active - 2: banned
-            $table->boolean('checked')->default(false); // 1 : true - o : false
+            $table->boolean('checked')->default(false); // 1 : true - 0 : false
             $table->text('facebook')->nullable();
             $table->text('whatsapp')->nullable();
             $table->text('snapchat')->nullable();
