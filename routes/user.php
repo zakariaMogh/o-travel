@@ -14,6 +14,8 @@ Route::middleware('auth:user')->group(function (){
     Route::post('upload/image',[\App\Http\Controllers\Api\User\Auth\AuthController::class,'updateImage'])->name('upload.image');
     Route::put('update',[\App\Http\Controllers\Api\User\Auth\AuthController::class,'update'])->name('update');
 
+    Route::get('companies',[\App\Http\Controllers\Api\User\CompanyController::class,'index'])->name('companies.index');
+    Route::get('companies/{id}',[\App\Http\Controllers\Api\User\CompanyController::class,'show'])->name('companies.show');
 
     Route::post('offers/{id}/favorite',[\App\Http\Controllers\Api\User\OfferController::class,'markAsFavorite'])->name('offers.favorite.store');
     Route::resource('offers', \App\Http\Controllers\Api\User\OfferController::class)->only(['show', 'index']);
