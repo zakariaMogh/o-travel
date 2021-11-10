@@ -64,4 +64,6 @@ class RegisterController extends Controller
         $auth = Firebase::auth();
         $auth->getUserByPhoneNumber($phone);
     }
+
+
 }

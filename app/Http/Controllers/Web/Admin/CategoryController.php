@@ -77,7 +77,7 @@ class CategoryController extends Controller
 
     /**
      * @param $id
-     * @param Request $request
+     * @param CategoryRequest $request
      * @return RedirectResponse
      */
     public function update($id,CategoryRequest $request)
