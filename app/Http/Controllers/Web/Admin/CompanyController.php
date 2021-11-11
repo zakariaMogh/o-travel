@@ -64,6 +64,14 @@ class CompanyController extends Controller
         return view('admin.companies.edit', compact('company'));
     }
 
+    public function update($id,Request $request)
+    {
+        $data = $request->validate(['auto_accepted' => 'required|integer|in:1,2']);
+        $this->company->update($id,$data);
+        session()->flash('success',__('messages.update'));
+         return redirect()->route('admin.companies.show',$id);
+    }
+
     /**
      * Update the specified resource in storage.
      *

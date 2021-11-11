@@ -73,9 +73,9 @@
                                                 <img class="img-fluid rounded" src="{{$company->image_url}}"
                                                      height="104" width="104" alt="User avatar"/>
                                                 <div class="d-flex flex-column ml-1">
-                                                    <div class="user-info mb-1">
+                                                    <div class="user-info mb-1" style="direction: ltr">
                                                         <h4 class="mb-0">{{$company->name}}</h4>
-                                                        <span class="card-text">{{$company->full_phone}}</span>
+                                                        <span class="card-text" style="direction: ltr">{{$company->full_phone}}</span>
                                                     </div>
                                                     <div class="d-flex flex-wrap">
                                                         @can('edit-company')
@@ -115,6 +115,13 @@
                                                                 <i data-feather='trash-2'></i>
                                                             </button>
                                                         @endcan
+
+                                                            @can('edit-company')
+                                                                <a class="btn btn-outline-warning ml-1"
+                                                                        href="{{route('admin.companies.edit',$company->id)}}">
+                                                                    <i data-feather='edit'></i>
+                                                                </a>
+                                                            @endcan
                                                     </div>
                                                 </div>
                                             </div>
@@ -157,6 +164,27 @@
 {{--                                                </div>--}}
 {{--                                                <p class="card-text mb-0">{{money($company->wallet)}}</p>--}}
 {{--                                            </div>--}}
+
+                                            <div class="d-flex flex-wrap my-50">
+                                                <div class="user-info-title">
+                                                    <i data-feather="info" class="mr-1"></i>
+                                                    <span
+                                                        class="card-text user-info-title font-weight-bold mb-0">{{__('labels.auto_accepted')}}</span>
+                                                </div>
+                                                <p class="card-text mb-0">
+                                                    @switch($company->auto_accepted)
+                                                        @case(2)
+                                                        <span
+                                                            class="badge badge-pill badge-light-success mr-1">{{__('labels.yes')}}</span>
+                                                        @break
+                                                        @case(1)
+                                                        <span
+                                                            class="badge badge-pill badge-light-danger mr-1">{{__('labels.no')}}</span>
+                                                        @break
+
+                                                    @endswitch
+                                                </p>
+                                            </div>
 
                                             <div class="d-flex flex-wrap my-50">
                                                 <div class="user-info-title">

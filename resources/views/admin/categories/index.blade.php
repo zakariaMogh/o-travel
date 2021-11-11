@@ -133,6 +133,7 @@
 {{--                                                        </a>--}}
 {{--                                                    @endcan--}}
 
+
                                                     @can('edit-category')
                                                         <a title="{{__('actions.edit')}}"
                                                            href="{{route('admin.categories.edit',$t->id)}}">
@@ -145,6 +146,7 @@
                                                             <i data-feather="trash" class="mr-50"></i>
                                                         </a>
                                                     @endcan
+
 
 
                                                 </td>

@@ -53,12 +53,11 @@
                                             <div class="row">
                                                 <div class="col-12 mb-2">
                                                     <div class="form-group">
-                                                        <select name="auto_accepted" id="auto_accepted">
-                                                            <option value="1" @if((int)old('auto_accepted') === 1) selected @endif>{{__('labels.no')}}</option>
-                                                            <option value="2" @if((int)old('auto_accepted') === 2) selected @endif>{{__('labels.yes')}}</option>
+                                                        <select name="auto_accepted" id="auto_accepted" class="form-control">
+                                                            <option value="1" @if((int)old('auto_accepted',$company->auto_accepted) === 1) selected @endif>{{__('labels.no')}}</option>
+                                                            <option value="2" @if((int)old('auto_accepted',$company->auto_accepted) === 2) selected @endif>{{__('labels.yes')}}</option>
                                                         </select>
                                                     </div>
-                                                    <div class="col-12">
                                                     <button type="submit" class="btn btn-primary mr-1">{{__('labels.save')}}</button>
                                                 </div>
                                             </div>

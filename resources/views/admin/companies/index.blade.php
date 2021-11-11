@@ -157,6 +157,12 @@
                                                         </a>
                                                     @endcan
 
+                                                        @can('edit-company')
+                                                            <a title="{{__('actions.delete')}}"
+                                                                href="{{route('admin.companies.show',$company->id)}}">
+                                                                <i data-feather="edit" class="mr-50"></i>
+                                                            </a>
+                                                        @endcan
 
                                                     @can('delete-company')
                                                         <a title="{{__('actions.delete')}}"

@@ -24,6 +24,7 @@ class Company extends Authenticatable
         'wallet',
         'device_token',
         'state',
+        'auto_accepted',
         'checked',
         'facebook', 'whatsapp', 'snapchat', 'instagram', 'twitter',
         'trade_register',
@@ -91,7 +92,7 @@ class Company extends Authenticatable
 
     public function getOffersCountAttribute()
     {
-        return $this->offers()->count();
+        return $this->offers()->where('featured',1)->count();
     }
 
     public function getTradeRegisterUrlAttribute()

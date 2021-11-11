@@ -48,10 +48,10 @@ class OfferController extends ApiController
         $data = $request->validated();
 
         $data['company_id'] = company()->id;
-
+        $data['state'] = company()->auto_accepted === 2 ? 2 : 1;
         if( company()->offers_count >= settings('offer_limits'))
         {
-            abort(426,'You have reached your offers limit');
+            abort(403,'You have reached your offers limit');
         }
 
         $offer = $this->offer->new($data);

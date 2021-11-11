@@ -430,5 +430,6 @@ return [
     'empty' => 'Empty',
     'featured' => 'Featured',
     'offer_limits' => 'Offer limits',
+    'auto_accepted' => 'auto accepted',
 
 ];
