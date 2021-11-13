@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title',trans_choice('labels.company',2))
+@section('title',trans_choice('labels.category',2))
 
 @section('content')
 
@@ -19,7 +19,7 @@
                                         <a href="{{route('admin.dashboard')}}">{{__('labels.dashboard')}}</a>
                                     </li>
                                     <li class="breadcrumb-item">
-                                        <a href="{{route('admin.companies.index')}}">{{__('labels.list',['name'=> trans_choice('labels.company',2)])}}</a>
+                                        <a href="{{route('admin.categories.index')}}">{{__('labels.list',['name'=> trans_choice('labels.category',2)])}}</a>
                                     </li>
 
                                     <li class="breadcrumb-item active">
@@ -47,21 +47,23 @@
                                         <h4 class="card-title">{{__('actions.edit')}}</h4>
                                     </div>
                                     <div class="card-body">
-                                        <form class="form form-horizontal" method="post" action="{{route('admin.companies.update', $company->id)}}">
+                                        <form class="form form-horizontal" method="post" action="{{route('admin.categories.update', $category->id)}}">
                                             @csrf
                                             @method('put')
                                             <div class="row">
                                                 <div class="col-12 mb-2">
-                                                    <div class="form-group">
-                                                        <select name="auto_accepted" id="auto_accepted">
-                                                            <option value="1" @if((int)old('auto_accepted') === 1) selected @endif>{{__('labels.no')}}</option>
-                                                            <option value="2" @if((int)old('auto_accepted') === 2) selected @endif>{{__('labels.yes')}}</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-12">
+                                                    <x-form.input
+                                                        name="name" {{-- required --}}
+                                                    :value="old('name',$category->name)"
+                                                        type="text" {{-- optional default=text --}}
+                                                        :is_required="true" {{-- optional default=false --}}
+                                                    />
+                                                </div>
+                                                <div class="col-12">
                                                     <button type="submit" class="btn btn-primary mr-1">{{__('labels.save')}}</button>
                                                 </div>
                                             </div>
+
                                         </form>
                                     </div>
                                 </div>

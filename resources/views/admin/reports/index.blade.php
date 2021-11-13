@@ -75,10 +75,10 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($reports as $report)
+                                        @foreach($reports as $key => $report)
                                             <tr>
                                                 <td>
-                                                    {{$report->id}}
+                                                    {{$key + 1}}
                                                 </td>
                                                 <td>
                                                     {{$report->subject}}

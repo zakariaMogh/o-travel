@@ -53,11 +53,22 @@
                                             <div class="row">
                                                 <div class="col-12 mb-2">
                                                     <div class="form-group">
+                                                        <label for="auto_accepted">{{__('labels.auto_accepted')}}</label>
                                                         <select name="auto_accepted" id="auto_accepted" class="form-control">
                                                             <option value="1" @if((int)old('auto_accepted',$company->auto_accepted) === 1) selected @endif>{{__('labels.no')}}</option>
                                                             <option value="2" @if((int)old('auto_accepted',$company->auto_accepted) === 2) selected @endif>{{__('labels.yes')}}</option>
                                                         </select>
                                                     </div>
+
+                                                    <x-form.input
+                                                        name="max_number_of_offers" {{-- required --}}
+                                                        :value="old('max_number_of_offers',$company->max_number_of_offers)"
+                                                        type="integer" {{-- optional default=text --}}
+                                                        :is_required="true" {{-- optional default=false --}}
+                                                    />
+
+                                                </div>
+                                                <div class="col-12">
                                                     <button type="submit" class="btn btn-primary mr-1">{{__('labels.save')}}</button>
                                                 </div>
                                             </div>

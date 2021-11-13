@@ -22,6 +22,7 @@ class CompanyFactory extends Factory
             'phone' => $this->faker->unique()->phoneNumber(),
             'country_code' => 99,
             'latitude' => rand(16.57946, 31.67252),
+            'max_number_of_offers' => 20,
             'longitude' => rand(35.69014, 50.20833),
             'address' => $this->faker->unique()->address(),
             'checked' => rand(1, 2),

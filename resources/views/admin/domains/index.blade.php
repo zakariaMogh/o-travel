@@ -122,10 +122,10 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($domains as $t)
+                                        @foreach($domains as $key => $t)
                                             <tr>
                                                 <td>
-                                                    {{$t->id}}
+                                                    {{$key + 1}}
                                                 </td>
                                                 <td>
                                                     {{$t->name}}

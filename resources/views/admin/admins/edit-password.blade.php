@@ -45,7 +45,7 @@
                             <div class="col-md-6 col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">{{__('actions.edit')}}</h4>
+                                        <h4 class="card-title">{{__('actions.update-password')}}</h4>
                                     </div>
                                     <div class="card-body">
                                         <form class="form form-horizontal" method="post" action="{{route('admin.admins.update-password', $admin->id)}}">

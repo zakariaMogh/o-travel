@@ -66,7 +66,10 @@ class CompanyController extends Controller
 
     public function update($id,Request $request)
     {
-        $data = $request->validate(['auto_accepted' => 'required|integer|in:1,2']);
+        $data = $request->validate([
+            'auto_accepted' => 'required|integer|in:1,2',
+            'max_number_of_offers' => 'required|integer',
+        ]);
         $this->company->update($id,$data);
         session()->flash('success',__('messages.update'));
          return redirect()->route('admin.companies.show',$id);

@@ -33,6 +33,7 @@ class Company extends Authenticatable
         'city_id',
         'domain_id',
         'description',
+        'max_number_of_offers',
 
     ];
 

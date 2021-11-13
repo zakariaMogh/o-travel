@@ -72,10 +72,10 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($roles as $r)
+                                        @foreach($roles as $key => $r)
                                             <tr>
                                                 <td>
-                                                    {{$r->id}}
+                                                    {{$key + 1}}
                                                 </td>
                                                 <td>
                                                     {{$r->name}}

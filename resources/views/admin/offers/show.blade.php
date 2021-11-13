@@ -23,7 +23,7 @@
                                         <a href="{{route('admin.dashboard')}}">{{__('labels.dashboard')}}</a>
                                     </li>
                                     <li class="breadcrumb-item">
-                                        <a href="{{route('admin.users.index')}}">{{__('labels.list',['name'=> trans_choice('labels.offer',3)])}}</a>
+                                        <a href="{{route('admin.offers.index')}}">{{__('labels.list',['name'=> trans_choice('labels.offer',3)])}}</a>
                                     </li>
 
                                     <li class="breadcrumb-item active">

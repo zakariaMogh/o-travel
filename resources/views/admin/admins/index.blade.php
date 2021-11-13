@@ -72,25 +72,25 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($admins as $a)
+                                        @foreach($admins as $key => $admin)
                                             <tr>
                                                 <td>
-                                                    {{$a->id}}
+                                                    {{$key + 1}}
                                                 </td>
                                                 <td>
                                                     <span class="avatar">
-                                                          <img src="{{$a->image_url}}" class="round" height="50" width="50" alt="{{$a->name}} logo" />
+                                                          <img src="{{$admin->image_url}}" class="round" height="50" width="50" alt="{{$admin->name}} logo" />
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    {{$a->name}}
+                                                    {{$admin->name}}
                                                 </td>
                                                 <td>
-                                                    <a href="mailto:{{$a->email}}" class="text-decoration-none">{{$a->email}}</a>
+                                                    <a href="mailto:{{$admin->email}}" class="text-decoration-none">{{$admin->email}}</a>
 
                                                 </td>
                                                 <td>
-                                                    @foreach($a->roles as $role)
+                                                    @foreach($admin->roles as $role)
                                                         <span class="badge badge-success">
                                                             {{$role->name}}
                                                          </span>
@@ -100,7 +100,7 @@
 
                                                     @can('view-admin')
                                                         <a title="{{__('actions.details')}}"
-                                                           href="{{route('admin.admins.show',$a->id)}}">
+                                                           href="{{route('admin.admins.show',$admin->id)}}">
                                                             <i data-feather="eye" class="mr-50"></i>
                                                         </a>
                                                     @endcan
@@ -108,19 +108,19 @@
                                                     @can('edit-admin')
 
                                                         <a title="{{__('actions.edit')}}"
-                                                           href="{{route('admin.admins.edit',$a->id)}}">
+                                                           href="{{route('admin.admins.edit',$admin->id)}}">
                                                             <i data-feather="edit-2" class="mr-50"></i>
                                                         </a>
 
-                                                        <a title="{{__('actions.edit')}}"
-                                                           href="{{route('admin.admins.edit-password',$a->id)}}">
+                                                        <a title="{{__('actions.update-password')}}"
+                                                           href="{{route('admin.admins.edit-password',$admin->id)}}">
                                                             <i data-feather="lock" class="mr-50"></i>
                                                         </a>
                                                     @endcan
 
                                                     @can('delete-admin')
                                                         <a title="{{__('actions.delete')}}"
-                                                           onclick="deleteForm({{$a->id}})" href="javascript:void(0);">
+                                                           onclick="deleteForm({{$admin->id}})" href="javascript:void(0);">
                                                             <i data-feather="trash" class="mr-50"></i>
                                                         </a>
                                                     @endcan

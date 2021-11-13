@@ -49,7 +49,7 @@ class OfferController extends ApiController
 
         $data['company_id'] = company()->id;
         $data['state'] = company()->auto_accepted === 2 ? 2 : 1;
-        if( company()->offers_count >= settings('offer_limits'))
+        if( company()->offers_count >= company()->max_number_of_offers)
         {
             abort(403,'You have reached your offers limit');
         }

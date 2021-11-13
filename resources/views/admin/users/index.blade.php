@@ -85,10 +85,10 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($users as $u)
+                                        @foreach($users as $key => $u)
                                             <tr>
                                                 <td>
-                                                    {{$u->id}}
+                                                    {{$key + 1}}
                                                 </td>
                                                 <td>
                                                     <span class="avatar">

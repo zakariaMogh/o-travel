@@ -115,10 +115,10 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($countries as $t)
+                                        @foreach($countries as $key => $t)
                                             <tr>
                                                 <td>
-                                                    {{$t->id}}
+                                                    {{$key + 1}}
                                                 </td>
                                                 <td>
                                                     {{$t->name}}

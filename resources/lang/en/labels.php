@@ -431,5 +431,6 @@ return [
     'featured' => 'Featured',
     'offer_limits' => 'Offer limits',
     'auto_accepted' => 'auto accepted',
+    'max_number_of_offers' => 'max number of offers',
 
 ];

@@ -31,6 +31,8 @@ class CompanyRepository extends BaseRepositories implements CompanyContract
             $data['image'] = $this->uploadOne($data['image'],'company/img');
         }
 
+
+        $data['max_number_of_offers'] = settings('offer_limits');
         $data['password'] = bcrypt($data['password']);
         return $this->model::create($data);
     }
