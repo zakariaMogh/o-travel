@@ -22,5 +22,6 @@ Route::middleware('auth:company')->group(function (){
     Route::resource('offers',\App\Http\Controllers\Api\Company\OfferController::class)->only(['store','index','show','update','destroy']);
     Route::post('reports', \App\Http\Controllers\Api\User\ReportController::class);
 
-
+    Route::get('notifications/count',[App\Http\Controllers\Api\Company\NotificationController::class, 'count']);
+    Route::resource('notifications',App\Http\Controllers\Api\Company\NotificationController::class)->only(['index', 'destroy']);
 });
