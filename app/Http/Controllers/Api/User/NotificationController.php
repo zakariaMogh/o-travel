@@ -32,7 +32,7 @@ class NotificationController extends ApiController
 
     public function count()
     {
-        $count = user()->notifications()->count();
+        $count = user()->notifications()->whereNull('read_at')->count();
         return response()->json([
             'count' => $count,
         ]);
