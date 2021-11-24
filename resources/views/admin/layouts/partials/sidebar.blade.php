@@ -108,6 +108,21 @@
                 </li>
             @endcanany
 
+            @can('view-company')
+                <li class=" nav-item {{request()->routeIs('admin.requests.companies*') ? 'active' : ''}}">
+                    <a class="d-flex align-items-center" href="{{route('admin.requests.companies')}}">
+
+                        <i class="fas fa-sitemap"></i>
+                        <span class="menu-title text-truncate">
+                        {{__('labels.request_for_approval')}}
+
+                    </span>
+                        <span class="badge badge-light-danger badge-pill ml-auto mr-1">{{$request_for_approval_count}}</span>
+
+                    </a>
+                </li>
+            @endcan
+
             @can('view-category')
                 <li class=" nav-item {{request()->routeIs('admin.categories*') ? 'active' : ''}}">
                     <a class="d-flex align-items-center" href="{{route('admin.categories.index')}}">

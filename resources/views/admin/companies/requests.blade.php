@@ -80,6 +80,26 @@
                                         </thead>
                                         <tbody>
                                         @foreach($companies as $company)
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="modal-{{$company->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalScrollableTitle">{{__('labels.trade_register')}}</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <img src="{{$company->trade_register_url}}" alt="" width="100%">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a href="{{route('admin.companies.check',$company->id)}}" class="btn btn-success" >{{__('actions.approved')}}</a>
+                                                            <a href="{{route('admin.companies.uncheck',$company->id)}}" class="btn btn-danger" >{{__('actions.disapproved')}}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <tr>
 
                                                 <td>
@@ -119,25 +139,11 @@
 
                                                     @can('view-company')
                                                         <a title="{{__('actions.details')}}"
-                                                           href="{{route('admin.companies.show',$company->id)}}">
+                                                           href="javascript:void(0)" data-toggle="modal" data-target="#modal-{{$company->id}}">
                                                             <i data-feather="eye" class="mr-50"></i>
                                                         </a>
-                                                    @endcan
 
-                                                    @can('edit-company')
-                                                        <a title="{{__('actions.delete')}}"
-                                                           href="{{route('admin.companies.edit',$company->id)}}">
-                                                            <i data-feather="edit" class="mr-50"></i>
-                                                        </a>
                                                     @endcan
-
-                                                    @can('delete-company')
-                                                        <a title="{{__('actions.delete')}}"
-                                                           onclick="deleteForm({{$company->id}})" href="javascript:void(0);">
-                                                            <i data-feather="trash" class="mr-50"></i>
-                                                        </a>
-                                                    @endcan
-
 
                                                 </td>
                                             </tr>
@@ -157,6 +163,7 @@
             </div>
         </div>
     </div>
+
 
 @endsection
 

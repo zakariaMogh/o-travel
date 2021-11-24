@@ -121,4 +121,49 @@ class CompanyRepository extends BaseRepositories implements CompanyContract
         $company = $this->findOneById($id);
         return $company->reports()->create($data);
     }
+
+    public function addCheck($id)
+    {
+        $company = $this->findOneById($id);
+        if ($company->checked)
+        {
+            return;
+        }
+
+
+        if (!$company->trade_register)
+        {
+            throw new \Exception(__('messages.no_trade_register'));
+        }
+
+        $company->update([
+            'checked' => true,
+        ]);
+
+        return $company;
+
+    }
+
+    public function removeCheck($id)
+    {
+        $company = $this->findOneById($id);
+
+        if (!$company->checked)
+        {
+            return;
+        }
+        $data = [
+            'checked' => false,
+        ];
+
+        if ($company->trade_register)
+        {
+            $this->deleteOne($company->trade_register);
+            $data['trade_register'] = null;
+        }
+
+        $company->update($data);
+
+        return $company;
+    }
 }

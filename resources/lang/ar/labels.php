@@ -443,5 +443,6 @@ return [
     'auto_accepted'                  => 'يتم الموافقة على الطلبات تلقائيا.',
     'max_number_of_offers'                  => 'الحد الأقصى لعدد العروض المسموح بها.',
     'request_for_approval' => 'بانتظار الموافقة',
+    'trade_register' => 'سجل تجاري',
 
 ];
