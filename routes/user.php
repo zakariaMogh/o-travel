@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('register',[\App\Http\Controllers\Api\User\Auth\RegisterController::class,'register'])->name('register');
+Route::post('socialite/login',[\App\Http\Controllers\Api\User\Auth\SocialiteLogin::class,'socialiteLogin'])->name('socialite.login');
 Route::post('login',[\App\Http\Controllers\Api\User\Auth\AuthController::class,'login'])->name('login');
 
 
