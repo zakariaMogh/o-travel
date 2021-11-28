@@ -25,4 +25,9 @@ Route::middleware('auth:user')->group(function (){
 
     Route::get('notifications/count',[App\Http\Controllers\Api\User\NotificationController::class, 'count']);
     Route::resource('notifications',App\Http\Controllers\Api\User\NotificationController::class)->only(['index', 'destroy']);
+
+    Route::get('domains',\App\Http\Controllers\Api\User\DomainController::class)->name('domains.index');
+    Route::get('cities',\App\Http\Controllers\Api\User\CityController::class)->name('cities.index');
+    Route::get('countries',\App\Http\Controllers\Api\User\CountryController::class)->name('countries.index');
+    Route::get('categories',\App\Http\Controllers\Api\User\CategoryController::class)->name('categories.index');
 });
