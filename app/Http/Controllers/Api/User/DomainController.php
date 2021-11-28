@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Company;
+namespace App\Http\Controllers\Api\User;
 
 use App\Contracts\DomainContract;
 use App\Http\Controllers\Api\ApiController;
