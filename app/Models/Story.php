@@ -23,6 +23,10 @@ class Story extends Model
         'image_url'
     ];
 
+    protected $with = [
+        'company'
+    ];
+
     /**
      * @return mixed|string|void
      */

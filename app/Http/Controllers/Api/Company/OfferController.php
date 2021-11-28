@@ -33,7 +33,7 @@ class OfferController extends ApiController
      */
     public function index(): AnonymousResourceCollection
     {
-        $offers = $this->offer->setRelations(['images','category'])->setScopes(['authCompany'])->findByFilter();
+        $offers = $this->offer->setRelations(['images','category','company'])->setScopes(['authCompany'])->findByFilter();
         return OfferResource::collection($offers);
     }
 

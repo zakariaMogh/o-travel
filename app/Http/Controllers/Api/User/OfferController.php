@@ -35,7 +35,7 @@ class OfferController extends ApiController
      */
     public function index(): AnonymousResourceCollection
     {
-        $offers = $this->offer->setScopes(['published'])->setRelations(['images'])->setCounts(['authUser'])->findByFilter();
+        $offers = $this->offer->setScopes(['published'])->setRelations(['images','company'])->setCounts(['authUser'])->findByFilter();
 
         return OfferResource::collection($offers);
     }
