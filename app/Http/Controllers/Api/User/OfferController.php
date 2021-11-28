@@ -35,7 +35,7 @@ class OfferController extends ApiController
      */
     public function index(): AnonymousResourceCollection
     {
-        $offers = $this->offer->setScopes(['published'])->setRelations(['images','category','company','counties'])->setCounts(['authUser'])->findByFilter();
+        $offers = $this->offer->setScopes(['published'])->setRelations(['images','category','company','countries'])->setCounts(['authUser'])->findByFilter();
 
         return OfferResource::collection($offers);
     }
@@ -57,7 +57,7 @@ class OfferController extends ApiController
     public function markAsFavorite($id, UserContract $user)
     {
         $offer =  $user->favoriteToggle(auth('user')->id(),$id);
-        return new OfferResource($offer->load(['images','category','company','counties']));
+        return new OfferResource($offer->load(['images','category','company','countries']));
     }
 
 }

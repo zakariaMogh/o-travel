@@ -33,7 +33,7 @@ class OfferController extends ApiController
      */
     public function index(): AnonymousResourceCollection
     {
-        $offers = $this->offer->setRelations(['images','category','company','counties'])->setScopes(['authCompany'])->findByFilter();
+        $offers = $this->offer->setRelations(['images','category','company','countries'])->setScopes(['authCompany'])->findByFilter();
         return OfferResource::collection($offers);
     }
 
@@ -56,7 +56,7 @@ class OfferController extends ApiController
 
         $offer = $this->offer->new($data);
 
-        return $this->respondCreated(__('messages.create'),new OfferResource($offer->load(['images','category','company','counties'])));
+        return $this->respondCreated(__('messages.create'),new OfferResource($offer->load(['images','category','company','countries'])));
     }
 
     /**
@@ -67,7 +67,7 @@ class OfferController extends ApiController
      */
     public function show($id): OfferResource
     {
-        $offer = $this->offer->setRelations(['images','category','company','counties'])->setScopes(['authCompany'])->findOneById($id);
+        $offer = $this->offer->setRelations(['images','category','company','countries'])->setScopes(['authCompany'])->findOneById($id);
         return new OfferResource($offer);
     }
 
@@ -84,7 +84,7 @@ class OfferController extends ApiController
 
         $offer = $this->offer->setScopes(['authCompany'])->update($id,$data);
 
-        return $this->respondUpdated(__('messages.update'),new OfferResource($offer->load(['images','category','company','counties'])));
+        return $this->respondUpdated(__('messages.update'),new OfferResource($offer->load(['images','category','company','countries'])));
     }
 
     /**
