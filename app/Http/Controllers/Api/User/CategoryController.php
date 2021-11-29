@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Company;
+namespace App\Http\Controllers\Api\User;
 
 use App\Contracts\CategoryContract;
 use App\Http\Controllers\Api\ApiController;
@@ -29,9 +29,10 @@ class CategoryController extends ApiController
      * @param Request $request
      * @return AnonymousResourceCollection
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): AnonymousResourceCollection
     {
         $categories = $this->category->findByFilter();
         return CategoryResource::collection($categories);
     }
+
 }

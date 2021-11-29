@@ -54,7 +54,7 @@ class Company extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'checked' => 'integer',
+        'checked' => 'boolean',
         'state' => 'integer',
     ];
 
@@ -108,6 +108,11 @@ class Company extends Authenticatable
             : asset('');
     }
 
+    public function scopeNotApproved($query)
+    {
+        $query->where('trade_register','<>',null)->where('checked',false);
+    }
+
     public function city(): belongsTo
     {
         return $this->belongsTo(City::class);
@@ -131,5 +136,10 @@ class Company extends Authenticatable
     public function reports(): \Illuminate\Database\Eloquent\Relations\MorphMany
     {
         return $this->morphMany(Report::class,'reportable');
+    }
+
+    public function stories(): HasMany
+    {
+        return $this->hasMany(Story::class);
     }
 }

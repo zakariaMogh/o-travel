@@ -39,6 +39,22 @@ class CompanyController extends Controller
         return view('admin.companies.index', compact('companies'));
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     */
+    public function requests(Request $request)
+    {
+        $companies = $this->company->setScopes(['notApproved'])->findByFilter();
+
+        if ($request->wantsJson())
+        {
+            return response()->json(compact('companies'));
+        }
+
+        return view('admin.companies.requests', compact('companies'));
+    }
+
 
     /**
      * Display the specified resource.
@@ -118,6 +134,27 @@ class CompanyController extends Controller
         $this->company->destroy($id);
         session()->flash('success',__('messages.delete'));
         return redirect()->route('admin.companies.index');
+    }
+
+    public function approved($id)
+    {
+        try {
+            $this->company->addCheck($id);
+            session()->flash('success',__('messages.update'));
+            return redirect()->back();
+        }catch (\Exception $exception)
+        {
+            session()->flash('error',$exception->getMessage());
+            return redirect()->back();
+        }
+
+    }
+
+    public function unpproved($id)
+    {
+        $this->company->removeCheck($id);
+        session()->flash('success',__('messages.update'));
+        return redirect()->back();
     }
 
 }

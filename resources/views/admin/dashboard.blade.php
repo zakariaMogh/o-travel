@@ -260,9 +260,9 @@
                     data: {
                         datasets: [
                             {
-                                labels: ['{{__('labels.pending_orders')}}', '{{__('labels.successful_orders')}}','{{__('labels.canceled_orders')}}'],
-                                data: {{0}},
-                                backgroundColor: [warningLightColor,successColorShade, window.colors.solid.danger],
+                                labels: ['{{__('labels.featured_offers')}}', '{{__('labels.normal_offers')}}'],
+                                data: [{{$normal_offers}},{{$featured_offers}}],
+                                backgroundColor: [successColorShade, window.colors.solid.danger],
                                 borderWidth: 0,
                                 pointStyle: 'rectRounded'
                             }

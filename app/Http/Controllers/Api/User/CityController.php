@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Company;
+namespace App\Http\Controllers\Api\User;
 
 use App\Contracts\CityContract;
 use App\Http\Controllers\Api\ApiController;

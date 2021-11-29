@@ -25,7 +25,7 @@ class CompanyFactory extends Factory
             'max_number_of_offers' => 20,
             'longitude' => rand(35.69014, 50.20833),
             'address' => $this->faker->unique()->address(),
-            'checked' => rand(1, 2),
+            'checked' => false,
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),

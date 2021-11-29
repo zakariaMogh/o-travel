@@ -442,5 +442,9 @@ return [
     'link'                  => 'الرابط',
     'auto_accepted'                  => 'يتم الموافقة على الطلبات تلقائيا.',
     'max_number_of_offers'                  => 'الحد الأقصى لعدد العروض المسموح بها.',
+    'request_for_approval' => 'بانتظار الموافقة',
+    'trade_register' => 'سجل تجاري',
+    'featured_offers' => 'العروض المتميزة',
+    'normal_offers' => 'العروض العادية',
 
 ];

@@ -34,7 +34,10 @@ Route::middleware('auth:admin')->group(function (){
     Route::resource('users', \App\Http\Controllers\Web\Admin\UserController::class);
 
     Route::get('companies/{id}/check-uncheck',[\App\Http\Controllers\Web\Admin\CompanyController::class,'checkUncheckCompany'])->name('companies.check-uncheck');
+    Route::get('companies/{id}/approved',[\App\Http\Controllers\Web\Admin\CompanyController::class,'approved'])->name('companies.check');
+    Route::get('companies/{id}/unapproved',[\App\Http\Controllers\Web\Admin\CompanyController::class,'unapproved'])->name('companies.uncheck');
     Route::get('companies/{id}/active-inactive',[\App\Http\Controllers\Web\Admin\CompanyController::class,'activeInactiveCompany'])->name('companies.active-inactive');
+    Route::get('requests/companies',[\App\Http\Controllers\Web\Admin\CompanyController::class,'requests'])->name('requests.companies');
     Route::resource('companies', \App\Http\Controllers\Web\Admin\CompanyController::class);
     Route::resource('domains', \App\Http\Controllers\Web\Admin\DomainController::class);
     Route::resource('offers', \App\Http\Controllers\Web\Admin\OfferController::class);

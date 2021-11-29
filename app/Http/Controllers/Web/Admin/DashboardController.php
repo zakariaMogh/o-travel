@@ -16,12 +16,15 @@ class DashboardController extends Controller
         $domains_count = DB::table('domains')->count();
         $countries_count = DB::table('countries')->count();
         $cities_count = DB::table('cities')->count();
+        $normal_offers = DB::table('offers')->where('featured',0)->count();
+        $featured_offers = DB::table('offers')->where('featured',1)->count();
 
 
 
 
         return view('admin.dashboard',compact(
-            'users_count','companies_count','categories_count','domains_count','countries_count','cities_count'
+            'users_count','companies_count','categories_count','domains_count','countries_count','cities_count',
+            'normal_offers','featured_offers'
         ));
     }
 }

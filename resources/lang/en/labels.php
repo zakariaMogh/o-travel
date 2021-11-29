@@ -432,5 +432,6 @@ return [
     'offer_limits' => 'Offer limits',
     'auto_accepted' => 'auto accepted',
     'max_number_of_offers' => 'max number of offers',
+    'request_for_approval' => 'waiting for approval',
 
 ];

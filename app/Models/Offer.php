@@ -33,6 +33,7 @@ class Offer extends Model
         'start_date' => 'date',
         'end_date' => 'date',
         'featured' => 'integer',
+        'state' => 'integer',
     ];
 
 
