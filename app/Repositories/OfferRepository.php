@@ -24,6 +24,7 @@ class OfferRepository extends BaseRepositories implements OfferContract
         \App\QueryFilter\Country::class,
         \App\QueryFilter\Favorite::class,
         \App\QueryFilter\Month::class,
+        \App\QueryFilter\Company::class,
     ])
     {
         parent::__construct($model, $filters);
