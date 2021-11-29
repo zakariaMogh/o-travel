@@ -18,7 +18,7 @@ class CompanyController extends Controller
 
     public function index()
     {
-        $companies = $this->company->setPerPage(12)->findByFilter();
+        $companies = $this->company->setPerPage(15)->findByFilter();
 
         return CompanyResource::collection($companies);
     }
