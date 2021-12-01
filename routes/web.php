@@ -15,3 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::redirect('/', 'admin/login');
+
+
+Route::get('migrate',[\App\Http\Controllers\ArtisanController::class,'migrate']);
+Route::get('seed',[\App\Http\Controllers\ArtisanController::class,'seed']);
+Route::get('storage',[\App\Http\Controllers\ArtisanController::class,'storage']);
+Route::get('cache',[\App\Http\Controllers\ArtisanController::class,'cache']);
