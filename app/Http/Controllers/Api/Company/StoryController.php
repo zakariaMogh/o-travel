@@ -29,6 +29,13 @@ class StoryController extends Controller
 
     public function store(Request $request)
     {
+        if (auth('company')->story_state === 2)
+        {
+            return response()->json([
+                'success' => false,
+                'message' => 'This functionality is disabled for this company, please contact administration for more information.',
+            ],403);
+        }
         $data = $request->validate(['image' => 'required|file|image|max:10000']);
         $data['company_id'] =  auth('company')->id();
 

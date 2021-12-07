@@ -60,6 +60,14 @@
                                                         </select>
                                                     </div>
 
+                                                    <div class="form-group">
+                                                        <label for="auto_accepted">{{__('labels.story_state')}}</label>
+                                                        <select name="story_state" id="story_state" class="form-control">
+                                                            <option value="1" @if((int)old('story_state',$company->story_state) === 1) selected @endif>{{__('labels.enable')}}</option>
+                                                            <option value="2" @if((int)old('story_state',$company->story_state) === 2) selected @endif>{{__('labels.disabled')}}</option>
+                                                        </select>
+                                                    </div>
+
                                                     <x-form.input
                                                         name="max_number_of_offers" {{-- required --}}
                                                         :value="old('max_number_of_offers',$company->max_number_of_offers)"

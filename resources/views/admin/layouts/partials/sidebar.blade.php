@@ -180,7 +180,7 @@
                 <li class=" nav-item {{request()->routeIs('admin.reports*') ? 'active' : ''}}">
                     <a class="d-flex align-items-center" href="{{route('admin.reports.index')}}">
                         <i class="fas fa-suitcase"></i>
-                        <span class="menu-title text-truncate">{{trans_choice('labels.report',2)}}</span>
+                        <span class="menu-title text-truncate">{{__('labels.contact_us')}}</span>
                     </a>
                 </li>
             @endcan

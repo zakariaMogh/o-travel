@@ -25,6 +25,7 @@ class Company extends Authenticatable
         'device_token',
         'state',
         'auto_accepted',
+        'story_state',
         'checked',
         'facebook', 'whatsapp', 'snapchat', 'instagram', 'twitter',
         'trade_register',
@@ -56,6 +57,7 @@ class Company extends Authenticatable
         'email_verified_at' => 'datetime',
         'checked' => 'boolean',
         'state' => 'integer',
+        'story_state' => 'integer',
     ];
 
     /**

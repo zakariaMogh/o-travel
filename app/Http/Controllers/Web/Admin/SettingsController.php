@@ -10,6 +10,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\DB;
 
 class SettingsController extends Controller
 {
@@ -63,6 +64,16 @@ class SettingsController extends Controller
 
         session()->flash("success", __('messages.update'));
         return redirect()->back();
+    }
+
+    public function updateOfferAutoAccept(Request $request){
+        $data = $request->validate(['auto_accept_offer_for_all' => 'required|integer|in:1,2|']);
+        Setting::set('auto_accept_offer_for_all', $data['auto_accept_offer_for_all']);
+
+        DB::table('companies')->update(['auto_accepted' => $data['auto_accept_offer_for_all']]);
+        session()->flash("success", __('messages.update'));
+        return redirect()->back();
+
     }
 
     /**

@@ -71,6 +71,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th>{{trans_choice('labels.subject',1)}}</th>
+                                            <th>{{__('labels.email')}}</th>
                                             <th>{{__('labels.actions')}}</th>
                                         </tr>
                                         </thead>
@@ -82,6 +83,9 @@
                                                 </td>
                                                 <td>
                                                     {{$report->subject}}
+                                                </td>
+                                                <td>
+                                                    <a href="mailto:{{$report->subject}}" class="text-decoration-none"> {{$report->subject}}</a>
                                                 </td>
 
                                                 <td>

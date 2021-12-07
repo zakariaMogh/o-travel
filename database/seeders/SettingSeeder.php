@@ -224,6 +224,10 @@ class SettingSeeder extends Seeder
             'key' => 'offer_limits',
             'value' => 20,
         ],
+        [
+            'key' => 'auto_accept_offer_for_all',
+            'value' => 2,
+        ],
 
     ];
 

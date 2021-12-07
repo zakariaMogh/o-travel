@@ -433,5 +433,6 @@ return [
     'auto_accepted' => 'auto accepted',
     'max_number_of_offers' => 'max number of offers',
     'request_for_approval' => 'waiting for approval',
+    'auto_accept_offer_for_all' => 'Auto accept offer for all companies',
 
 ];

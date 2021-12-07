@@ -85,6 +85,7 @@ class CompanyController extends Controller
         $data = $request->validate([
             'auto_accepted' => 'required|integer|in:1,2',
             'max_number_of_offers' => 'required|integer',
+            'story_state' => 'required|integer|in:1,2',
         ]);
         $this->company->update($id,$data);
         session()->flash('success',__('messages.update'));

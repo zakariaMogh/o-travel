@@ -19,7 +19,7 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $data = $this->getValidatedData($request);
-
+        $data['auto_accepted'] = settings('auto_accept_offer_for_all');
         try {
             //$phone = $data['country_code'].$data['phone'];
             //$this->checkFirebaseUser($phone);

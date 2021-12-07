@@ -57,6 +57,12 @@
                                                     <span class="invoice-number">{{$report->subject}}</span>
                                                 </h4>
                                                 <h4 class="invoice-title">
+                                                    {{__('labels.email')}} :
+                                                    <span class="invoice-number">
+                                                         <a href="mailto:{{$report->subject}}" class="text-decoration-none"> {{$report->subject}}</a>
+                                                    </span>
+                                                </h4>
+                                                <h4 class="invoice-title">
                                                     {{__('labels.message')}} :
                                                     <span class="invoice-number">{{$report->message}}</span>
                                                 </h4>

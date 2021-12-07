@@ -10,7 +10,7 @@ class Report extends Model
     use HasFactory;
 
     protected $fillable = [
-        'subject' , 'message', 'reportable_type','reportable_id'
+        'subject' , 'message', 'reportable_type','reportable_id','email'
     ];
 
     /**

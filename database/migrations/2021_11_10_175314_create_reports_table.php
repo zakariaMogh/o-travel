@@ -16,6 +16,7 @@ class CreateReportsTable extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->string('subject');
+            $table->string('email');
             $table->string('message');
             $table->morphs('reportable');
             $table->timestamps();
