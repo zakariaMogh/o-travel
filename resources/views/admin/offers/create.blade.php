@@ -52,6 +52,7 @@
                                     <div class="card-header">
                                         <h4 class="card-title">{{__('actions.edit')}}</h4>
                                     </div>
+                                    {{$errors}}
                                     <div class="card-body">
                                         <form novalidate  class="form form-horizontal" method="post" action="{{route('admin.offers.store')}}" enctype="multipart/form-data">
                                             @csrf

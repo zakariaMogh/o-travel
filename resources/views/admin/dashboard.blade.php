@@ -170,6 +170,226 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-6 col-12">
+
+                            <div class="card">
+
+                                <div class="card-header ">
+
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="card-tools">
+                                        <form id="filter-form">
+                                            <div class="row justify-content-end">
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th>{{trans_choice('labels.image', 1)}}</th>
+                                                <th>{{trans_choice('labels.company',1)}}</th>
+
+                                                {{--                                            <th>{{__('labels.wallet')}}</th>--}}
+                                                <th>{{__('labels.certified')}}</th>
+                                                <th>{{__('labels.actions')}}</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($companies as $company)
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="modal-{{$company->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalScrollableTitle">{{__('labels.trade_register')}}</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <img src="{{$company->trade_register_url}}" alt="" width="100%">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a href="{{route('admin.companies.check',$company->id)}}" class="btn btn-success" >{{__('actions.approved')}}</a>
+                                                                <a href="{{route('admin.companies.uncheck',$company->id)}}" class="btn btn-danger" >{{__('actions.disapproved')}}</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <tr>
+
+                                                    <td>
+                                                    <span class="avatar">
+                                                                 <img src="{{$company->image_url}}" class="round" height="50"
+                                                                      width="50" alt="{{$company->name}} logo"/>
+                                                    </span>
+                                                    </td>
+                                                    <td>
+                                                        <ul>
+                                                            <li>{{$company->name}}</li>
+                                                            <li style="direction: ltr"><a href="tel:{{$company->full_phone}}">{{$company->full_phone}}</a></li>
+                                                            <li><a href="mailto:{{$company->email}}">{{$company->email}}</a></li>
+                                                        </ul>
+                                                    </td>
+
+                                                    <td>
+                                                        @switch($company->checked)
+                                                            @case(true)
+                                                            <span
+                                                                class="badge badge-pill badge-light-success mr-1">{{__('labels.yes')}}</span>
+                                                            @break
+                                                            @case(false)
+                                                            <span
+                                                                class="badge badge-pill badge-light-danger mr-1">{{__('labels.no')}}</span>
+                                                            @break
+                                                            @default
+                                                            <span
+                                                                class="badge badge-pill badge-light-success mr-1">{{__('labels.no')}}
+                                                        </span>
+                                                        @endswitch
+                                                    </td>
+                                                    <td>
+
+                                                        @can('view-company')
+                                                            <a title="{{__('actions.details')}}"
+                                                               href="javascript:void(0)" data-toggle="modal" data-target="#modal-{{$company->id}}">
+                                                                <i data-feather="eye" class="mr-50"></i>
+                                                            </a>
+
+                                                        @endcan
+
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                        <div class="d-flex justify-content-center my-1">
+                                            <a href="{{route('admin.requests.companies')}}">{{__('home.view-all')}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+
+                            <div class="card">
+
+                                <div class="card-header ">
+
+
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="card-tools">
+
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th>{{__('labels.name')}}</th>
+                                                <th>{{__('labels.date')}}</th>
+                                                {{--                                            <th>{{__('labels.wallet')}}</th>--}}
+                                                <th>{{__('labels.price')}}</th>
+                                                <th>{{trans_choice('labels.company',1)}}</th>
+                                                <th>{{__('labels.featured')}}</th>
+                                                <th>{{__('labels.state')}}</th>
+                                                <th>{{__('labels.actions')}}</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($latestOffers as $offer)
+                                                <tr>
+                                                    <td>
+                                                        {{$offer->name}}
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge badge-info">{{$offer->date ? $offer->date->format('m/d/Y') : __('labels.empty')}}</span>
+                                                    </td>
+                                                    <td>
+                                                        <span>{{money($offer->price)}}</span>
+                                                    </td>
+                                                    {{--                                                <td>--}}
+                                                    {{--                                                    {{money($u->wallet)}}--}}
+                                                    {{--                                                </td>--}}
+                                                    <td>
+                                                        <a class="text-decoration-none" href="{{route('admin.companies.show',$offer->company_id)}}">
+                                                            {{$offer->company->name}}
+                                                        </a>
+                                                    </td>
+
+
+
+                                                    <td>
+                                                        @if($offer->featured === 2)
+                                                            <span class="badge badge-success">
+                                                        {{__('labels.yes')}}
+                                                    </span>
+                                                        @else
+                                                            <span class="badge badge-danger">
+                                                        {{__('labels.no')}}
+                                                    </span>
+                                                        @endif
+                                                    </td>
+
+                                                    <td>
+                                                        @if($offer->state === 2)
+                                                            <span class="badge badge-success">
+                                                        {{__('labels.states.2')}}
+                                                    </span>
+                                                        @else
+                                                            <span class="badge badge-danger">
+                                                        {{__('labels.states.1')}}
+                                                    </span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+
+                                                        @can('view-offer')
+                                                            <a title="{{__('actions.details')}}"
+                                                               href="{{route('admin.offers.show',$offer->id)}}">
+                                                                <i data-feather="eye" class="mr-50"></i>
+                                                            </a>
+                                                        @endcan
+
+                                                        @can('edit-offer')
+                                                            <a title="{{__('actions.edit')}}"
+                                                               href="{{route('admin.offers.edit',$offer->id)}}">
+                                                                <i data-feather="edit-2" class="mr-50"></i>
+                                                            </a>
+                                                        @endcan
+
+
+                                                        @can('delete-offer')
+                                                            <a title="{{__('actions.delete')}}"
+                                                               onclick="deleteForm({{$offer->id}})" href="javascript:void(0);">
+                                                                <i data-feather="trash" class="mr-50"></i>
+                                                            </a>
+                                                        @endcan
+
+
+
+
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                        <div class="d-flex justify-content-center my-1">
+                                            <a href="{{route('admin.offers.index')}}">{{__('home.view-all')}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
 
                     </div>
                     <!--/ List DataTable -->
