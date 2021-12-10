@@ -29,7 +29,7 @@ class StoryController extends Controller
 
     public function store(Request $request)
     {
-        if (auth('company')->story_state === 2)
+        if (auth('company')->user()->story_state === 2)
         {
             return response()->json([
                 'success' => false,
