@@ -185,6 +185,15 @@
                 </li>
             @endcan
 
+            @can('view-admin-notification')
+                <li class=" nav-item {{request()->routeIs('admin.notifications*') ? 'active' : ''}}">
+                    <a class="d-flex align-items-center" href="{{route('admin.notifications.index')}}">
+                        <i data-feather='bell'></i>
+                        <span class="menu-title text-truncate">{{trans_choice('labels.notification',3)}}</span>
+                    </a>
+                </li>
+            @endcan
+
 
 
         </ul>

@@ -44,6 +44,10 @@ Route::middleware('auth:admin')->group(function (){
     Route::resource('offers', \App\Http\Controllers\Web\Admin\OfferController::class);
     Route::resource('reports', \App\Http\Controllers\Web\Admin\ReportController::class)->only(['show','index','destroy']);
 
+
+    Route::post('notifications/{id}/send',[\App\Http\Controllers\Web\Admin\NotificationController::class,'send'])->name('notifications.send');
+    Route::resource('notifications', \App\Http\Controllers\Web\Admin\NotificationController::class)->only(['index','store', 'edit', 'destroy','update']);
+
 });
 
 

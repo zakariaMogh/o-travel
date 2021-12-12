@@ -18,8 +18,8 @@ class DashboardController extends Controller
         $domains_count = DB::table('domains')->count();
         $countries_count = DB::table('countries')->count();
         $cities_count = DB::table('cities')->count();
-        $normal_offers = DB::table('offers')->where('featured',0)->count();
-        $featured_offers = DB::table('offers')->where('featured',1)->count();
+        $normal_offers = DB::table('offers')->where('featured',1)->count();
+        $featured_offers = DB::table('offers')->where('featured',2)->count();
 
 
         $companies = $company->setScopes(['notApproved'])->setPerPage(5)->findByFilter();

@@ -20,6 +20,7 @@ class PermissionSeeder extends Seeder
         'create-company', 'delete-company', 'edit-company', 'view-company',
         'create-offer', 'delete-offer', 'edit-offer', 'view-offer',
         'create-report', 'delete-report', 'edit-report', 'view-report',
+        'create-admin-notification', 'delete-admin-notification', 'edit-admin-notification', 'view-admin-notification',
 
     ];
 
