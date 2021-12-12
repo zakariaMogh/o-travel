@@ -1,7 +1,10 @@
 @extends('admin.layouts.app')
 
 @section('title',trans_choice('labels.country',2))
-
+@push('css')
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{asset('assets/admin/app-assets/vendors/css/forms/select/select2.min.css')}}">
+@endpush
 @section('content')
 
     <div class="app-content content ">
@@ -58,7 +61,20 @@
                                                         :is-required="true" {{-- optional default=false --}}
                                                         :value="$country->name" {{-- optional default=null --}}
                                                     />
-
+                                                    <div class="form-group">
+                                                        <label for="categories">{{trans_choice('labels.category',3)}}</label>
+                                                        <select
+                                                            class="custom-select @error('categories') is-invalid @enderror"
+                                                            id="categories"
+                                                            name="categories[]" multiple>
+                                                            @foreach($country->categories as $category)
+                                                                <option value="{{$category->id}}" selected>{{$category->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('categories')
+                                                        <div class="invalid-feedback">{{$message}}</div>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <button type="submit" class="btn btn-primary mr-1">{{__('labels.save')}}</button>
@@ -77,3 +93,42 @@
 
 @endsection
 
+@push('js')
+    <script src="{{asset('assets/admin/app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
+
+    <script>
+        $('#categories').select2({
+            cache:true,
+            ajax: {
+                delay: 250,
+                url: '{{route('admin.categories.index')}}',
+                dataType: 'json',
+                data: function (params) {
+                    // Query parameters will be ?search=[term]&page=[page]
+
+                    return {
+                        search: params.term,
+                        page: params.page || 1
+                    };
+
+
+                },
+                processResults: function ({categories}, params) {
+                    params.page = params.page || 1;
+
+                    let fData = $.map(categories.data, function (obj) {
+                        obj.text = obj.name; // replace name with the property used for the text
+                        return obj;
+                    });
+
+                    return {
+                        results: fData,
+                        pagination: {
+                            more: (params.page * 10) < categories.total
+                        }
+                    };
+                }
+            }
+        })
+    </script>
+@endpush

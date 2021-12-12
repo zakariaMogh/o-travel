@@ -24,7 +24,12 @@ class CountryRepository extends BaseRepositories implements CountryContract
 
     public function new(array $data)
     {
-        return $this->model::create($data);
+        $country =  $this->model::create($data);
+        if (array_key_exists('categories',$data))
+        {
+            $country->categories()->attach($data['categories']);
+        }
+        return $country;
     }
 
     public function update($id, array $data)
@@ -32,6 +37,11 @@ class CountryRepository extends BaseRepositories implements CountryContract
         $country = $this->findOneById($id);
 
         $country->update($data);
+
+        if (array_key_exists('categories',$data))
+        {
+            $country->categories()->sync($data['categories']);
+        }
 
         return $country;
     }

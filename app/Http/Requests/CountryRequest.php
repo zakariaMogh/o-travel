@@ -25,6 +25,8 @@ class CountryRequest extends FormRequest
     {
         $rules = [
             'name' => 'required|string|max:40|unique:countries,name',
+            'categories' => 'sometimes|nullable|array',
+            'categories.*' => 'required|integer',
             'latitude' => 'sometimes|nullable|between:-90,90',
             'longitude' => 'sometimes|nullable|between:-180,180',
         ];

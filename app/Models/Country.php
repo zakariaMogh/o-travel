@@ -21,4 +21,9 @@ class Country extends Model
     {
         return $this->belongsToMany(Offer::class);
     }
+
+    public function categories(): belongsToMany
+    {
+        return $this->belongsToMany(Category::class)->withTimestamps();
+    }
 }

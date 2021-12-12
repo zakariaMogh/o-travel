@@ -1,7 +1,10 @@
 @extends('admin.layouts.app')
 
 @section('title',trans_choice('labels.country',2))
-
+@push('css')
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{asset('assets/admin/app-assets/vendors/css/forms/select/select2.min.css')}}">
+@endpush
 @section('content')
 
     <div class="app-content content ">
@@ -59,7 +62,20 @@
                                                             :is_required="true" {{-- optional default=false --}}
                                                         />
 
+                                                        <div class="form-group">
+                                                            <label for="categories">{{trans_choice('labels.category',3)}}</label>
+                                                            <select
+                                                                class="custom-select @error('categories') is-invalid @enderror"
+                                                                id="categories"
+                                                                name="categories[]" multiple>
+                                                            </select>
+                                                            @error('categories')
+                                                            <div class="invalid-feedback">{{$message}}</div>
+                                                            @enderror
+                                                        </div>
+
                                                     </div>
+
                                                     <div class="col-12 ">
                                                         <button type="submit"
                                                                 class="btn btn-primary mr-1">{{__('labels.save')}}</button>
@@ -111,6 +127,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th>{{__('labels.name')}}</th>
+                                            <th>{{trans_choice('labels.category',3)}}</th>
                                             <th>{{__('labels.actions')}}</th>
                                         </tr>
                                         </thead>
@@ -122,6 +139,12 @@
                                                 </td>
                                                 <td>
                                                     {{$t->name}}
+                                                </td>
+
+                                                <td style="width: 50%">
+                                                    @foreach($t->categories as $category)
+                                                    <span class="badge badge-success">{{$category->name}}</span>
+                                                    @endforeach
                                                 </td>
 
                                                 <td>
@@ -169,9 +192,42 @@
 @endsection
 
 @push('js')
+    <script src="{{asset('assets/admin/app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
 
     <script>
+        $('#categories').select2({
+            cache:true,
+            ajax: {
+                delay: 250,
+                url: '{{route('admin.categories.index')}}',
+                dataType: 'json',
+                data: function (params) {
+                    // Query parameters will be ?search=[term]&page=[page]
 
+                    return {
+                        search: params.term,
+                        page: params.page || 1
+                    };
+
+
+                },
+                processResults: function ({categories}, params) {
+                    params.page = params.page || 1;
+
+                    let fData = $.map(categories.data, function (obj) {
+                        obj.text = obj.name; // replace name with the property used for the text
+                        return obj;
+                    });
+
+                    return {
+                        results: fData,
+                        pagination: {
+                            more: (params.page * 10) < categories.total
+                        }
+                    };
+                }
+            }
+        })
 
         const deleteForm = id => {
 

@@ -57,6 +57,18 @@
                                                         :is-required="true" {{-- optional default=false --}}
                                                     />
 
+                                                    <div class="form-group">
+                                                        <label for="categories">{{trans_choice('labels.category',3)}}</label>
+                                                        <select
+                                                            class="custom-select @error('categories') is-invalid @enderror"
+                                                            id="categories"
+                                                            name="categories[]" multiple>
+                                                        </select>
+                                                        @error('categories')
+                                                        <div class="invalid-feedback">{{$message}}</div>
+                                                        @enderror
+                                                    </div>
+
                                                 </div>
                                                 <div class="col-sm-9 offset-sm-3">
                                                     <button type="submit" class="btn btn-primary mr-1">{{__('labels.save')}}</button>
@@ -78,5 +90,39 @@
 
 @push('js')
 
+    <script>
+        $('.select2').select2({
+            cache:true,
+            ajax: {
+                delay: 250,
+                url: '{{route('admin.categories.index')}}',
+                dataType: 'json',
+                data: function (params) {
+                    // Query parameters will be ?search=[term]&page=[page]
 
+                        return {
+                            search: params.term,
+                            page: params.page || 1
+                        };
+
+
+                },
+                processResults: function ({categories}, params) {
+                    params.page = params.page || 1;
+
+                    let fData = $.map(categories.data, function (obj) {
+                        obj.text = obj.name; // replace name with the property used for the text
+                        return obj;
+                    });
+
+                    return {
+                        results: fData,
+                        pagination: {
+                            more: (params.page * 10) < categories.total
+                        }
+                    };
+                }
+            }
+        })
+    </script>
 @endpush
