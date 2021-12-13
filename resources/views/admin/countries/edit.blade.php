@@ -61,6 +61,14 @@
                                                         :is-required="true" {{-- optional default=false --}}
                                                         :value="$country->name" {{-- optional default=null --}}
                                                     />
+
+                                                    <x-form.input
+                                                        name="name_ar" {{-- required --}}
+                                                        :value="old('name_ar')"
+                                                        type="text" {{-- optional default=text --}}
+                                                        :is_required="false" {{-- optional default=false --}}
+                                                    />
+
                                                     <div class="form-group">
                                                         <label for="categories">{{trans_choice('labels.category',3)}}</label>
                                                         <select
