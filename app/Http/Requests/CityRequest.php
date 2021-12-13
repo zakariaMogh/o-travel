@@ -25,6 +25,7 @@ class CityRequest extends FormRequest
     {
         $rules = [
             'name' => 'required|string|max:40|unique:cities,name',
+            'name_ar' => 'sometimes|nullable|string|max:100',
             'latitude' => 'sometimes|nullable|between:-90,90',
             'longitude' => 'sometimes|nullable|between:-180,180',
         ];

@@ -24,7 +24,8 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|string|max:40|unique:categories,name'
+            'name' => 'required|string|max:40|unique:categories,name',
+            'name_ar' => 'sometimes|nullable|string|max:100',
         ];
 
         if ($this->method() == 'PUT')
