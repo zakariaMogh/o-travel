@@ -134,6 +134,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th>{{__('labels.name')}}</th>
+                                            <th>{{__('labels.name_ar')}}</th>
                                             <th>{{trans_choice('labels.category',3)}}</th>
                                             <th>{{__('labels.actions')}}</th>
                                         </tr>
@@ -147,8 +148,11 @@
                                                 <td>
                                                     {{$t->name}}
                                                 </td>
+                                                <td>
+                                                    {{$t->name_ar}}
+                                                </td>
 
-                                                <td style="width: 50%">
+                                                <td style="width: 40%">
                                                     @foreach($t->categories as $category)
                                                     <span class="badge badge-success">{{$category->name}}</span>
                                                     @endforeach

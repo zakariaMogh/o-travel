@@ -64,7 +64,7 @@
 
                                                     <x-form.input
                                                         name="name_ar" {{-- required --}}
-                                                        :value="old('name_ar')"
+                                                        :value="$country->name_ar"
                                                         type="text" {{-- optional default=text --}}
                                                         :is_required="false" {{-- optional default=false --}}
                                                     />

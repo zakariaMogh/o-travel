@@ -117,6 +117,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th>{{__('labels.name')}}</th>
+                                            <th>{{__('labels.name_ar')}}</th>
                                             <th>{{__('labels.actions')}}</th>
                                         </tr>
                                         </thead>
@@ -129,7 +130,9 @@
                                                 <td>
                                                     {{$t->name}}
                                                 </td>
-
+                                                <td>
+                                                    {{$t->name_ar}}
+                                                </td>
                                                 <td>
 
 {{--                                                    @can('view-city')--}}
