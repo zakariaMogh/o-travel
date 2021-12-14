@@ -37,7 +37,7 @@ class CompanyResource extends JsonResource
             'description'  => $this->description,
             'trade_register'  => $this->when($this->trade_register,$this->trade_register_url),
 
-            $this->mergeWhen(auth('company')->check(), [
+            $this->mergeWhen(auth('company')->check() && auth('company')->id() === $this->id, [
                 'wallet' => $this->wallet,
             ]),
 
