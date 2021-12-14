@@ -90,7 +90,7 @@ class OfferController extends ApiController
      * Update the specified resource in storage.
      *
      * @param OfferRequest $request
-     * @param int $id
+     * @param  $id
      * @return JsonResponse
      */
     public function update(OfferRequest $request, $id): JsonResponse
@@ -105,7 +105,7 @@ class OfferController extends ApiController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param    $id
      * @return JsonResponse
      */
     public function destroy($id): JsonResponse
@@ -115,7 +115,7 @@ class OfferController extends ApiController
         return $this->respondUpdated(__('messages.delete'));
     }
 
-    public function markAsFavorite($id, CompanyContract $companyContract)
+    public function markAsFavorite($id, CompanyContract $companyContract): OfferResource
     {
         $offer =  $companyContract->favoriteToggle(auth('company')->id(),$id);
         return new OfferResource($offer->load(['images','category','company','countries']));
