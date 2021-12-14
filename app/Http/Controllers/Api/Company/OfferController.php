@@ -41,7 +41,7 @@ class OfferController extends ApiController
         {
             $this->offer->setScopes(['authCompany']);
         }
-        $offers = $this->offer->findByFilter();
+        $offers = $this->offer->setCounts(['authCompany'])->findByFilter();
         return OfferResource::collection($offers);
     }
 
@@ -81,7 +81,7 @@ class OfferController extends ApiController
         {
             $this->offer->setScopes(['authCompany']);
         }
-        $offer = $this->offer->findOneById($id);
+        $offer = $this->offer->setCounts(['authCompany'])->findOneById($id);
 
         return new OfferResource($offer);
     }
@@ -99,7 +99,7 @@ class OfferController extends ApiController
 
         $offer = $this->offer->setScopes(['authCompany'])->update($id,$data);
 
-        return $this->respondUpdated(__('messages.update'),new OfferResource($offer->load(['images','category','company','countries'])));
+        return $this->respondUpdated(__('messages.update'),new OfferResource($offer->loadtCount('authCompany')->load(['images','category','company','countries'])));
     }
 
     /**
