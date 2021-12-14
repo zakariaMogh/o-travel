@@ -12,4 +12,11 @@ interface CompanyContract extends CrudContract,ReportableContract
 
     public function addCheck($id);
     public function removeCheck($id);
+
+    /**
+     * @param $user
+     * @param $offer
+     * @return mixed
+     */
+    public function favoriteToggle($user,$offer);
 }

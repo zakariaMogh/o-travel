@@ -6,6 +6,7 @@ namespace App\Repositories;
 
 use App\Contracts\CompanyContract;
 use App\Models\Company;
+use App\Models\Offer;
 use App\Traits\UploadAble;
 
 class CompanyRepository extends BaseRepositories implements CompanyContract
@@ -165,5 +166,14 @@ class CompanyRepository extends BaseRepositories implements CompanyContract
         $company->update($data);
 
         return $company;
+    }
+
+    public function favoriteToggle($user, $offer)
+    {
+        $company = $this->findOneById($user);
+        $offer = Offer::findOrFail($offer);
+        $company->favorites()->toggle($offer->id);
+
+        return $offer->loadCount(['authCompany']);
     }
 }

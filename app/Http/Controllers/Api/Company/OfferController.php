@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api\Company;
 
+use App\Contracts\CompanyContract;
 use App\Contracts\OfferContract;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\OfferRequest;
 use App\Http\Resources\OfferResource;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class OfferController extends ApiController
@@ -29,11 +31,17 @@ class OfferController extends ApiController
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return AnonymousResourceCollection
      */
-    public function index(): AnonymousResourceCollection
+    public function index(Request $request): AnonymousResourceCollection
     {
-        $offers = $this->offer->setRelations(['images','category','company','countries'])->setScopes(['authCompany'])->findByFilter();
+        $this->offer->setRelations(['images','category','company','countries']);
+        if ($request->input('mine') === 2)
+        {
+            $this->offer->setScopes(['authCompany']);
+        }
+        $offers = $this->offer->findByFilter();
         return OfferResource::collection($offers);
     }
 
@@ -62,12 +70,19 @@ class OfferController extends ApiController
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param    $id
+     * @param Request $request
      * @return OfferResource
      */
-    public function show($id): OfferResource
+    public function show($id,Request $request): OfferResource
     {
-        $offer = $this->offer->setRelations(['images','category','company','countries'])->setScopes(['authCompany'])->findOneById($id);
+        $this->offer->setRelations(['images','category','company','countries']);
+        if ($request->input('mine') === 2)
+        {
+            $this->offer->setScopes(['authCompany']);
+        }
+        $offer = $this->offer->findOneById($id);
+
         return new OfferResource($offer);
     }
 
@@ -98,5 +113,11 @@ class OfferController extends ApiController
         $this->offer->setScopes(['authCompany'])->destroy($id);
 
         return $this->respondUpdated(__('messages.delete'));
+    }
+
+    public function markAsFavorite($id, CompanyContract $companyContract)
+    {
+        $offer =  $companyContract->favoriteToggle(auth('company')->id(),$id);
+        return new OfferResource($offer->load(['images','category','company','countries']));
     }
 }

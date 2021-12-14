@@ -37,10 +37,16 @@ class Offer extends Model
     ];
 
 
-    public function getFavoriteByMeAttribute()
+    public function getUserFavoriteByMeAttribute()
     {
         return $this->auth_user_count > 0;
     }
+
+    public function getCompanyFavoriteByMeAttribute()
+    {
+        return $this->auth_company_count > 0;
+    }
+
 
     public function scopePublished($query)
     {
@@ -81,6 +87,16 @@ class Offer extends Model
     public function authUser(): BelongsToMany
     {
         return $this->users()->where('users.id',auth('user')->id());
+    }
+
+    public function authCompany(): BelongsToMany
+    {
+        return $this->companies()->where('companied.id',auth('company')->id());
+    }
+
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class);
     }
 
 }
