@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Company;
+use App\Models\Offer;
+use App\Observers\CompanyObserver;
+use App\Observers\OfferObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -27,6 +31,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Company::observe(CompanyObserver::class);
+        Offer::observe(OfferObserver::class);
     }
 }
