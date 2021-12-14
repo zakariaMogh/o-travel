@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Api\User;
 use App\Contracts\OfferContract;
 use App\Contracts\UserContract;
 use App\Http\Controllers\Api\ApiController;
-use App\Http\Controllers\Controller;
 use App\Http\Resources\OfferResource;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class OfferController extends ApiController

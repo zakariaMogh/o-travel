@@ -91,7 +91,7 @@ class Offer extends Model
 
     public function authCompany(): BelongsToMany
     {
-        return $this->companies()->where('companied.id',auth('company')->id());
+        return $this->companies()->where('companies.id',auth('company')->id());
     }
 
     public function companies()

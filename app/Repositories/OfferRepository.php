@@ -64,8 +64,6 @@ class OfferRepository extends BaseRepositories implements OfferContract
 
     public function destroy($id)
     {
-        $offer = $this->findOneById($id);
-
-        return $offer->delete();
+        return $this->findOneById($id)->delete();
     }
 }
