@@ -21,8 +21,7 @@ class OfferResource extends JsonResource
             'description'  => $this->description,
             'rate'  => $this->rate,
             'date'  => $this->date,
-            'user_favorite_by_me'  => $this->when(isset($this->user_favorite_by_me),$this->user_favorite_by_me),
-            'company_favorite_by_me'  => $this->when(isset($this->company_favorite_by_me),$this->company_favorite_by_me),
+            'favorite_by_me'  => $this->getFavoriteByMe(),
             'state'  => $this->state,
             'featured'  => $this->featured,
             'start_date'  => $this->when($this->featured === 2 ,$this->start_date),
@@ -34,5 +33,20 @@ class OfferResource extends JsonResource
             'countries'  =>  CountryResource::collection($this->whenLoaded('countries')),
 
         ];
+    }
+    private function getFavoriteByMe(){
+
+        if (auth('company')->check())
+        {
+            return $this->company_favorite_by_me ?? null;
+        }
+
+        if (auth('user')->check())
+        {
+            return $this->user_favorite_by_me ?? null;
+        }
+
+        return false;
+
     }
 }
