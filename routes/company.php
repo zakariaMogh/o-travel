@@ -25,6 +25,7 @@ Route::middleware('auth:company')->group(function (){
     Route::get('countries',\App\Http\Controllers\Api\Company\CountryController::class)->name('countries.index');
     Route::get('categories',\App\Http\Controllers\Api\Company\CategoryController::class)->name('categories.index');
 
+    Route::post('offers/{id}/favorite',[\App\Http\Controllers\Api\Company\OfferController::class,'markAsFavorite'])->name('offers.favorite.store');
     Route::resource('offers',\App\Http\Controllers\Api\Company\OfferController::class)->only(['store','index','show','update','destroy']);
     Route::apiResource('stories',\App\Http\Controllers\Api\Company\StoryController::class);
     Route::post('reports', \App\Http\Controllers\Api\User\ReportController::class);
