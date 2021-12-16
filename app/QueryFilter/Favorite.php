@@ -15,15 +15,24 @@ class Favorite extends Filter
             return $builder;
         }
 
-        if (!auth('user')->check())
+        if (auth('user')->check())
         {
+            if ($builder->getModel() instanceof \App\Models\Offer) {
+                $builder->whereHas('users',  function ($query)  {
+                    $query->where('users.id',auth('user')->id());
+                });
+            }
             return $builder;
         }
 
-        if ($builder->getModel() instanceof \App\Models\Offer) {
-            $builder->whereHas('users',  function ($query)  {
-                $query->where('users.id',auth('user')->id());
-            });
+        if (auth('company')->check())
+        {
+            if ($builder->getModel() instanceof \App\Models\Offer) {
+                $builder->whereHas('companies',  function ($query)  {
+                    $query->where('companies.id',auth('company')->id());
+                });
+            }
+            return $builder;
         }
 
         return $builder;
