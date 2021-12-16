@@ -16,9 +16,9 @@ class OfferResource extends JsonResource
     {
         return [
             'id'  => $this->id,
-            'name'  => $this->name,
+            'name'  => $this->name ?? '',
             'price'  => $this->price,
-            'description'  => $this->description,
+            'description'  => $this->description ?? '',
             'rate'  => $this->rate,
             'date'  => $this->date,
             'favorite_by_me'  => $this->getFavoriteByMe(),

@@ -114,7 +114,7 @@ class CompanyLoginController extends ApiController
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
-            'seller' => new CompanyResource($company)
+            'company' => new CompanyResource($company)
         ]);
     }
 
