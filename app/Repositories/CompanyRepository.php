@@ -34,8 +34,8 @@ class CompanyRepository extends BaseRepositories implements CompanyContract
 
         $data['max_number_of_offers'] = settings('offer_limits');
         $data['password'] = bcrypt($data['password']);
-
-        return $this->model::create($data);
+        $company = $this->model::create($data);
+        return $company->refresh();
     }
 
     public function update($id, array $data)

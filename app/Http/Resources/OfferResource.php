@@ -17,10 +17,10 @@ class OfferResource extends JsonResource
         return [
             'id'  => $this->id,
             'name'  => $this->name ?? '',
-            'price'  => $this->price,
+            'price'  => $this->price ?? 0,
             'description'  => $this->description ?? '',
             'rate'  => $this->rate,
-            'date'  => $this->date,
+            'date'  => $this->date ?? '',
             'favorite_by_me'  => $this->getFavoriteByMe(),
             'state'  => $this->state,
             'featured'  => $this->featured,
