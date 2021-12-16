@@ -32,7 +32,7 @@ class CompanyLoginController extends ApiController
      */
     public function me(): CompanyResource
     {
-        $company = $this->company->findOneById(auth('company')->id());
+        $company = $this->company->setRelations(['domain', 'city'])->findOneById(auth('company')->id());
         return new CompanyResource($company);
     }
 
