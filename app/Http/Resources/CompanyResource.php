@@ -40,6 +40,8 @@ class CompanyResource extends JsonResource
             $this->mergeWhen(auth('company')->check() && auth('company')->id() === $this->id, [
                 'wallet' => $this->wallet,
             ]),
+            'domain'  => new DomainResource($this->whenLoaded('domain')),
+            'city'  => new CityResource($this->whenLoaded('city')),
 
         ];
     }
