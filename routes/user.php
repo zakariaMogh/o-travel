@@ -8,6 +8,8 @@ Route::post('register',[\App\Http\Controllers\Api\User\Auth\RegisterController::
 Route::post('socialite/login',[\App\Http\Controllers\Api\User\Auth\SocialiteLogin::class,'socialiteLogin'])->name('socialite.login');
 Route::post('login',[\App\Http\Controllers\Api\User\Auth\AuthController::class,'login'])->name('login');
 
+Route::get('privacy_policy',[\App\Http\Controllers\Api\SettingsController::class,'privacy_policy'])->name('privacy_policy');
+Route::get('about_us',[\App\Http\Controllers\Api\SettingsController::class,'about_us'])->name('about_us');
 
 Route::middleware('auth:user')->group(function (){
     Route::get('me',[\App\Http\Controllers\Api\User\Auth\AuthController::class,'me'])->name('me');

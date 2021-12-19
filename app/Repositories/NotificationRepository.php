@@ -90,7 +90,7 @@ class NotificationRepository extends BaseRepositories implements \App\Contracts\
                 $tokens = User::whereNotNull('device_token')->groupBy('device_token')->pluck('device_token')->toArray();
                 break;
             default:
-                $tokens = array_merge(User::whereNotNull('device_token')->groupBy('device_token')->pluck('device_token')->toArray(), Seller::whereNotNull('device_token')->groupBy('device_token')->pluck('device_token')->toArray());
+                $tokens = array_merge(User::whereNotNull('device_token')->groupBy('device_token')->pluck('device_token')->toArray(), Company::whereNotNull('device_token')->groupBy('device_token')->pluck('device_token')->toArray());
                 break;
         }
         $data = [
