@@ -6,6 +6,9 @@
             </ul>
         </div>
         <ul class="nav navbar-nav align-items-center ml-auto">
+            <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-style" id="switch-mode"><i class="ficon" data-feather="sun"></i></a></li>
+        </ul>
+        <ul class="nav navbar-nav align-items-center ml-1">
             {{--            <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-style"><i class="ficon" data-feather="moon"></i></a></li>--}}
 
             <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
