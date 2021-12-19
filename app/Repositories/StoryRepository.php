@@ -60,4 +60,14 @@ class StoryRepository extends BaseRepositories implements \App\Contracts\StoryCo
 
         return $story->delete($id);
     }
+
+
+    public function toggle($id)
+    {
+        $story = $this->findOneById($id);
+        $story->update([
+            'state' => ($story->state == 1 ? 2 : 1)
+        ]);
+        return $story;
+    }
 }

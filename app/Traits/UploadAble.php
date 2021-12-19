@@ -15,7 +15,7 @@ trait UploadAble
      * @param null $filename
      * @return false|string
      */
-    public function uploadOne(UploadedFile $file, $folder = null, string $disk = null, $filename = null)
+    public function uploadOne(UploadedFile $file, $folder = null, string $disk = 'public', $filename = null)
     {
         $name = $filename ?? Str::random(25). '.' . $file->getClientOriginalExtension();
         $disk = $disk ?? (string) config('filesystems.default');

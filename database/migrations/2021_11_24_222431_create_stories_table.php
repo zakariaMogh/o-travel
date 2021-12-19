@@ -21,6 +21,7 @@ class CreateStoriesTable extends Migration
             $table->integer('type')->default(1); // 1 : image 2: video
             $table->longText('meta')->nullable();
             $table->integer('views')->default(0);
+            $table->integer('state')->default(1); // 1 : visible 2: invisible
             $table->timestamps();
         });
     }

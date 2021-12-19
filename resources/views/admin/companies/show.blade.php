@@ -359,6 +359,95 @@
                         </div>
                     </div>
                 </section>
+
+
+                <div class="row" id="table-head">
+                    <div class="col-12">
+
+                        <div class="card">
+
+                            <div class="card-body">
+                                <div class="card-tools">
+                                    
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="thead-light">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>{{__('labels.views')}}</th>
+                                            <th>{{__('labels.content')}}</th>
+                                            <th>{{__('labels.state')}}</th>
+                                            <th>{{__('labels.created_at')}}</th>
+                                            <th>{{__('labels.actions')}}</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($company->stories as $key => $story)
+                                            <tr>
+                                                <td>{{ $key+1 }}</td>
+                                                <td>
+                                                    {{ $story->views }}
+                                                </td>
+                                                <td>
+                                                    @if ($story->type === 'video')
+                                                    
+                                                        <a href="#videoModal" data-video-src="{{$story->video_link}}" data-toggle="modal">
+        
+                                                            {{__('actions.video')}}
+                                                            <i data-feather='play-circle'></i>
+        
+                                                        </a>
+                                                    @else
+                                                    <a href="#galleryModal" data-large-src="{{$story->image_url}}" data-toggle="modal">
+
+                                                        {{__('actions.play_image')}}
+                                                        <i data-feather='play-circle'></i>
+
+                                                    </a>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @switch($story->state)
+                                                        @case(1)
+                                                        <span
+                                                            class="badge badge-pill badge-light-success mr-1">{{__('labels.enable')}}</span>
+                                                        @break
+                                                        @case(2)
+                                                        <span
+                                                            class="badge badge-pill badge-light-danger mr-1">{{__('labels.disabled')}}</span>
+                                                        @break
+                                                        @default
+                                                        <span
+                                                            class="badge badge-pill badge-light-success mr-1">{{__('labels.enable')}}</span>
+                                                    @endswitch
+                                                </td>
+
+                                                <td>
+                                                    {{ $story->created_at->format('Y-m-d') }}
+                                                </td>
+                                                <td>
+
+                                                        <a title="{{__('actions.details')}}"
+                                                           href="{{route('admin.stories.toggle',$story->id)}}">
+                                                            <i data-feather="eye" class="mr-50"></i>
+                                                        </a>
+
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
         </div>
     </div>
@@ -401,6 +490,27 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-outline-primary " data-dismiss="modal" aria-hidden="true">{{__('actions.cancel')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="videoModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="text-center mb-0"></h3>
+                    <button type="button" class="close float-right" aria-label="Close" data-dismiss="modal">
+                        <span aria-hidden="true">&#xD7;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-0 text-center bg-alt">
+                    <video width="800" height="800" controls id="video">
+                        <source id="source" src="#" type="video/mp4" >
+                    </video>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-primary " data-dismiss="modal" aria-hidden="true">{{__('actions.delete_btn_yes')}}</button>
                 </div>
             </div>
         </div>

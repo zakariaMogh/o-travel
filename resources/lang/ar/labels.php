@@ -449,4 +449,6 @@ return [
     'featured_offers' => 'العروض المتميزة',
     'normal_offers' => 'العروض العادية',
     'auto_accept_offer_for_all' => 'القبول تلقائي للعروض لجميع الشركات',
+
+    'views' => 'المشاهدات'
 ];

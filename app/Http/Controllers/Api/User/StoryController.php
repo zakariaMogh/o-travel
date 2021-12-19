@@ -21,6 +21,6 @@ class StoryController extends Controller
      */
     public function __invoke(Request $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
-        return StoryResource::collection($this->story->setRelations(['company'])->setScopes(['active'])->findByFilter());
+        return StoryResource::collection($this->story->setRelations(['company'])->setScopes(['active', 'visible'])->findByFilter());
     }
 }

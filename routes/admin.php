@@ -48,6 +48,8 @@ Route::middleware('auth:admin')->group(function (){
     Route::post('notifications/{id}/send',[\App\Http\Controllers\Web\Admin\NotificationController::class,'send'])->name('notifications.send');
     Route::resource('notifications', \App\Http\Controllers\Web\Admin\NotificationController::class)->only(['index','store', 'edit', 'destroy','update']);
 
+    Route::get('stories/{id}/toggle', [\App\Http\Controllers\Web\Admin\CompanyController::class, 'toggleStory'])->name('stories.toggle');
+
 });
 
 

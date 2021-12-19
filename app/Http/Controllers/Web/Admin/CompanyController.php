@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Admin;
 
 use App\Contracts\CompanyContract;
+use App\Contracts\StoryContract;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Support\Renderable;
@@ -12,10 +13,13 @@ class CompanyController extends Controller
 {
 
     protected $company;
+    protected $story;
 
-    public function __construct(CompanyContract $company)
+    public function __construct(CompanyContract $company, StoryContract $story)
     {
         $this->company = $company;
+        $this->story = $story;
+
 
         $this->middleware(['permission:view-company'])->only(['index', 'show']);
         $this->middleware(['permission:edit-company'])->only(['edit', 'update']);
@@ -156,6 +160,14 @@ class CompanyController extends Controller
         $this->company->removeCheck($id);
         session()->flash('success',__('messages.update'));
         return redirect()->back();
+    }
+
+
+    public function toggleStory($id)
+    {
+        $this->story->toggle($id);
+        session()->flash('success',__('messages.update'));
+        return back();
     }
 
 }

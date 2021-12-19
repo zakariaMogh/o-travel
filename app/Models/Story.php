@@ -17,6 +17,7 @@ class Story extends Model
         'meta',
         'views',
         'company_id',
+        'state'
     ];
 
     protected $appends = [
@@ -40,6 +41,11 @@ class Story extends Model
         return  Str::contains($this->image,'http')
             ? $this->image
             : asset('storage/'.$this->image);
+    }
+
+    public function scopeVisible($query)
+    {
+        $query->whereState(1);
     }
 
     public function scopeActive($query)
