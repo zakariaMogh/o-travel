@@ -68,7 +68,10 @@ class CompanyController extends Controller
      */
     public function show($id): Renderable
     {
-        $company = $this->company->findOneById($id);
+        $company = $this->company->setRelations(['stories' => function($q)
+        {
+            $q->scopes('active');
+        }])->findOneById($id);
         return view('admin.companies.show', compact('company'));
     }
 
