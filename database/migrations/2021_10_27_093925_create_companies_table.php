@@ -29,6 +29,7 @@ class CreateCompaniesTable extends Migration
             $table->integer('story_state')->default(1); // 1: active - 2: inactive
             $table->integer('auto_accepted')->default(1); // 1: inactive - 2: active
             $table->boolean('checked')->default(false); // 1 : true - 0 : false
+            $table->boolean('SML_visibility')->default(false); // 1 : disable - 2 : enable
             $table->text('facebook')->nullable();
             $table->text('whatsapp')->nullable();
             $table->text('snapchat')->nullable();

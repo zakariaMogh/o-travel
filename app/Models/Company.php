@@ -36,6 +36,7 @@ class Company extends Authenticatable
         'domain_id',
         'description',
         'max_number_of_offers',
+        'SML_visibility'
 
     ];
 

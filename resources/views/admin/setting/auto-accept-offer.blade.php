@@ -3,7 +3,7 @@
     <form action="{{ route('admin.setting.update-auto-accept-offer') }}" method="POST" role="form">
         @csrf
         <hr>
-        <h3>{{__('labels.general_settings')}}</h3>
+        <h3>{{__('labels.auto_accept_offer_for_all')}}</h3>
         <hr>
 
         <div class="">

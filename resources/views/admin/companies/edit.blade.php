@@ -68,6 +68,14 @@
                                                         </select>
                                                     </div>
 
+                                                    <div class="form-group">
+                                                        <label for="SML_visibility">{{__('labels.social_media_links_visibility')}}</label>
+                                                        <select name="SML_visibility" id="SML_visibility" class="form-control">
+                                                            <option value="1" @if((int)old('SML_visibility',$company->SML_visibility) === 1) selected @endif>{{__('labels.no')}}</option>
+                                                            <option value="2" @if((int)old('SML_visibility',$company->SML_visibility) === 2) selected @endif>{{__('labels.yes')}}</option>
+                                                        </select>
+                                                    </div>
+
                                                     <x-form.input
                                                         name="max_number_of_offers" {{-- required --}}
                                                         :value="old('max_number_of_offers',$company->max_number_of_offers)"
@@ -75,6 +83,7 @@
                                                         :is_required="true" {{-- optional default=false --}}
                                                     />
 
+                                        
                                                 </div>
                                                 <div class="col-12">
                                                     <button type="submit" class="btn btn-primary mr-1">{{__('labels.save')}}</button>

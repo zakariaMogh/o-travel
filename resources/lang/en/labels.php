@@ -435,6 +435,8 @@ return [
     'request_for_approval' => 'waiting for approval',
     'auto_accept_offer_for_all' => 'Auto accept offer for all companies',
 
-    'views' => 'Views'
+    'views' => 'Views',
+    'social_media_links_visibility' => 'Social media links visibility',
+    'story_state' => 'Story state'
 
 ];

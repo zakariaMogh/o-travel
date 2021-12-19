@@ -190,6 +190,27 @@
                                                 <div class="user-info-title">
                                                     <i data-feather="info" class="mr-1"></i>
                                                     <span
+                                                        class="card-text user-info-title font-weight-bold mb-0">{{__('labels.social_media_links_visibility')}}</span>
+                                                </div>
+                                                <p class="card-text mb-0">
+                                                    @switch($company->SML_visibility)
+                                                        @case(2)
+                                                        <span
+                                                            class="badge badge-pill badge-light-success mr-1">{{__('labels.yes')}}</span>
+                                                        @break
+                                                        @case(1)
+                                                        <span
+                                                            class="badge badge-pill badge-light-danger mr-1">{{__('labels.no')}}</span>
+                                                        @break
+
+                                                    @endswitch
+                                                </p>
+                                            </div>
+
+                                            <div class="d-flex flex-wrap my-50">
+                                                <div class="user-info-title">
+                                                    <i data-feather="info" class="mr-1"></i>
+                                                    <span
                                                         class="card-text user-info-title font-weight-bold mb-0">{{__('labels.state')}}</span>
                                                 </div>
                                                 <p class="card-text mb-0">

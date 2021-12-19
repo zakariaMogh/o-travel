@@ -73,7 +73,14 @@ class SettingsController extends Controller
         DB::table('companies')->update(['auto_accepted' => $data['auto_accept_offer_for_all']]);
         session()->flash("success", __('messages.update'));
         return redirect()->back();
+    }
 
+    public function updateSocielMediaLinksVisibility(Request $request){
+        $data = $request->validate(['social_media_links_visibility' => 'required|integer|in:1,2|']);
+        Setting::set('social_media_links_visibility', $data['social_media_links_visibility']);
+        DB::table('companies')->update(['SML_visibility' => $data['social_media_links_visibility']]);
+        session()->flash("success", __('messages.update'));
+        return redirect()->back();
     }
 
     /**

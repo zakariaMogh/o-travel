@@ -228,6 +228,10 @@ class SettingSeeder extends Seeder
             'key' => 'auto_accept_offer_for_all',
             'value' => 2,
         ],
+        [
+            'key' => 'social_media_links_visibility',
+            'value' => 1,
+        ],
 
     ];
 
