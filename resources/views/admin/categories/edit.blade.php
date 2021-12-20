@@ -61,7 +61,7 @@
 
                                                     <x-form.input
                                                         name="name_ar" {{-- required --}}
-                                                        :value="$city->name_ar"
+                                                        :value="old('name_ar',$category->name_ar)"
                                                         type="text" {{-- optional default=text --}}
                                                         :is_required="false" {{-- optional default=false --}}
                                                     />
