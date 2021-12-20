@@ -230,6 +230,10 @@ class SettingSeeder extends Seeder
         ],
         [
             'key' => 'social_media_links_visibility',
+            'value' => 2,
+        ],
+        [
+            'key' => 'stories',
             'value' => 1,
         ],
 

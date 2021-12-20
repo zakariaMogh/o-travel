@@ -23,6 +23,7 @@ Route::middleware('auth:admin')->group(function (){
     Route::POST("setting",[\App\Http\Controllers\Web\Admin\SettingsController::class,'update'])->name("setting.update");
     Route::POST("setting/update-auto-accept-offer",[\App\Http\Controllers\Web\Admin\SettingsController::class,'updateOfferAutoAccept'])->name("setting.update-auto-accept-offer");
     Route::POST("setting/update-social-media-links-visibility",[\App\Http\Controllers\Web\Admin\SettingsController::class,'updateSocielMediaLinksVisibility'])->name("setting.update-social-media-links-visibility");
+    Route::POST("setting/update-stories",[\App\Http\Controllers\Web\Admin\SettingsController::class,'updateStories'])->name("setting.update-stories");
 
     Route::get('admins/{id}/edit-password',[\App\Http\Controllers\Web\Admin\AdminController::class,'editPassword'])->name('admins.edit-password');
     Route::put('admins/{id}/edit-password',[\App\Http\Controllers\Web\Admin\AdminController::class,'updatePassword'])->name('admins.update-password');

@@ -57,6 +57,7 @@ return [
     'report' => '{1}Report|[2,*]Reports',
     'country' => '{1}Country|[2,*]Countries',
     'domain' => '{1}Domain|[2,*]Domains',
+    'story' => '{1}Story|[2,*]Stories',
     'dashboard' => 'Dashboard',
     'rating' => 'Rating',
     'accounts' => 'Accounts',

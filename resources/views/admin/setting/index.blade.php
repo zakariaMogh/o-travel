@@ -56,6 +56,9 @@
 
                                                                 <li class="nav-item"><a class="nav-link" href="#vert-tabs-social_media_links_visibility" data-toggle="tab"
                                                                     aria-controls="vert-tabs-social_media_links_visibility" aria-selected="true">{{__('labels.social_media_links_visibility')}}</a></li>
+
+                                                                    <li class="nav-item"><a class="nav-link" href="#vert-tabs-stories" data-toggle="tab"
+                                                                        aria-controls="vert-tabs-stories" aria-selected="true">{{trans_choice('labels.story', 2)}}</a></li>
 {{--                                        <li class="nav-item"><a class="nav-link" href="#vert-tabs-seller_terms_of_use" data-toggle="tab"--}}
 {{--                                                                aria-controls="vert-tabs-seller_terms_of_use" aria-selected="true">{{__('labels.seller_terms_of_use')}}</a></li>--}}
 
@@ -97,6 +100,11 @@
                                     <div class="tab-pane fade show"  id="vert-tabs-social_media_links_visibility" role="tabpanel"
                                          aria-labelledby="vert-tabs-social_media_links_visibility">
                                         @include("admin.setting.social-media-links-visibility")
+                                    </div>
+
+                                    <div class="tab-pane fade show"  id="vert-tabs-stories" role="tabpanel"
+                                         aria-labelledby="vert-tabs-stories">
+                                        @include("admin.setting.stories")
                                     </div>
 
 {{--                                    <div class="tab-pane fade show" id="vert-tabs-seller_terms_of_use" role="tabpanel"--}}

@@ -83,6 +83,14 @@ class SettingsController extends Controller
         return redirect()->back();
     }
 
+    public function updateStories(Request $request){
+        $data = $request->validate(['stories' => 'required|integer|in:1,2|']);
+        Setting::set('stories', $data['stories']);
+        DB::table('companies')->update(['story_state' => $data['stories']]);
+        session()->flash("success", __('messages.update'));
+        return redirect()->back();
+    }
+
     /**
      * @param Request $request
      * @return array
