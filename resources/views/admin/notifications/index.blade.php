@@ -150,7 +150,7 @@
 
                                                 <td>
                                                     @if($notification->receivers === 1)
-                                                        <span class="badge badge-info">{{trans_choice('labels.seller',2)}}</span>
+                                                        <span class="badge badge-info">{{trans_choice('labels.company',2)}}</span>
                                                     @elseif($notification->receivers === 2)
                                                         <span class="badge badge-success">{{trans_choice('labels.user',2)}}</span>
                                                     @else
