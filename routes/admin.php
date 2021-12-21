@@ -43,6 +43,9 @@ Route::middleware('auth:admin')->group(function (){
     Route::get('requests/companies',[\App\Http\Controllers\Web\Admin\CompanyController::class,'requests'])->name('requests.companies');
     Route::resource('companies', \App\Http\Controllers\Web\Admin\CompanyController::class);
     Route::resource('domains', \App\Http\Controllers\Web\Admin\DomainController::class);
+
+    Route::get('offers/{id}/approve',[\App\Http\Controllers\Web\Admin\OfferController::class,'approve'])->name('offers.approve');
+    Route::get('offers/{id}/disapprove',[\App\Http\Controllers\Web\Admin\OfferController::class,'disapprove'])->name('offers.disapprove');
     Route::resource('offers', \App\Http\Controllers\Web\Admin\OfferController::class);
     Route::resource('reports', \App\Http\Controllers\Web\Admin\ReportController::class)->only(['show','index','destroy']);
 

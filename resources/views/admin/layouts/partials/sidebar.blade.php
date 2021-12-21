@@ -52,6 +52,40 @@
                     </a>
                 </li>
 
+                @can('view-offer')
+                <li class=" nav-item {{request()->routeIs('admin.offers*') ? 'active' : ''}}">
+                    <a class="d-flex align-items-center" href="{{route('admin.offers.index')}}">
+                        <i class="fas fa-suitcase"></i>
+                        <span class="menu-title text-truncate">{{trans_choice('labels.offer',2)}}</span>
+                        <span class="badge badge-light-danger badge-pill ml-auto mr-1">{{$offers_for_approval_count}}</span>
+                    </a>
+                </li>
+            @endcan
+
+            @can('view-company')
+                <li class=" nav-item {{request()->routeIs('admin.requests.companies*') ? 'active' : ''}}">
+                    <a class="d-flex align-items-center" href="{{route('admin.requests.companies')}}">
+
+                        <i class="fas fa-sitemap"></i>
+                        <span class="menu-title text-truncate">
+                        {{__('labels.request_for_approval')}}
+
+                    </span>
+                        <span class="badge badge-light-danger badge-pill ml-auto mr-1">{{$request_for_approval_count}}</span>
+
+                    </a>
+                </li>
+            @endcan
+
+            @can('view-admin-notification')
+            <li class=" nav-item {{request()->routeIs('admin.notifications*') ? 'active' : ''}}">
+                <a class="d-flex align-items-center" href="{{route('admin.notifications.index')}}">
+                    <i data-feather='bell'></i>
+                    <span class="menu-title text-truncate">{{trans_choice('labels.notification',3)}}</span>
+                </a>
+            </li>
+        @endcan
+
             @canany(['view-role','view-admin','view-user','view-company'])
                 <li class="nav-item has-sub @if(request()->is(['admin/roles*','admin/users*','admin/companies*','admin/admins*'])) sidebar-group-active open @endif" >
                     <a href="#" class="d-flex align-items-center">
@@ -108,21 +142,6 @@
                 </li>
             @endcanany
 
-            @can('view-company')
-                <li class=" nav-item {{request()->routeIs('admin.requests.companies*') ? 'active' : ''}}">
-                    <a class="d-flex align-items-center" href="{{route('admin.requests.companies')}}">
-
-                        <i class="fas fa-sitemap"></i>
-                        <span class="menu-title text-truncate">
-                        {{__('labels.request_for_approval')}}
-
-                    </span>
-                        <span class="badge badge-light-danger badge-pill ml-auto mr-1">{{$request_for_approval_count}}</span>
-
-                    </a>
-                </li>
-            @endcan
-
             @can('view-category')
                 <li class=" nav-item {{request()->routeIs('admin.categories*') ? 'active' : ''}}">
                     <a class="d-flex align-items-center" href="{{route('admin.categories.index')}}">
@@ -167,15 +186,6 @@
                     </li>
                 @endcan
 
-            @can('view-offer')
-                <li class=" nav-item {{request()->routeIs('admin.offers*') ? 'active' : ''}}">
-                    <a class="d-flex align-items-center" href="{{route('admin.offers.index')}}">
-                        <i class="fas fa-suitcase"></i>
-                        <span class="menu-title text-truncate">{{trans_choice('labels.offer',2)}}</span>
-                    </a>
-                </li>
-            @endcan
-
             @can('view-report')
                 <li class=" nav-item {{request()->routeIs('admin.reports*') ? 'active' : ''}}">
                     <a class="d-flex align-items-center" href="{{route('admin.reports.index')}}">
@@ -184,17 +194,6 @@
                     </a>
                 </li>
             @endcan
-
-            @can('view-admin-notification')
-                <li class=" nav-item {{request()->routeIs('admin.notifications*') ? 'active' : ''}}">
-                    <a class="d-flex align-items-center" href="{{route('admin.notifications.index')}}">
-                        <i data-feather='bell'></i>
-                        <span class="menu-title text-truncate">{{trans_choice('labels.notification',3)}}</span>
-                    </a>
-                </li>
-            @endcan
-
-
 
         </ul>
     </div>

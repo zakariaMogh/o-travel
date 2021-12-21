@@ -144,6 +144,15 @@
                                                     @endif
                                                 </td>
                                                 <td>
+                                                    
+                                                    @can('edit-offer')
+                                                    <a title="{{__('actions.details')}}"
+                                                       href="javascript:void(0)" data-toggle="modal" data-target="#offer-modal" class="open-offerModal"
+                                                       data-image-src="{{$offer->images->first()->url ?? ''}}" data-description="{{$offer->description}}"
+                                                       data-offer-id="{{$offer->id}}">
+                                                        <i data-feather="check" class="mr-50"></i>
+                                                    </a>
+                                                    @endcan
 
                                                     @can('view-offer')
                                                         <a title="{{__('actions.details')}}"
@@ -167,6 +176,7 @@
                                                         </a>
                                                     @endcan
 
+                                                    
 
 
 
@@ -188,7 +198,31 @@
             </div>
         </div>
     </div>
-
+<!-- Modal -->
+<div class="modal fade" id="offer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">{{trans_choice('labels.offer', 1)}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="#" alt="" width="100%" id="offerImg">
+                <div>
+                    <h4>{{ __('labels.description') }}</h4>
+                    <p id="offerDescription"></p>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <a href="" class="btn btn-success" id="approve">{{__('actions.approved')}}</a>
+                <a href="" class="btn btn-danger" id="disapprove">{{__('actions.disapproved')}}</a>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('js')
@@ -231,6 +265,22 @@
             document.body.appendChild(f);
             return f;
         }
+    </script>
+
+    <script>
+        $(document).on("click", ".open-offerModal", function () {
+            console.log('test')
+     var id = $(this).data('offer-id');
+     var description = $(this).data('description');
+     var image = $(this).data('image-src');
+     
+     $(".modal-body #offerImg").attr("src", image);
+     $(".modal-body #offerDescription").text( description );
+
+     $(".modal-footer #approve").attr( 'href', `/admin/offers/${id}/approve` );
+     $(".modal-footer #disapprove").attr( 'href', `/admin/offers/${id}/disapprove` );
+
+});
     </script>
 
 @endpush

@@ -66,4 +66,11 @@ class OfferRepository extends BaseRepositories implements OfferContract
     {
         return $this->findOneById($id)->delete();
     }
+
+    public function stateToggle($id, $state)
+    {
+        return $this->update($id, [
+            'state' => $state
+        ]);
+    }
 }

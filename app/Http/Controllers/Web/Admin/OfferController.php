@@ -24,7 +24,7 @@ class OfferController extends Controller
 
     public function index()
     {
-        $offers = $this->offer->findByFilter();
+        $offers = $this->offer->setRelations(['company', 'category'])->findByFilter();
         return view('admin.offers.index',compact('offers'));
     }
 
@@ -64,5 +64,19 @@ class OfferController extends Controller
         $this->offer->destroy($id);
         session()->flash('success',__('messages.delete'));
         return redirect()->route('admin.offers.index');
+    }
+
+    public function approve($id)
+    {
+        $this->offer->stateToggle($id, 2);
+        session()->flash('success',__('messages.update'));
+        return back();
+    }
+
+    public function disapprove($id)
+    {
+        $this->offer->stateToggle($id, 1);
+        session()->flash('success',__('messages.update'));
+        return back();
     }
 }
