@@ -23,7 +23,9 @@ Route::middleware('auth:user')->group(function (){
     Route::post('offers/{id}/favorite',[\App\Http\Controllers\Api\User\OfferController::class,'markAsFavorite'])->name('offers.favorite.store');
     Route::resource('offers', \App\Http\Controllers\Api\User\OfferController::class)->only(['show', 'index']);
     Route::post('reports', \App\Http\Controllers\Api\User\ReportController::class);
-    Route::get('stories',\App\Http\Controllers\Api\User\StoryController::class)->name('stories.index');
+
+    Route::get('stories/company',[\App\Http\Controllers\Api\User\StoryController::class, 'getStoriesByCompany']);
+    Route::get('stories',[\App\Http\Controllers\Api\User\StoryController::class, 'index'])->name('stories.index');
 
     Route::get('notifications/count',[App\Http\Controllers\Api\User\NotificationController::class, 'count']);
     Route::resource('notifications',App\Http\Controllers\Api\User\NotificationController::class)->only(['index', 'destroy']);

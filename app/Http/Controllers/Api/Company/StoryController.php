@@ -18,12 +18,12 @@ class StoryController extends Controller
 
     public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
-        return StoryResource::collection($this->story->findBy(['company_id' => auth('company')->id()]));
+        return StoryResource::collection($this->story->setRelations(['company'])->findBy(['company_id' => auth('company')->id()]));
     }
 
     public function show($id)
     {
-        $story = $this->story->findOneBy(['company_id' => auth('company')->id(),'id' => $id]);
+        $story = $this->story->setRelations(['company'])->findOneBy(['company_id' => auth('company')->id(),'id' => $id]);
         return new StoryResource($story);
     }
 

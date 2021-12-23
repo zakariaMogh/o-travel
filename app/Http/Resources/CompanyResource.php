@@ -43,6 +43,7 @@ class CompanyResource extends JsonResource
             ]),
             'domain'  => new DomainResource($this->whenLoaded('domain')),
             'city'  => new CityResource($this->whenLoaded('city')),
+            'stories'  =>  StoryResource::collection($this->whenLoaded('stories')),
 
         ];
     }

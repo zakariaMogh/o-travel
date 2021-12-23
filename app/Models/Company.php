@@ -66,55 +66,59 @@ class Company extends Authenticatable
      * @var string[]
      */
     protected $appends = [
-        'image_url','trade_register_url','full_phone','offers_count',
+        'image_url', 'trade_register_url', 'full_phone', 'offers_count',
     ];
 
     public function adminPath()
     {
-        if ($this->id)
-        {
-            return route('admin.companies.show',$this->id);
+        if ($this->id) {
+            return route('admin.companies.show', $this->id);
         }
         return '#';
     }
 
     public function getImageUrlAttribute()
     {
-        if (Str::contains($this->image,'http'))
-        {
+        if (Str::contains($this->image, 'http')) {
             return $this->image;
         }
 
         return $this->image
-            ? asset('storage/'.$this->image)
+            ? asset('storage/' . $this->image)
             : asset('assets/admin/app-assets/images/user.png');
     }
 
     public function getFullPhoneAttribute()
     {
-        return $this->country_code .' '.$this->phone;
+        return $this->country_code . ' ' . $this->phone;
     }
 
     public function getOffersCountAttribute()
     {
-        return $this->offers()->where('featured',1)->count();
+        return $this->offers()->where('featured', 1)->count();
     }
 
     public function getTradeRegisterUrlAttribute()
     {
-        if (Str::contains($this->trade_register,'http'))
-        {
+        if (Str::contains($this->trade_register, 'http')) {
             return $this->trade_register;
         }
 
         return $this->trade_register
-            ? asset('storage/'.$this->trade_register)
+            ? asset('storage/' . $this->trade_register)
             : asset('');
     }
 
     public function scopeNotApproved($query)
     {
-        $query->where('trade_register','<>',null)->where('checked',false);
+        $query->where('trade_register', '<>', null)->where('checked', false);
+    }
+
+    public function scopeHasActiveStories($query)
+    {
+        $query->whereHas('stories', function ($q) {
+            $q->scopes(['active', 'visible']);
+        });
     }
 
     public function city(): belongsTo
@@ -132,14 +136,14 @@ class Company extends Authenticatable
         return $this->hasMany(Offer::class);
     }
 
-    public function comments():hasMany
+    public function comments(): hasMany
     {
         return $this->hasMany(Comment::class);
     }
 
     public function reports(): \Illuminate\Database\Eloquent\Relations\MorphMany
     {
-        return $this->morphMany(Report::class,'reportable');
+        return $this->morphMany(Report::class, 'reportable');
     }
 
     public function stories(): HasMany
@@ -147,7 +151,7 @@ class Company extends Authenticatable
         return $this->hasMany(Story::class);
     }
 
-    public function favorites():BelongsToMany
+    public function favorites(): BelongsToMany
     {
         return $this->belongsToMany(Offer::class);
     }
