@@ -19,14 +19,14 @@ class SocialiteLogin extends Controller
     {
         $rules = [
             'uid'   => 'required|string',
-            'device_token' => 'required|string'
+            'device_token' => 'required|string',
+            'name' => 'required|string|max:90',
+            'image' => 'sometimes|nulalble|string',
         ];
 
         if ($this->getUsername($request) === 'email')
         {
             $rules['username'] = 'required|string|email|max:200';
-            $rules['name'] = 'required|string|max:90';
-            $rules['image_url'] = 'sometimes|nulalble|string';
             $request->validate($rules);
             $this->checkFireBaseUser($request->get('uid'),$request->get('username'));
             return $this->createToken($request->only('email'));
@@ -34,8 +34,6 @@ class SocialiteLogin extends Controller
 
         $rules['username'] = 'required|regex:/^([0-9\s\-\+\(\)]*)$/';
         $rules['country_code'] = 'required|regex:/^(\+)([1-9](\d{0,5}))/';
-        $rules['name'] = 'required|string|max:90';
-        $rules['image_url'] = 'sometimes|nulalble|string';
         $request->validate($rules);
 
         $this->checkFireBaseUser($request->get('uid'),$request->get('country_code').$request->get('username'));
