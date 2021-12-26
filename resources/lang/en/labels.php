@@ -300,6 +300,8 @@ return [
 
     'user_terms_of_use' => 'User terms of use',
     'seller_terms_of_use' => 'Seller terms of use',
+    'terms_of_use' => 'Terms of use',
+
     'about_us' => 'About us',
     'delivery_price' => 'Delivery price',
 
