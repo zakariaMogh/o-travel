@@ -22,7 +22,7 @@ class RegisterController extends ApiController
             'name'      => 'required|string|max:100',
             'email'      => 'required|email|unique:users,email',
             'password'      => 'required|string|min:8|max:24|confirmed',
-            'country_code' => 'required|regex:/^(\+)([1-9](\d{0,5}))/',
+            'country_code' => 'sometimes|nullable|regex:/^(\+)([1-9](\d{0,5}))/',
             'device_token'  => 'required|string',
             'phone'         => 'sometimes|nullable|regex:/^([0-9\s\-\+\(\)]*)$/|unique:users,phone',
             'image_url' => 'sometimes|nullable|string'
@@ -30,7 +30,7 @@ class RegisterController extends ApiController
 
 
         try {
-            $phone = $data['country_code'].$data['phone'];
+            //$phone = $data['country_code'].$data['phone'];
             //$this->checkFirebaseUser($phone);
 
             $user = User::create($data);

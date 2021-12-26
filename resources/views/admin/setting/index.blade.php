@@ -49,7 +49,8 @@
 --}}
                                         <li class="nav-item"><a class="nav-link" href="#vert-tabs-privacy_policy" data-toggle="tab"
                                                                 aria-controls="vert-tabs-privacy_policy" aria-selected="true">{{__('labels.privacy_policy')}}</a></li>
-
+                                                                <li class="nav-item"><a class="nav-link" href="#vert-tabs-terms_of_use" data-toggle="tab"
+                                                                    aria-controls="vert-tabs-terms_of_use" aria-selected="true">{{__('labels.terms_of_use')}}</a></li>
 
                                         <li class="nav-item"><a class="nav-link" href="#vert-tabs-auto_accept_offer_for_all" data-toggle="tab"
                                                                 aria-controls="vert-tabs-auto_accept_offer_for_all" aria-selected="true">{{__('labels.auto_accept_offer_for_all')}}</a></li>
@@ -90,6 +91,11 @@
                                     <div class="tab-pane fade show"  id="vert-tabs-privacy_policy" role="tabpanel"
                                          aria-labelledby="vert-tabs-privacy_policy-tab">
                                         @include("admin.setting.privacy_policy")
+                                    </div>
+
+                                    <div class="tab-pane fade show"  id="vert-tabs-terms_of_use" role="tabpanel"
+                                         aria-labelledby="vert-tabs-terms_of_use-tab">
+                                        @include("admin.setting.terms_of_use")
                                     </div>
 
                                     <div class="tab-pane fade show"  id="vert-tabs-auto_accept_offer_for_all" role="tabpanel"
