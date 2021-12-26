@@ -31,6 +31,11 @@ class UserRepository extends BaseRepositories implements UserContract
             $data['image'] = $this->uploadOne($data['image'],'user/img');
         }
 
+        if (array_key_exists('image_url', $data))
+        {
+            $data['image'] = $data['image_url'];
+        }
+
         $data['password'] = bcrypt($data['password']);
         return $this->model::create($data);
     }

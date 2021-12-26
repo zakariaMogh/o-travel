@@ -108,6 +108,7 @@ class SettingsController extends Controller
             'seller_terms_of_use' => 'nullable|sometimes',
             'user_terms_of_use' => 'nullable|sometimes',
             'privacy_policy' => 'nullable|sometimes',
+            'terms_of_use' => 'nullable|sometimes',
             'address' => 'nullable|sometimes',
             'phone' => 'nullable|sometimes',
             'site_name' => 'nullable|sometimes',

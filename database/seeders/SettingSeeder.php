@@ -168,6 +168,10 @@ class SettingSeeder extends Seeder
             'value' => '',
         ],
         [
+            'key' => 'terms_of_use',
+            'value' => '',
+        ],
+        [
             'key' => 'user_terms_of_use',
             'value' => '',
         ],
