@@ -21,7 +21,7 @@ class SocialiteLogin extends Controller
             'uid'   => 'required|string',
             'device_token' => 'required|string',
             'name' => 'required|string|max:90',
-            'image' => 'sometimes|nulalble|string',
+            'image' => 'sometimes|nullable|string',
         ];
 
         if ($this->getUsername($request) === 'email')
