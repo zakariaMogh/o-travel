@@ -27,5 +27,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
         View::composer(['admin.layouts.partials.sidebar'],\App\Http\Views\Composers\RequestForApprovalComposer::class);
+        if (request()->is('api*'))
+        {
+            $this->app->setLocale('en');
+        }
     }
 }
