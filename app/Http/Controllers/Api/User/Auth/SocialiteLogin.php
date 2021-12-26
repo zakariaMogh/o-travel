@@ -72,9 +72,9 @@ class SocialiteLogin extends Controller
     {
         
         if (filter_var($credentials['username'], FILTER_VALIDATE_EMAIL)){
-            $user = User::firstOrCreate(['email' => $credentials['username']], $credentials);
+            $user = User::updateOrCreate(['email' => $credentials['username']], $credentials);
         }else{
-            $user = User::firstOrCreate(['phone' => $credentials['username']], $credentials);
+            $user = User::updateOrCreate(['phone' => $credentials['username']], $credentials);
         }
 
         if ($user->device_token !== request('device_token'))
