@@ -29,7 +29,7 @@ class SocialiteLogin extends Controller
             $rules['username'] = 'required|string|email|max:200';
             $request->validate($rules);
             $this->checkFireBaseUser($request->get('uid'),$request->get('username'));
-            return $this->createToken($request->validated());
+            return $this->createToken($request->all());
         }
 
         $rules['username'] = 'required|regex:/^([0-9\s\-\+\(\)]*)$/';
@@ -37,7 +37,7 @@ class SocialiteLogin extends Controller
         $request->validate($rules);
 
         $this->checkFireBaseUser($request->get('uid'),$request->get('country_code').$request->get('username'));
-        return $this->createToken($request->validated());
+        return $this->createToken($request->all());
     }
 
     /**
