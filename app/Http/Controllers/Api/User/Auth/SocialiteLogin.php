@@ -29,7 +29,7 @@ class SocialiteLogin extends Controller
             $rules['username'] = 'required|string|email|max:200';
             $request->validate($rules);
             $this->checkFireBaseUser($request->get('uid'),$request->get('username'));
-            return $this->createToken($request->only('email'));
+            return $this->createToken($request->validated());
         }
 
         $rules['username'] = 'required|regex:/^([0-9\s\-\+\(\)]*)$/';
@@ -37,7 +37,7 @@ class SocialiteLogin extends Controller
         $request->validate($rules);
 
         $this->checkFireBaseUser($request->get('uid'),$request->get('country_code').$request->get('username'));
-        return $this->createToken($request->only('phone'));
+        return $this->createToken($request->validated());
     }
 
     /**
@@ -70,7 +70,12 @@ class SocialiteLogin extends Controller
 
     private function createToken($credentials): JsonResponse
     {
-        $user = User::firstOrCreate($credentials, $credentials);
+        
+        if (filter_var($credentials['username'], FILTER_VALIDATE_EMAIL)){
+            $user = User::firstOrCreate(['email' => $credentials['username']], $credentials);
+        }else{
+            $user = User::firstOrCreate(['phone' => $credentials['username']], $credentials);
+        }
 
         if ($user->device_token !== request('device_token'))
         {
