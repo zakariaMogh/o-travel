@@ -10,6 +10,7 @@ Route::post('login',[\App\Http\Controllers\Api\User\Auth\AuthController::class,'
 
 Route::get('privacy_policy',[\App\Http\Controllers\Api\SettingsController::class,'privacy_policy'])->name('privacy_policy');
 Route::get('about_us',[\App\Http\Controllers\Api\SettingsController::class,'about_us'])->name('about_us');
+Route::get('terms_of_use',[\App\Http\Controllers\Api\SettingsController::class,'terms_of_use'])->name('terms_of_use');
 
 Route::middleware('auth:user')->group(function (){
     Route::get('me',[\App\Http\Controllers\Api\User\Auth\AuthController::class,'me'])->name('me');

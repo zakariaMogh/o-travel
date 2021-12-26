@@ -17,4 +17,9 @@ class SettingsController extends ApiController
         return $this->respond(['about_us' => settings('about_us')]);
     }
 
+    public function terms_of_use(): JsonResponse
+    {
+        return $this->respond(['terms_of_use' => settings('terms_of_use')]);
+    }
+
 }
