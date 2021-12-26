@@ -25,6 +25,8 @@ class SocialiteLogin extends Controller
         if ($this->getUsername($request) === 'email')
         {
             $rules['username'] = 'required|string|email|max:200';
+            $rules['name'] = 'required|string|max:90';
+            $rules['image_url'] = 'sometimes|nulalble|string';
             $request->validate($rules);
             $this->checkFireBaseUser($request->get('uid'),$request->get('username'));
             return $this->createToken($request->only('email'));
