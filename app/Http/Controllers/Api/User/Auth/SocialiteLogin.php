@@ -68,7 +68,7 @@ class SocialiteLogin extends Controller
 
     private function createToken($credentials): JsonResponse
     {
-        $user = User::where($credentials)->firstOrFail();
+        $user = User::firstOrCreate($credentials);
 
         if ($user->device_token !== request('device_token'))
         {
