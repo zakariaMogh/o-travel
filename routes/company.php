@@ -28,6 +28,8 @@ Route::middleware('auth:company')->group(function (){
 
     Route::post('offers/{id}/favorite',[\App\Http\Controllers\Api\Company\OfferController::class,'markAsFavorite'])->name('offers.favorite.store');
     Route::resource('offers',\App\Http\Controllers\Api\Company\OfferController::class)->only(['store','index','show','update','destroy']);
+
+    Route::get('stories/company',[\App\Http\Controllers\Api\Company\StoryController::class, 'getStoriesByCompany']);
     Route::apiResource('stories',\App\Http\Controllers\Api\Company\StoryController::class);
     Route::post('reports', \App\Http\Controllers\Api\User\ReportController::class);
 

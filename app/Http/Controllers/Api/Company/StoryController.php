@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Api\Company;
 
+use Illuminate\Http\Request;
 use App\Contracts\StoryContract;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\StoryResource;
-use Illuminate\Http\Request;
+use App\Http\Resources\CompanyResource;
 
 class StoryController extends Controller
 {
@@ -69,5 +70,18 @@ class StoryController extends Controller
             'success' => true,
             'message' => __('messages.delete'),
         ]);
+    }
+
+     /**
+     * Handle the incoming request.
+     *
+     */
+    public function getStoriesByCompany(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    {
+        $companies = $this->company->setRelations(['stories' => function($q)
+        {
+            $q->scopes(['active', 'visible']);
+        }])->setScopes(['hasActiveStories'])->findByFilter();
+        return CompanyResource::collection($companies);
     }
 }
