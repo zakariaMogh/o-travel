@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Company;
 
 use Illuminate\Http\Request;
 use App\Contracts\StoryContract;
+use App\Contracts\CompanyContract;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\StoryResource;
 use App\Http\Resources\CompanyResource;
@@ -11,10 +12,14 @@ use App\Http\Resources\CompanyResource;
 class StoryController extends Controller
 {
     protected $story;
+    protected $company;
 
-    public function __construct(StoryContract $story)
+
+    public function __construct(StoryContract $story, CompanyContract $company)
     {
         $this->story = $story;
+        $this->company = $company;
+
     }
 
     public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
