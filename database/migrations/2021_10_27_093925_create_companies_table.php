@@ -35,6 +35,7 @@ class CreateCompaniesTable extends Migration
             $table->text('snapchat')->nullable();
             $table->text('instagram')->nullable();
             $table->text('twitter')->nullable();
+            $table->text('website')->nullable();
             $table->text('description')->nullable();
             $table->string('trade_register')->nullable();
             $table->double('rate')->nullable();

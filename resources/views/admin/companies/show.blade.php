@@ -330,6 +330,14 @@
                                                     </p>
                                                 @endif
 
+                                                @if($company->website)
+                                                    <p class="card-text mb-0">
+                                                        <a href="{{$company->website}}" target="_blank">
+                                                            <i data-feather="globe" class="mr-1"></i>
+                                                        </a>
+                                                    </p>
+                                                @endif
+
                                             </div>
 
                                             <div class="d-flex flex-wrap my-50">

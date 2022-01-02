@@ -31,7 +31,7 @@ class CategoryController extends ApiController
      */
     public function __invoke(Request $request)
     {
-        $categories = $this->category->findByFilter();
+        $categories = $this->category->setPerPage(0)->findByFilter();
         return CategoryResource::collection($categories);
     }
 }

@@ -31,7 +31,7 @@ class DomainController extends ApiController
      */
     public function __invoke(Request $request): AnonymousResourceCollection
     {
-        $domains = $this->domain->findByFilter();
+        $domains = $this->domain->setPerPage(0)->findByFilter();
         return DomainResource::collection($domains);
     }
 }

@@ -31,7 +31,7 @@ class CityController extends ApiController
      */
     public function __invoke(Request $request): AnonymousResourceCollection
     {
-        $cities = $this->city->findByFilter();
+        $cities = $this->city->setPerPage(0)->findByFilter();
 
         return CityResource::collection($cities);
 

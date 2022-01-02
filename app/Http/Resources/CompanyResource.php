@@ -30,6 +30,7 @@ class CompanyResource extends JsonResource
             'snapchat'  => $this->snapchat ?? '',
             'instagram'  => $this->instagram ?? '',
             'twitter'  => $this->twitter ?? '',
+            'website'  => $this->website ?? '',
             'rate'  => $this->rate,
             'latitude'  => $this->latitude ?? 0,
             'longitude'  => $this->longitude ?? 0,

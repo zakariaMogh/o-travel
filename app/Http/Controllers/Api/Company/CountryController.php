@@ -31,7 +31,7 @@ class CountryController extends ApiController
      */
     public function __invoke(Request $request): AnonymousResourceCollection
     {
-        $countries = $this->country->findByFilter();
+        $countries = $this->country->setPerPage(0)->findByFilter();
         return CountryResource::collection($countries);
 
     }

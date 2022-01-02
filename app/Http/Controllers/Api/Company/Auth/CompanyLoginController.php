@@ -150,6 +150,7 @@ class CompanyLoginController extends ApiController
             'twitter'   => 'sometimes|nullable|url',
             'instagram' => 'sometimes|nullable|url',
             'snapchat'  => 'sometimes|nullable|url',
+            'website'  => 'sometimes|nullable|url',
             'trade_register'  => 'sometimes|nullable|file|image|max:3000',
         ]);
 
@@ -166,6 +167,7 @@ class CompanyLoginController extends ApiController
             'instagram' => 'sometimes|nullable|url',
             'whatsapp'  =>'sometimes|nullable|url',
             'snapchat'  => 'sometimes|nullable|url',
+            'website'  => 'sometimes|nullable|url',
         ]);
 
         $company = $this->company->update(auth('company')->id(),$data);
