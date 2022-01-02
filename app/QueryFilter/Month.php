@@ -14,6 +14,19 @@ class Month extends Filter
             return $builder;
         }
 
+        if (is_array($q)) {
+            if ($builder->getModel() instanceof Offer) {
+
+                $builder->where(function ($query) use ($q) {
+                    foreach ($q as $month) {
+                        $query
+                            ->orWhere('date', 'like', '%' . $month . '%');
+                    }
+                });
+            }
+            return $builder;
+        }
+
         if ($builder->getModel() instanceof Offer) {
             $builder->where('date', 'like', '%' . $q . '%');
         }

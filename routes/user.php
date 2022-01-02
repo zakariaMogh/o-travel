@@ -18,21 +18,24 @@ Route::middleware('auth:user')->group(function (){
     Route::post('upload/image',[\App\Http\Controllers\Api\User\Auth\AuthController::class,'updateImage'])->name('upload.image');
     Route::put('update',[\App\Http\Controllers\Api\User\Auth\AuthController::class,'update'])->name('update');
 
-    Route::get('companies',[\App\Http\Controllers\Api\User\CompanyController::class,'index'])->name('companies.index');
-    Route::get('companies/{id}',[\App\Http\Controllers\Api\User\CompanyController::class,'show'])->name('companies.show');
-
     Route::post('offers/{id}/favorite',[\App\Http\Controllers\Api\User\OfferController::class,'markAsFavorite'])->name('offers.favorite.store');
-    Route::resource('offers', \App\Http\Controllers\Api\User\OfferController::class)->only(['show', 'index']);
     Route::post('reports', \App\Http\Controllers\Api\User\ReportController::class);
-
-    Route::get('stories/company',[\App\Http\Controllers\Api\User\StoryController::class, 'getStoriesByCompany']);
-    Route::get('stories',[\App\Http\Controllers\Api\User\StoryController::class, 'index'])->name('stories.index');
 
     Route::get('notifications/count',[App\Http\Controllers\Api\User\NotificationController::class, 'count']);
     Route::resource('notifications',App\Http\Controllers\Api\User\NotificationController::class)->only(['index', 'destroy']);
 
-    Route::get('countries',\App\Http\Controllers\Api\User\CountryController::class)->name('countries.index');
-    Route::get('categories',\App\Http\Controllers\Api\User\CategoryController::class)->name('categories.index');
 });
+
+Route::get('companies',[\App\Http\Controllers\Api\User\CompanyController::class,'index'])->name('companies.index');
+Route::get('companies/{id}',[\App\Http\Controllers\Api\User\CompanyController::class,'show'])->name('companies.show');
+
+Route::resource('offers', \App\Http\Controllers\Api\User\OfferController::class)->only(['show', 'index']);
+
+Route::get('stories/company',[\App\Http\Controllers\Api\User\StoryController::class, 'getStoriesByCompany']);
+Route::get('stories',[\App\Http\Controllers\Api\User\StoryController::class, 'index'])->name('stories.index');
+
+Route::get('countries',\App\Http\Controllers\Api\User\CountryController::class)->name('countries.index');
+Route::get('categories',\App\Http\Controllers\Api\User\CategoryController::class)->name('categories.index');
+
 Route::get('domains',\App\Http\Controllers\Api\User\DomainController::class)->name('domains.index');
 Route::get('cities',\App\Http\Controllers\Api\User\CityController::class)->name('cities.index');
