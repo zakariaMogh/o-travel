@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Hash;
 use Kreait\Firebase\Exception\Auth\UserNotFound;
 use Kreait\Firebase\Exception\AuthException;
 use Kreait\Firebase\Exception\FirebaseException;
@@ -77,7 +78,12 @@ class CompanyLoginController extends ApiController
 
     private function createToken($credentials): JsonResponse
     {
-        $company = Company::where($credentials)->firstOrFail();
+        $company = Company::where(['email' => $credentials['email']])->firstOrFail();
+
+        if( !Hash::check(request()->password, $company->password))
+        {
+            throw new ModelNotFoundException;
+        }
 
         if ($company->device_token !== request('device_token'))
         {
@@ -131,7 +137,7 @@ class CompanyLoginController extends ApiController
             'uid'          => 'required|string'
         ]);
 
-        return $request->only(['phone','country_code']);
+        return $request->only(['email', 'password']);
     }
 
     public function update(Request $request): JsonResponse
