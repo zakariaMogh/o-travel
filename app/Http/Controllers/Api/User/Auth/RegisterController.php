@@ -32,6 +32,7 @@ class RegisterController extends ApiController
             $phone = $data['country_code'].$data['phone'];
             //$this->checkFirebaseUser($phone);
 
+            $data['password'] = bcrypt($data['password']);
             $user = User::create($data);
             $token = $user->createToken('mobile_app_user_auth_token')->plainTextToken;
 
