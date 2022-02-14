@@ -80,7 +80,7 @@ class CompanyLoginController extends ApiController
     {
         $company = Company::where(['email' => $credentials['email']])->firstOrFail();
 
-        if( !Hash::check(request()->password, $company->password))
+        if( !Hash::check($credentials['password'], $company->password))
         {
             throw new ModelNotFoundException;
         }

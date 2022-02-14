@@ -10,6 +10,7 @@ use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Kreait\Firebase\Exception\Auth\UserNotFound;
 use Kreait\Firebase\Exception\AuthException;
 use Kreait\Firebase\Exception\FirebaseException;
@@ -21,7 +22,12 @@ class AuthController extends ApiController
 
     private function createToken($credentials): JsonResponse
     {
-        $user = User::where($credentials)->firstOrFail();
+        $user = User::where(['email' => $credentials])->firstOrFail();
+
+        if( !Hash::check($credentials['password'], $user->password))
+        {
+            throw new ModelNotFoundException;
+        }
 
         if ($user->device_token !== request('device_token'))
         {
@@ -200,7 +206,7 @@ class AuthController extends ApiController
             'uid' => 'required|string'
         ]);
 
-        return $request->only(['phone','country_code']);
+        return $request->only(['email','password']);
     }
 
     private function guard(){
