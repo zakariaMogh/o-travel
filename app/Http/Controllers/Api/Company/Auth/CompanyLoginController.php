@@ -158,6 +158,7 @@ class CompanyLoginController extends ApiController
             'snapchat'  => 'sometimes|nullable|url',
             'website'  => 'sometimes|nullable|url',
             'trade_register'  => 'sometimes|nullable|file|image|max:3000',
+            'description'       => 'sometimes|nullable|string',
         ]);
 
         $company = $this->company->update(auth('company')->id(),$data);
