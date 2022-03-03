@@ -145,7 +145,9 @@ class CompanyLoginController extends ApiController
         $data = $request->validate([
             'name' => 'required|string|max:100',
             'email' => 'required|string|email|unique:companies,email,'.auth('company')->id(),
-            'country_code'  => 'required|regex:/^(\+)([1-9](\d{0,5}))/',
+//            'country_code'  => 'required|regex:/^(\+)([1-9](\d{0,5}))/',
+            'country_code'  => 'required|regex:/^([1-9](\d{0,5}))/',
+
             'phone'         => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|unique:companies,phone,'.auth('company')->id(),
             'city_id'       => 'required|integer|exists:cities,id',
             'domain_id'     => 'required|integer|exists:domains,id',

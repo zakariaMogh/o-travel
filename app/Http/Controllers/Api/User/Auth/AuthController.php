@@ -121,7 +121,7 @@ class AuthController extends ApiController
             [
                 'name' => 'required|string|max:200',
                 'email' => 'required|string|email|unique:users,email,'.auth('user')->id(),
-                'country_code' => 'required|regex:/^(\+)([1-9](\d{0,5}))/',
+                'country_code'  => 'required|regex:/^([1-9](\d{0,5}))/',
                 'phone'         => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|unique:users,phone,'.auth('user')->id(),
             ]);
 
