@@ -22,7 +22,7 @@ class RegisterController extends ApiController
             'name'      => 'required|string|max:100',
             'email'      => 'required|email|unique:users,email',
             'password'      => 'required|string|min:8|max:24|confirmed',
-            'country_code'  => 'required|regex:/^([1-9](\d{0,5}))/',
+            'country_code'  => 'required|regex:/^(\+)([1-9](\d{0,5}))/',
             'device_token'  => 'required|string',
             'phone'         => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|unique:users,phone',
         ]);
