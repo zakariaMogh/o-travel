@@ -107,6 +107,14 @@
                                                 </div>
                                                 <p class="card-text mb-0">{{$user->full_phone}}</p>
                                             </div>
+                                            <div class="d-flex flex-wrap my-50">
+                                                <div class="user-info-title">
+                                                    <i data-feather="phone" class="mr-1"></i>
+                                                    <span
+                                                        class="card-text user-info-title font-weight-bold mb-0">{{__('labels.codeC')}}</span>
+                                                </div>
+                                                <p class="card-text mb-0">{{$user->codeC}}</p>
+                                            </div>
 
 {{--                                            <div class="d-flex flex-wrap my-50">--}}
 {{--                                                <div class="user-info-title">--}}

@@ -5,22 +5,27 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Laravel\Sanctum\PersonalAccessToken;
+use Faker;
 
 class UserSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      *
      * @return void
      */
+
     public function run()
     {
+        $faker = Faker\Factory::create();
         $this->command->info('Start inserting users');
         $user = User::factory(1)->create([
             'phone' => 774857141,
             'email' => 'user@app.com',
             'password' => bcrypt('password'),
             'country_code' => 213,
+            'codeC' => $faker->numberBetween($min = 1, $max = 250),
                 ]
         );
         PersonalAccessToken::create([

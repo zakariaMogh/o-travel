@@ -79,6 +79,12 @@
                                                         :value="$user->country_code"
                                                     :is_required="true" {{-- optional default=false --}}
                                                     ></x-form.input>
+                                                    <x-form.input
+                                                    name="codeC"
+                                                        type="text"
+                                                        :value="$user->codeC"
+                                                    :is_required="false" {{-- optional default=false --}}
+                                                    ></x-form.input>
 
                                                     <x-form.select
                                                         name="state" {{-- required --}}

@@ -19,6 +19,7 @@ return [
     'email' => 'Email',
     'name' => 'Name',
     'code' => 'Code',
+    'codeC' => 'Country Code ',
     'logo' => 'Logo',
     'accountant' => 'Accountant',
     'agent' => 'Agent',

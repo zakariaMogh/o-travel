@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->string('country_code')->nullable();
             $table->string('image')->nullable();
+            $table->string('codeC')->nullable();
             $table->string('phone')->unique()->nullable();
             $table->double('wallet',14,2)->default(0);
             $table->integer('state')->default(1); // 1: active - 2: banned

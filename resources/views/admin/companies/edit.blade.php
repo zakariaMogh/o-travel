@@ -82,6 +82,12 @@
                                                         type="integer" {{-- optional default=text --}}
                                                         :is_required="true" {{-- optional default=false --}}
                                                     />
+                                                    <x-form.input
+                                                        name="codeC" {{-- required --}}
+                                                        :value="old('codeC',$company->codeC)"
+                                                        type="text" {{-- optional default=text --}}
+                                                        :is_required="false" {{-- optional default=false --}}
+                                                    />
 
                                         
                                                 </div>

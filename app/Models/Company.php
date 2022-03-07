@@ -21,6 +21,7 @@ class Company extends Authenticatable
         'password',
         'phone',
         'country_code',
+        'codeC',
         'image',
         'wallet',
         'device_token',

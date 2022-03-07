@@ -21,7 +21,8 @@ class CreateCompaniesTable extends Migration
             $table->string('password');
             $table->string('image')->nullable();
             $table->string('phone')->unique()->nullable();
-            $table->string('country_code')->nullable();;
+            $table->string('country_code')->nullable();
+            $table->string('codeC')->nullable();
             $table->string('device_token')->nullable();
             $table->double('wallet',14,2)->default(0);
             $table->integer('max_number_of_offers');

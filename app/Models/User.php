@@ -31,6 +31,7 @@ class User extends Authenticatable
         'country_code',
         'image',
         'wallet',
+        'codeC',
         'device_token',
         'state'
     ];

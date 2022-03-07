@@ -28,7 +28,8 @@ class UserRequest extends FormRequest
             'country_code' => ['required', 'regex:/^(\+?\d{1,3}|\d{1,4})$/'],
             'name' => ['required', 'string', 'max:40'],
             'email' => ['required', 'email', 'max:90', 'unique:users,email'],
-            'state' => 'required|in:1,2'
+            'state' => 'required|in:1,2',
+            'codeC' => 'nullable'
         ];
 
         if ($this->method() === 'PUT')
