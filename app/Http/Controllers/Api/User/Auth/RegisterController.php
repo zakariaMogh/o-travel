@@ -24,6 +24,7 @@ class RegisterController extends ApiController
             'password'      => 'required|string|min:8|max:24|confirmed',
             'country_code'  => 'required|regex:/^(\+)([1-9](\d{0,5}))/',
             'device_token'  => 'required|string',
+            'codeC'  => 'nullable|string',
             'phone'         => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|unique:users,phone',
         ]);
 
