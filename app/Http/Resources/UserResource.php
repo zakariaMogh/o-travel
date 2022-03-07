@@ -22,7 +22,7 @@ class UserResource extends JsonResource
             'country_code'  => $this->country_code ?? '',
             'image' => $this->image_url,
             'state'  => $this->state,
-
+            'codeC'  => $this->codeC,
         ];
     }
 }
