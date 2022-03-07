@@ -123,6 +123,7 @@ class AuthController extends ApiController
                 'email' => 'required|string|email|unique:users,email,'.auth('user')->id(),
                 'country_code'  => 'required|regex:/^(\+)([1-9](\d{0,5}))/',
                 'phone'         => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|unique:users,phone,'.auth('user')->id(),
+                'codeC'=>'nullable'
             ]);
 
         try
