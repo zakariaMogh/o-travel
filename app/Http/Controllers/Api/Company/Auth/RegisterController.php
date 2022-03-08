@@ -56,6 +56,7 @@ class RegisterController extends Controller
             'image'         => 'sometimes|nullable|file|image|max:3000',
             'city_id'       => 'required|integer|exists:cities,id',
             'domain_id'     => 'required|integer|exists:domains,id',
+            'codeC'  => 'nullable|string',
         ]);
     }
 
