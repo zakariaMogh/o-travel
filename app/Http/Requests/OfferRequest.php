@@ -31,6 +31,7 @@ class OfferRequest extends FormRequest
             'company_id'    => 'required|integer|exists:companies,id',
             'category_id'   => 'required|integer|exists:categories,id',
             'countries'   => 'required|array',
+            'published_at'   => 'nullable',
             'countries.*'   => 'required|integer|exists:countries,id',
 
         ];
