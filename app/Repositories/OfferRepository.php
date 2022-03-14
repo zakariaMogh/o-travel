@@ -53,6 +53,15 @@ class OfferRepository extends BaseRepositories implements OfferContract
         $offer = $this->findOneById($id);
 
         $offer->update($data);
+        if (array_key_exists('images',$data))
+        {
+            foreach ($data['images'] as $image)
+            {
+                $offer->images()->create([
+                    'link' => $this->uploadOne($image,'offers/'.$id.'/images')
+                ]);
+            }
+        }
 
         if (array_key_exists('countries',$data))
         {
