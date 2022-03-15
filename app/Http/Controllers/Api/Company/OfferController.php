@@ -99,7 +99,7 @@ class OfferController extends ApiController
 
         $offer = $this->offer->setScopes(['authCompany'])->update($id,$data);
 
-        return $this->respondUpdated(__('messages.update'),new OfferResource($offer->loadtCount('authCompany')->load(['images','category','company','countries'])));
+        return $this->respondUpdated(__('messages.update'),new OfferResource($offer->loadCount('authCompany')->load(['images','category','company','countries'])));
     }
 
     /**
