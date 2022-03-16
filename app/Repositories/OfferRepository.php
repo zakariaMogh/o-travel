@@ -57,8 +57,8 @@ class OfferRepository extends BaseRepositories implements OfferContract
         {
             foreach ($data['images'] as $image)
             {
-                $offer->images()->create([
-                    'link' => $this->uploadOne($image,'offers/'.$id.'/images')
+                $offer->images()->first()->update([
+                    'link' => $image
                 ]);
             }
         }

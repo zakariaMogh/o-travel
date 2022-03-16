@@ -46,7 +46,7 @@ class OfferRequest extends FormRequest
         {
             unset($rules['company_id']);
             $rules['images'] = 'required|array';
-            $rules['images.*'] = 'required|file|image|max:5000';
+//            $rules['images.*'] = 'required|file|image|max:5000';
         }
 
         if ($this->is('*company/offers*') && $this->method() === 'PUT')
