@@ -7,6 +7,7 @@ use App\Contracts\OfferContract;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\OfferRequest;
 use App\Http\Resources\OfferResource;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -54,7 +55,7 @@ class OfferController extends ApiController
     public function store(OfferRequest $request): JsonResponse
     {
         $data = $request->validated();
-
+        $data['published_at'] = $data['published_at'] ? $data['published_at'] : Carbon::now();
         $data['company_id'] = company()->id;
         $data['state'] = company()->auto_accepted === 2 ? 2 : 1;
         if( company()->offers_count >= company()->max_number_of_offers)
