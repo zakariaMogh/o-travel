@@ -44,6 +44,7 @@ class OfferController extends ApiController
         }
         $offers = $this->offer->setCounts(['authCompany'])->findByFilter();
         return OfferResource::collection($offers);
+ 
     }
 
     /**

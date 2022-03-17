@@ -21,6 +21,7 @@ class OfferResource extends JsonResource
             'description'  => $this->description ?? '',
             'rate'  => $this->rate,
             'date'  => $this->date ?? '',
+            'published_at'  => $this->published_at ?? '',
             'favorite_by_me'  => $this->getFavoriteByMe(),
             'state'  => $this->state,
             'featured'  => $this->featured,
