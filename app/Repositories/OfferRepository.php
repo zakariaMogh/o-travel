@@ -16,7 +16,7 @@ class OfferRepository extends BaseRepositories implements OfferContract
      * @param Offer $model
      * @param array $filters
      */
-    public function __construct(Offer $model, array $filters = [
+    public function __construct(Offer $model,array $filters = [
         \App\QueryFilter\Search::class,
         \App\QueryFilter\Featured::class,
         \App\QueryFilter\State::class,
@@ -37,8 +37,7 @@ class OfferRepository extends BaseRepositories implements OfferContract
         if (array_key_exists('images',$data))
         {
             foreach ($data['images'] as $image)
-            {
-                $offer->images()->create([
+            {$offer->images()->create([
                     'link' => $this->uploadOne($image,'offers/'.$offer->id.'/images')
                 ]);
             }
@@ -53,15 +52,7 @@ class OfferRepository extends BaseRepositories implements OfferContract
         $offer = $this->findOneById($id);
 
         $offer->update($data);
-        if (array_key_exists('images',$data))
-        {
-            foreach ($data['images'] as $image)
-            {
-                $offer->images()->first()->update([
-                    'link' => $image
-                ]);
-            }
-        }
+
 
         if (array_key_exists('countries',$data))
         {

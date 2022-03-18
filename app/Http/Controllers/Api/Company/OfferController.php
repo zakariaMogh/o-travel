@@ -7,6 +7,8 @@ use App\Contracts\OfferContract;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\OfferRequest;
 use App\Http\Resources\OfferResource;
+use App\Models\Image;
+use App\Traits\UploadAble;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -14,6 +16,8 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class OfferController extends ApiController
 {
+    use UploadAble;
+
 
     /**
      * @var OfferContract
@@ -56,7 +60,7 @@ class OfferController extends ApiController
     public function store(OfferRequest $request): JsonResponse
     {
         $data = $request->validated();
-        $data['published_at'] = $data['published_at'] ? $data['published_at'] : Carbon::now();
+         $request->has('published_at') ? $data['published_at'] : $data[]= ["published_at" =>Carbon::now()];
         $data['company_id'] = company()->id;
         $data['state'] = company()->auto_accepted === 2 ? 2 : 1;
         if( company()->offers_count >= company()->max_number_of_offers)
@@ -98,7 +102,25 @@ class OfferController extends ApiController
     public function update(OfferRequest $request, $id): JsonResponse
     {
         $data = $request->validated();
-
+        if($request->hasFile('images')){
+            $images_of=Image::where('offer_id',$id)->get();
+            $i=0;
+            foreach ($request['images'] as $image)
+            {
+                if(count($images_of) && $images_of[$i] ){
+                    Image::find($images_of[$i]->id)->update([
+                        'link' => $this->uploadOne($image,'offers/'.$id.'/images')
+                    ]);
+                }else{
+                    Image::create([
+                        'offer_id'=>$id,
+                        'link' => $this->uploadOne($image,'offers/'.$id.'/images')
+                    ]);
+                }
+                $i++;
+            }
+        }
+//        return response()->json($data);
         $offer = $this->offer->setScopes(['authCompany'])->update($id,$data);
 
         return $this->respondUpdated(__('messages.update'),new OfferResource($offer->loadCount('authCompany')->load(['images','category','company','countries'])));
