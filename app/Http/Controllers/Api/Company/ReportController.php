@@ -30,9 +30,13 @@ class ReportController extends Controller
             'email'   => 'required|string|email|max:200',
         ]);
         $this->user->makeReport(auth('user')->id(),$data);
-        return \response()->json([
+        /*return \response()->json([
             'success' => true,
             'message' => __('messages.create'),
+        ]);*/
+        return response()->json([
+            'success' => true,
+            'message' => 'this is the message',
         ]);
     }
 }
