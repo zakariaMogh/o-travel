@@ -59,7 +59,7 @@
                                                 <h4 class="invoice-title">
                                                     {{__('labels.email')}} :
                                                     <span class="invoice-number">
-                                                         <a href="mailto:{{$report->subject}}" class="text-decoration-none"> {{$report->subject}}</a>
+                                                         <a href="mailto:{{$report->subject}}" class="text-decoration-none"> {{$report->email}}</a>
                                                     </span>
                                                 </h4>
                                                 <h4 class="invoice-title">

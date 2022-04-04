@@ -85,7 +85,7 @@
                                                     {{$report->subject}}
                                                 </td>
                                                 <td>
-                                                    <a href="mailto:{{$report->subject}}" class="text-decoration-none"> {{$report->subject}}</a>
+                                                    <a href="mailto:{{$report->email}}" class="text-decoration-none"> {{$report->email}}</a>
                                                 </td>
 
                                                 <td>
