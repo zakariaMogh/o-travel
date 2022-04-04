@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Company;
 
-use App\Contracts\UserContract;
+use App\Contracts\CompanyContract;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -10,10 +10,10 @@ use Illuminate\Http\Response;
 
 class ReportController extends Controller
 {
-    protected $user;
-    public function __construct(UserContract $user)
+    protected $company;
+    public function __construct(CompanyContract $company)
     {
-        $this->user = $user;
+        $this->company = $company;
     }
 
     /**
@@ -29,7 +29,7 @@ class ReportController extends Controller
             'message' => 'required|string|max:200',
             'email'   => 'required|string|email|max:200',
         ]);
-        $this->user->makeReport(auth('user')->id(),$data);
+        $this->company->makeReport(auth('user')->id(),$data);
         return \response()->json([
             'success' => true,
             'message' => __('messages.create'),
