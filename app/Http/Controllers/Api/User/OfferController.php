@@ -2,14 +2,22 @@
 
 namespace App\Http\Controllers\Api\User;
 
-use App\Contracts\OfferContract;
 use App\Contracts\UserContract;
+use App\Contracts\OfferContract;
 use App\Http\Controllers\Api\ApiController;
+use App\Http\Requests\OfferRequest;
 use App\Http\Resources\OfferResource;
+use App\Models\Image;
+use App\Traits\UploadAble;
+use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class OfferController extends ApiController
 {
+
+    use UploadAble;
 
     /**
      * @var OfferContract
@@ -31,9 +39,9 @@ class OfferController extends ApiController
      *
      * @return AnonymousResourceCollection
      */
-    public function index(): AnonymousResourceCollection
+    public function index(Request $request): AnonymousResourceCollection
     {
-        $offers = $this->offer->setScopes(['published'])->setRelations(['images','category','company','countries'])->setCounts(['authUser'])->findByFilter();
+        $offers = $this->offer->setRelations(['images','category','company','countries'])->setCounts(['authUser'])->findByFilter();
 
         return OfferResource::collection($offers);
     }
