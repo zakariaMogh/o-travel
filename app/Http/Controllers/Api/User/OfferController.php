@@ -55,9 +55,8 @@ class OfferController extends ApiController
      */
     public function show($id): OfferResource
     {
-        $offer = $this->offer->setScopes(['published'])->setRelations(['company','category','countries','images'])->setCounts(['authUser'])->findOneById($id);
+        $offer = $this->offer->setRelations(['company','category','countries','images'])->setCounts(['authUser'])->findOneById($id);
         return new OfferResource($offer);
-
     }
 
     public function markAsFavorite($id, UserContract $user)
