@@ -24,10 +24,7 @@ class ReportController extends Controller
      */
     public function __invoke(Request $request): JsonResponse
     {
-        return \response()->json([
-            'message' => 'hi',
-        ]);
-        /*$data = $request->validate([
+        $data = $request->validate([
             'subject' => 'required|string|max:200',
             'message' => 'required|string|max:200',
             'email'   => 'required|string|email|max:200',
@@ -37,6 +34,6 @@ class ReportController extends Controller
         return \response()->json([
             'success' => true,
             'message' => __('messages.create'),
-        ]);*/
+        ]);
     }
 }
